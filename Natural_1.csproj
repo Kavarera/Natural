@@ -35,8 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySHA256ENC">
+      <HintPath>.\MySHA256ENC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +61,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Karyawan.cs" />
+    <Compile Include="Kasir\KasirForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kasir\KasirForm.Designer.cs">
+      <DependentUpon>KasirForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kasir\UC_Kasir.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Kasir\UC_Kasir.Designer.cs">
+      <DependentUpon>UC_Kasir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Setting\setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Setting\setting.Designer.cs">
+      <DependentUpon>setting.cs</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,6 +88,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -82,9 +108,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Kasir\KasirForm.resx">
+      <DependentUpon>KasirForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kasir\UC_Kasir.resx">
+      <DependentUpon>UC_Kasir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting\setting.resx">
+      <DependentUpon>setting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -93,6 +128,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\Natural_Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\Logo.ico" />
+    <Resource Include="Resources\Image\Logo.png" />
+    <Resource Include="Resources\Image\setting.ico" />
+    <Resource Include="Resources\Image\setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Image\close.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
