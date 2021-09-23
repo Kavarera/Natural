@@ -30,17 +30,17 @@ namespace Natural_1.Kasir
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.close_BTN = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.close_BTN = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.kasir_BTN = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.belanja_BTN = new System.Windows.Forms.Button();
+            this.kasir_BTN = new System.Windows.Forms.Button();
             this.panelContainer = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -55,6 +55,19 @@ namespace Natural_1.Kasir
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1076, 74);
             this.panel1.TabIndex = 0;
+            // 
+            // close_BTN
+            // 
+            this.close_BTN.Dock = System.Windows.Forms.DockStyle.Right;
+            this.close_BTN.FlatAppearance.BorderSize = 0;
+            this.close_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.close_BTN.Image = global::Natural_1.Properties.Resources.close;
+            this.close_BTN.Location = new System.Drawing.Point(991, 0);
+            this.close_BTN.Name = "close_BTN";
+            this.close_BTN.Size = new System.Drawing.Size(85, 74);
+            this.close_BTN.TabIndex = 4;
+            this.close_BTN.UseVisualStyleBackColor = true;
+            this.close_BTN.Click += new System.EventHandler(this.close_BTN_Click);
             // 
             // label1
             // 
@@ -76,30 +89,6 @@ namespace Natural_1.Kasir
             this.panel3.Size = new System.Drawing.Size(347, 74);
             this.panel3.TabIndex = 2;
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.belanja_BTN);
-            this.panel2.Controls.Add(this.kasir_BTN);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 74);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1076, 65);
-            this.panel2.TabIndex = 1;
-            // 
-            // close_BTN
-            // 
-            this.close_BTN.Dock = System.Windows.Forms.DockStyle.Right;
-            this.close_BTN.FlatAppearance.BorderSize = 0;
-            this.close_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.close_BTN.Image = global::Natural_1.Properties.Resources.close;
-            this.close_BTN.Location = new System.Drawing.Point(991, 0);
-            this.close_BTN.Name = "close_BTN";
-            this.close_BTN.Size = new System.Drawing.Size(85, 74);
-            this.close_BTN.TabIndex = 4;
-            this.close_BTN.UseVisualStyleBackColor = true;
-            this.close_BTN.Click += new System.EventHandler(this.close_BTN_Click);
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -111,18 +100,16 @@ namespace Natural_1.Kasir
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // kasir_BTN
+            // panel2
             // 
-            this.kasir_BTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.kasir_BTN.FlatAppearance.BorderSize = 0;
-            this.kasir_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.kasir_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kasir_BTN.Location = new System.Drawing.Point(0, 0);
-            this.kasir_BTN.Name = "kasir_BTN";
-            this.kasir_BTN.Size = new System.Drawing.Size(131, 65);
-            this.kasir_BTN.TabIndex = 0;
-            this.kasir_BTN.Text = "Kasir";
-            this.kasir_BTN.UseVisualStyleBackColor = true;
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.belanja_BTN);
+            this.panel2.Controls.Add(this.kasir_BTN);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 74);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1076, 65);
+            this.panel2.TabIndex = 1;
             // 
             // belanja_BTN
             // 
@@ -136,6 +123,21 @@ namespace Natural_1.Kasir
             this.belanja_BTN.TabIndex = 1;
             this.belanja_BTN.Text = "Belanja";
             this.belanja_BTN.UseVisualStyleBackColor = true;
+            this.belanja_BTN.Click += new System.EventHandler(this.belanja_BTN_Click);
+            // 
+            // kasir_BTN
+            // 
+            this.kasir_BTN.Dock = System.Windows.Forms.DockStyle.Left;
+            this.kasir_BTN.FlatAppearance.BorderSize = 0;
+            this.kasir_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.kasir_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kasir_BTN.Location = new System.Drawing.Point(0, 0);
+            this.kasir_BTN.Name = "kasir_BTN";
+            this.kasir_BTN.Size = new System.Drawing.Size(131, 65);
+            this.kasir_BTN.TabIndex = 0;
+            this.kasir_BTN.Text = "Kasir";
+            this.kasir_BTN.UseVisualStyleBackColor = true;
+            this.kasir_BTN.Click += new System.EventHandler(this.kasir_BTN_Click);
             // 
             // panelContainer
             // 
@@ -155,11 +157,13 @@ namespace Natural_1.Kasir
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "KasirForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Natural";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

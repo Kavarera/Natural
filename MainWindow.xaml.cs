@@ -39,25 +39,27 @@ namespace Natural_1
 
         private async void login_BTN_Click(object sender, RoutedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand($"SELECT Password, ID, Nama, JobID,Username FROM Karyawan WHERE Username ='{username_TB.Text}'", con);
+            SqlCommand cmd = new SqlCommand($"SELECT Password, Id_Karyawan,Status , Role ,Username FROM Karyawan WHERE Username ='{username_TB.Text}'", con);
             try
             {
                 con.Open();
                 SqlDataReader sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
-                    Karyawan.Nama= sdr["Nama"].ToString();
-                    Karyawan.Id = sdr["ID"].ToString();
+
+                    Karyawan.Id = sdr["Id_Karyawan"].ToString();
                     Karyawan.Username = sdr["Username"].ToString();
                     Karyawan.Sandi = sdr["Password"].ToString();
-                    Karyawan.Jobname = sdr["JobID"].ToString();
+                    Karyawan.Jobname = sdr["Role"].ToString();
+                    Karyawan.Status = sdr["Status"].ToString();
                 }
                 con.Close();
                 if (MySHA256ENC.SHA256Enc.Get_Enc(password_PB.Password) == Karyawan.Sandi && Karyawan.Username == username_TB.Text)
                 {
                     this.Dispatcher.Invoke(() => loginPage.BeginAnimation(OpacityProperty, new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1.5))));
                     await Task.Delay(1500);
-                    Helper.setLogin(Karyawan.Jobname);
+                    Helper.setLogin(Karyawan.Jobname, Karyawan.Status);
+                    this.Hide();
                 }
                 else
                 {

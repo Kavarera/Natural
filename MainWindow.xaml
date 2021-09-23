@@ -11,7 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" Icon="Resources/Image/Logo.ico">
 
     <Window.Background>
         <ImageBrush ImageSource="Resources/Image/Natural_Logo.jpg"/>
@@ -154,10 +154,11 @@
             </Grid.RowDefinitions>
 
             <TextBox x:Name="username_TB" Grid.Row="0" Margin="50,40,50,25" Background="Transparent"
+                     BorderThickness="0"
                      Text="Username" FontFamily="Arial" FontSize="26" TextAlignment="Left" BorderBrush="Transparent" />
             <Separator Width="400" Background="Black" Margin="0,0,0,-65" />
 
-            <PasswordBox x:Name="password_PB" Grid.Row="1"  Margin="50,30,50,30" Background="Transparent"
+            <PasswordBox x:Name="password_PB" BorderThickness="0" Grid.Row="1"  Margin="50,30,50,30" Background="Transparent"
                          Password="Admin" FontSize="23" BorderBrush="Transparent" />
             <Separator Width="400" Background="Black" Grid.Row="1" Margin="0,0,0,-65" />
 

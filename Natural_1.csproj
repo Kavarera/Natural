@@ -68,12 +68,19 @@
     <Compile Include="Kasir\KasirForm.Designer.cs">
       <DependentUpon>KasirForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kasir\UC_Belanja.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Kasir\UC_Belanja.Designer.cs">
+      <DependentUpon>UC_Belanja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Kasir\UC_Kasir.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Kasir\UC_Kasir.Designer.cs">
       <DependentUpon>UC_Kasir.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pelanggan.cs" />
     <Compile Include="Setting\setting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +117,9 @@
     </Compile>
     <EmbeddedResource Include="Kasir\KasirForm.resx">
       <DependentUpon>KasirForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kasir\UC_Belanja.resx">
+      <DependentUpon>UC_Belanja.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Kasir\UC_Kasir.resx">
       <DependentUpon>UC_Kasir.cs</DependentUpon>

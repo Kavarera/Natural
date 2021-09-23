@@ -31,24 +31,31 @@ namespace Natural_1
             config.Save(ConfigurationSaveMode.Modified);
         }
 
-        public static void setLogin(string jobname)
+        public static void setLogin(string jobname, string status)
         {
-            switch (jobname)
+            if (status == "Active")
             {
-                case "Kasir":
-                    Form kasir = new Kasir.KasirForm();
-                    kasir.Show();
-                    break;
-                
-                case "Manager":
-                    break;
-                
-                case "Admin":
-                    break;
+                switch (jobname)
+                {
+                    case "Kasir":
+                        Form kasir = new Kasir.KasirForm();
+                        kasir.Show();
+                        break;
 
-                default:
-                    System.Windows.MessageBox.Show("Job Tidak Terdaftar");
-                    break;
+                    case "Manager":
+                        break;
+
+                    case "Admin":
+                        break;
+
+                    default:
+                        System.Windows.MessageBox.Show("Job Tidak Terdaftar");
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Akun terdaftar tetapi anda tidak bisa masuk.\nHubungi admin anda", "Akses Ditolak");
             }
         }
 
