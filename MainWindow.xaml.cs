@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MySHA256ENC;
+
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Windows.Media.Animation;
@@ -39,7 +39,7 @@ namespace Natural_1
 
         private async void login_BTN_Click(object sender, RoutedEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand($"SELECT Password, Id_Karyawan,Status , Role ,Username FROM Karyawan WHERE Username ='{username_TB.Text}'", con);
+            SqlCommand cmd = new SqlCommand($"SELECT Password, Id_Karyawan,Status , Role ,Username, Nama FROM Karyawan WHERE Username ='{username_TB.Text}'", con);
             try
             {
                 con.Open();
@@ -52,6 +52,7 @@ namespace Natural_1
                     Karyawan.Sandi = sdr["Password"].ToString();
                     Karyawan.Jobname = sdr["Role"].ToString();
                     Karyawan.Status = sdr["Status"].ToString();
+                    Karyawan.Nama = sdr["Nama"].ToString();
                 }
                 con.Close();
                 if (MySHA256ENC.SHA256Enc.Get_Enc(password_PB.Password) == Karyawan.Sandi && Karyawan.Username == username_TB.Text)

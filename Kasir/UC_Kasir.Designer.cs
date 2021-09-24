@@ -29,17 +29,18 @@ namespace Natural_1.Kasir
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Kasir));
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.hapusbarang_BTN = new System.Windows.Forms.Button();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.ongkir_TB = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.baru_BTN = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.beli_BTN = new System.Windows.Forms.Button();
+            this.cetakStruk_BTN = new System.Windows.Forms.Button();
+            this.noStruk_TB = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.beliLangsung_BTN = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.namaPelanggan2_TB = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,23 +66,31 @@ namespace Natural_1.Kasir
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.nonMember_CB = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.pelangganBaru_CB = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.barang_CB = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.kasir_DGV = new System.Windows.Forms.DataGridView();
+            this.namaBarang_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Distributor_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Jumlah_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Satuan_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hargaSatuan_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalHarga_ColumnDGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.jumlah_TB = new System.Windows.Forms.TextBox();
+            this.tambah_BTN = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.hargaSatuan_TB = new System.Windows.Forms.TextBox();
+            this.ambilBonus_BTN = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kasir_DGV)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox3
@@ -99,19 +108,19 @@ namespace Natural_1.Kasir
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(147)))), ((int)(((byte)(205)))));
             this.panel1.Controls.Add(this.hapusbarang_BTN);
-            this.panel1.Controls.Add(this.textBox12);
+            this.panel1.Controls.Add(this.ongkir_TB);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.baru_BTN);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.textBox11);
+            this.panel1.Controls.Add(this.beli_BTN);
+            this.panel1.Controls.Add(this.cetakStruk_BTN);
+            this.panel1.Controls.Add(this.noStruk_TB);
             this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.beliLangsung_BTN);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 691);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1688, 125);
+            this.panel1.Size = new System.Drawing.Size(1747, 125);
             this.panel1.TabIndex = 3;
             // 
             // hapusbarang_BTN
@@ -128,14 +137,15 @@ namespace Natural_1.Kasir
             this.hapusbarang_BTN.TabIndex = 8;
             this.hapusbarang_BTN.Text = "HAPUS BARANG";
             this.hapusbarang_BTN.UseVisualStyleBackColor = false;
+            this.hapusbarang_BTN.Click += new System.EventHandler(this.hapusbarang_BTN_Click);
             // 
-            // textBox12
+            // ongkir_TB
             // 
-            this.textBox12.Enabled = false;
-            this.textBox12.Location = new System.Drawing.Point(1463, 23);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(208, 30);
-            this.textBox12.TabIndex = 7;
+            this.ongkir_TB.Enabled = false;
+            this.ongkir_TB.Location = new System.Drawing.Point(1463, 23);
+            this.ongkir_TB.Name = "ongkir_TB";
+            this.ongkir_TB.Size = new System.Drawing.Size(208, 30);
+            this.ongkir_TB.TabIndex = 7;
             // 
             // label15
             // 
@@ -161,40 +171,42 @@ namespace Natural_1.Kasir
             this.baru_BTN.UseVisualStyleBackColor = false;
             this.baru_BTN.Click += new System.EventHandler(this.baru_BTN_Click);
             // 
-            // button5
+            // beli_BTN
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(1193, 66);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(107, 38);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Beli";
-            this.button5.UseVisualStyleBackColor = false;
+            this.beli_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
+            this.beli_BTN.Enabled = false;
+            this.beli_BTN.FlatAppearance.BorderSize = 0;
+            this.beli_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this.beli_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.beli_BTN.Location = new System.Drawing.Point(1193, 66);
+            this.beli_BTN.Name = "beli_BTN";
+            this.beli_BTN.Size = new System.Drawing.Size(107, 38);
+            this.beli_BTN.TabIndex = 4;
+            this.beli_BTN.Text = "Beli";
+            this.beli_BTN.UseVisualStyleBackColor = false;
+            this.beli_BTN.Click += new System.EventHandler(this.beli_BTN_Click);
             // 
-            // button4
+            // cetakStruk_BTN
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
-            this.button4.Enabled = false;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(589, 66);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(175, 38);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Cetak Struk";
-            this.button4.UseVisualStyleBackColor = false;
+            this.cetakStruk_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
+            this.cetakStruk_BTN.Enabled = false;
+            this.cetakStruk_BTN.FlatAppearance.BorderSize = 0;
+            this.cetakStruk_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this.cetakStruk_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cetakStruk_BTN.Location = new System.Drawing.Point(589, 66);
+            this.cetakStruk_BTN.Name = "cetakStruk_BTN";
+            this.cetakStruk_BTN.Size = new System.Drawing.Size(175, 38);
+            this.cetakStruk_BTN.TabIndex = 3;
+            this.cetakStruk_BTN.Text = "Cetak Struk";
+            this.cetakStruk_BTN.UseVisualStyleBackColor = false;
+            this.cetakStruk_BTN.Click += new System.EventHandler(this.cetakStruk_BTN_Click);
             // 
-            // textBox11
+            // noStruk_TB
             // 
-            this.textBox11.Location = new System.Drawing.Point(627, 18);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(154, 30);
-            this.textBox11.TabIndex = 2;
+            this.noStruk_TB.Location = new System.Drawing.Point(627, 18);
+            this.noStruk_TB.Name = "noStruk_TB";
+            this.noStruk_TB.Size = new System.Drawing.Size(154, 30);
+            this.noStruk_TB.TabIndex = 2;
             // 
             // label14
             // 
@@ -205,21 +217,22 @@ namespace Natural_1.Kasir
             this.label14.TabIndex = 1;
             this.label14.Text = "No Struk";
             // 
-            // button3
+            // beliLangsung_BTN
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
-            this.button3.Enabled = false;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(97, 18);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(302, 86);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Beli Langsung";
-            this.button3.UseVisualStyleBackColor = false;
+            this.beliLangsung_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
+            this.beliLangsung_BTN.Enabled = false;
+            this.beliLangsung_BTN.FlatAppearance.BorderSize = 0;
+            this.beliLangsung_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this.beliLangsung_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.beliLangsung_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.beliLangsung_BTN.ForeColor = System.Drawing.Color.White;
+            this.beliLangsung_BTN.Location = new System.Drawing.Point(97, 18);
+            this.beliLangsung_BTN.Name = "beliLangsung_BTN";
+            this.beliLangsung_BTN.Size = new System.Drawing.Size(302, 86);
+            this.beliLangsung_BTN.TabIndex = 0;
+            this.beliLangsung_BTN.Text = "Beli Langsung";
+            this.beliLangsung_BTN.UseVisualStyleBackColor = false;
+            this.beliLangsung_BTN.Click += new System.EventHandler(this.beliLangsung_BTN_Click);
             // 
             // groupBox2
             // 
@@ -249,7 +262,7 @@ namespace Natural_1.Kasir
             this.groupBox2.Controls.Add(this.checkBox3);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.checkBox4);
+            this.groupBox2.Controls.Add(this.nonMember_CB);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.pelangganBaru_CB);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Left;
@@ -393,6 +406,7 @@ namespace Natural_1.Kasir
             this.namaPelanggan_TB.Name = "namaPelanggan_TB";
             this.namaPelanggan_TB.Size = new System.Drawing.Size(281, 30);
             this.namaPelanggan_TB.TabIndex = 25;
+            this.namaPelanggan_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.namaPelanggan_TB_KeyUp);
             // 
             // label16
             // 
@@ -423,6 +437,7 @@ namespace Natural_1.Kasir
             this.bonusPelanggan_TB.Location = new System.Drawing.Point(193, 273);
             this.bonusPelanggan_TB.Margin = new System.Windows.Forms.Padding(4);
             this.bonusPelanggan_TB.Name = "bonusPelanggan_TB";
+            this.bonusPelanggan_TB.ReadOnly = true;
             this.bonusPelanggan_TB.Size = new System.Drawing.Size(281, 30);
             this.bonusPelanggan_TB.TabIndex = 17;
             // 
@@ -435,6 +450,7 @@ namespace Natural_1.Kasir
             this.areaPelanggan_TB.Name = "areaPelanggan_TB";
             this.areaPelanggan_TB.Size = new System.Drawing.Size(281, 30);
             this.areaPelanggan_TB.TabIndex = 16;
+            this.areaPelanggan_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.areaPelanggan_TB_KeyUp);
             // 
             // alamatPelanggan_TB
             // 
@@ -445,6 +461,7 @@ namespace Natural_1.Kasir
             this.alamatPelanggan_TB.Name = "alamatPelanggan_TB";
             this.alamatPelanggan_TB.Size = new System.Drawing.Size(281, 30);
             this.alamatPelanggan_TB.TabIndex = 15;
+            this.alamatPelanggan_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alamatPelanggan_TB_KeyUp);
             // 
             // noTelepon_TB
             // 
@@ -454,6 +471,7 @@ namespace Natural_1.Kasir
             this.noTelepon_TB.Name = "noTelepon_TB";
             this.noTelepon_TB.Size = new System.Drawing.Size(281, 30);
             this.noTelepon_TB.TabIndex = 14;
+            this.noTelepon_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.noTelepon_TB_KeyUp);
             // 
             // gabung_BTN
             // 
@@ -511,17 +529,18 @@ namespace Natural_1.Kasir
             this.label9.TabIndex = 4;
             this.label9.Text = "No Telepon :";
             // 
-            // checkBox4
+            // nonMember_CB
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.ForeColor = System.Drawing.Color.Black;
-            this.checkBox4.Location = new System.Drawing.Point(32, 31);
-            this.checkBox4.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(153, 29);
-            this.checkBox4.TabIndex = 1;
-            this.checkBox4.Text = "Non-Member";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this.nonMember_CB.AutoSize = true;
+            this.nonMember_CB.ForeColor = System.Drawing.Color.Black;
+            this.nonMember_CB.Location = new System.Drawing.Point(32, 31);
+            this.nonMember_CB.Margin = new System.Windows.Forms.Padding(4);
+            this.nonMember_CB.Name = "nonMember_CB";
+            this.nonMember_CB.Size = new System.Drawing.Size(153, 29);
+            this.nonMember_CB.TabIndex = 1;
+            this.nonMember_CB.Text = "Non-Member";
+            this.nonMember_CB.UseVisualStyleBackColor = true;
+            this.nonMember_CB.CheckedChanged += new System.EventHandler(this.nonMember_CB_CheckedChanged);
             // 
             // label10
             // 
@@ -545,6 +564,7 @@ namespace Natural_1.Kasir
             this.pelangganBaru_CB.TabIndex = 1;
             this.pelangganBaru_CB.Text = "Pelanggan Baru";
             this.pelangganBaru_CB.UseVisualStyleBackColor = false;
+            this.pelangganBaru_CB.CheckedChanged += new System.EventHandler(this.pelangganBaru_CB_CheckedChanged);
             // 
             // label11
             // 
@@ -564,67 +584,126 @@ namespace Natural_1.Kasir
             this.label12.TabIndex = 1;
             this.label12.Text = "Harga Satuan :";
             // 
-            // comboBox1
+            // barang_CB
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(115, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(244, 33);
-            this.comboBox1.TabIndex = 2;
+            this.barang_CB.FormattingEnabled = true;
+            this.barang_CB.Location = new System.Drawing.Point(115, 32);
+            this.barang_CB.Name = "barang_CB";
+            this.barang_CB.Size = new System.Drawing.Size(244, 33);
+            this.barang_CB.TabIndex = 2;
+            this.barang_CB.SelectedIndexChanged += new System.EventHandler(this.barang_CB_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(147)))), ((int)(((byte)(205)))));
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Controls.Add(this.textBox10);
-            this.panel2.Controls.Add(this.button2);
+            this.panel2.Controls.Add(this.kasir_DGV);
+            this.panel2.Controls.Add(this.jumlah_TB);
+            this.panel2.Controls.Add(this.tambah_BTN);
             this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.textBox9);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.hargaSatuan_TB);
+            this.panel2.Controls.Add(this.ambilBonus_BTN);
+            this.panel2.Controls.Add(this.barang_CB);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Controls.Add(this.label11);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(544, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1144, 691);
+            this.panel2.Size = new System.Drawing.Size(1203, 691);
             this.panel2.TabIndex = 9;
             // 
-            // dataGridView1
+            // kasir_DGV
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 159);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(1144, 532);
-            this.dataGridView1.TabIndex = 8;
+            this.kasir_DGV.AllowUserToAddRows = false;
+            this.kasir_DGV.AllowUserToDeleteRows = false;
+            this.kasir_DGV.BackgroundColor = System.Drawing.Color.White;
+            this.kasir_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.kasir_DGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.namaBarang_ColumnDGV,
+            this.Distributor_ColumnDGV,
+            this.Jumlah_ColumnDGV,
+            this.Satuan_ColumnDGV,
+            this.hargaSatuan_ColumnDGV,
+            this.totalHarga_ColumnDGV});
+            this.kasir_DGV.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.kasir_DGV.Location = new System.Drawing.Point(0, 159);
+            this.kasir_DGV.Name = "kasir_DGV";
+            this.kasir_DGV.ReadOnly = true;
+            this.kasir_DGV.RowHeadersWidth = 62;
+            this.kasir_DGV.RowTemplate.Height = 28;
+            this.kasir_DGV.Size = new System.Drawing.Size(1203, 532);
+            this.kasir_DGV.TabIndex = 8;
+            this.kasir_DGV.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.kasir_DGV_RowHeaderMouseDoubleClick);
             // 
-            // textBox10
+            // namaBarang_ColumnDGV
             // 
-            this.textBox10.Location = new System.Drawing.Point(903, 38);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(209, 30);
-            this.textBox10.TabIndex = 7;
+            this.namaBarang_ColumnDGV.HeaderText = "Nama Barang";
+            this.namaBarang_ColumnDGV.MinimumWidth = 150;
+            this.namaBarang_ColumnDGV.Name = "namaBarang_ColumnDGV";
+            this.namaBarang_ColumnDGV.ReadOnly = true;
+            this.namaBarang_ColumnDGV.Width = 300;
             // 
-            // button2
+            // Distributor_ColumnDGV
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.Enabled = false;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
-            this.button2.FlatAppearance.BorderSize = 2;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(903, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(209, 37);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Tambah";
-            this.button2.UseVisualStyleBackColor = false;
+            this.Distributor_ColumnDGV.HeaderText = "Distributor";
+            this.Distributor_ColumnDGV.MinimumWidth = 150;
+            this.Distributor_ColumnDGV.Name = "Distributor_ColumnDGV";
+            this.Distributor_ColumnDGV.ReadOnly = true;
+            this.Distributor_ColumnDGV.Width = 200;
+            // 
+            // Jumlah_ColumnDGV
+            // 
+            this.Jumlah_ColumnDGV.HeaderText = "Jumlah";
+            this.Jumlah_ColumnDGV.MinimumWidth = 100;
+            this.Jumlah_ColumnDGV.Name = "Jumlah_ColumnDGV";
+            this.Jumlah_ColumnDGV.ReadOnly = true;
+            this.Jumlah_ColumnDGV.Width = 150;
+            // 
+            // Satuan_ColumnDGV
+            // 
+            this.Satuan_ColumnDGV.HeaderText = "Satuan";
+            this.Satuan_ColumnDGV.MinimumWidth = 100;
+            this.Satuan_ColumnDGV.Name = "Satuan_ColumnDGV";
+            this.Satuan_ColumnDGV.ReadOnly = true;
+            this.Satuan_ColumnDGV.Width = 150;
+            // 
+            // hargaSatuan_ColumnDGV
+            // 
+            this.hargaSatuan_ColumnDGV.HeaderText = "Harga Satuan";
+            this.hargaSatuan_ColumnDGV.MinimumWidth = 150;
+            this.hargaSatuan_ColumnDGV.Name = "hargaSatuan_ColumnDGV";
+            this.hargaSatuan_ColumnDGV.ReadOnly = true;
+            this.hargaSatuan_ColumnDGV.Width = 180;
+            // 
+            // totalHarga_ColumnDGV
+            // 
+            this.totalHarga_ColumnDGV.HeaderText = "Total Harga";
+            this.totalHarga_ColumnDGV.MinimumWidth = 150;
+            this.totalHarga_ColumnDGV.Name = "totalHarga_ColumnDGV";
+            this.totalHarga_ColumnDGV.ReadOnly = true;
+            this.totalHarga_ColumnDGV.Width = 200;
+            // 
+            // jumlah_TB
+            // 
+            this.jumlah_TB.Location = new System.Drawing.Point(903, 38);
+            this.jumlah_TB.Name = "jumlah_TB";
+            this.jumlah_TB.Size = new System.Drawing.Size(209, 30);
+            this.jumlah_TB.TabIndex = 7;
+            // 
+            // tambah_BTN
+            // 
+            this.tambah_BTN.BackColor = System.Drawing.Color.Transparent;
+            this.tambah_BTN.Enabled = false;
+            this.tambah_BTN.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
+            this.tambah_BTN.FlatAppearance.BorderSize = 2;
+            this.tambah_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
+            this.tambah_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tambah_BTN.Location = new System.Drawing.Point(903, 93);
+            this.tambah_BTN.Name = "tambah_BTN";
+            this.tambah_BTN.Size = new System.Drawing.Size(209, 37);
+            this.tambah_BTN.TabIndex = 6;
+            this.tambah_BTN.Text = "Tambah";
+            this.tambah_BTN.UseVisualStyleBackColor = false;
+            this.tambah_BTN.Click += new System.EventHandler(this.tambah_BTN_Click);
             // 
             // label13
             // 
@@ -635,27 +714,43 @@ namespace Natural_1.Kasir
             this.label13.TabIndex = 5;
             this.label13.Text = "Jumlah :";
             // 
-            // textBox9
+            // hargaSatuan_TB
             // 
-            this.textBox9.Enabled = false;
-            this.textBox9.Location = new System.Drawing.Point(520, 35);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(246, 30);
-            this.textBox9.TabIndex = 4;
+            this.hargaSatuan_TB.Enabled = false;
+            this.hargaSatuan_TB.Location = new System.Drawing.Point(520, 35);
+            this.hargaSatuan_TB.Name = "hargaSatuan_TB";
+            this.hargaSatuan_TB.ReadOnly = true;
+            this.hargaSatuan_TB.Size = new System.Drawing.Size(246, 30);
+            this.hargaSatuan_TB.TabIndex = 4;
             // 
-            // button1
+            // ambilBonus_BTN
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(181)))), ((int)(((byte)(73)))));
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(129, 101);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 40);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Ambil bonus";
-            this.button1.UseVisualStyleBackColor = false;
+            this.ambilBonus_BTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(181)))), ((int)(((byte)(73)))));
+            this.ambilBonus_BTN.Enabled = false;
+            this.ambilBonus_BTN.FlatAppearance.BorderSize = 0;
+            this.ambilBonus_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
+            this.ambilBonus_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ambilBonus_BTN.Location = new System.Drawing.Point(129, 101);
+            this.ambilBonus_BTN.Name = "ambilBonus_BTN";
+            this.ambilBonus_BTN.Size = new System.Drawing.Size(207, 40);
+            this.ambilBonus_BTN.TabIndex = 3;
+            this.ambilBonus_BTN.Text = "Ambil bonus";
+            this.ambilBonus_BTN.UseVisualStyleBackColor = false;
+            this.ambilBonus_BTN.Click += new System.EventHandler(this.ambilBonus_BTN_Click);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // UC_Kasir
             // 
@@ -667,14 +762,14 @@ namespace Natural_1.Kasir
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UC_Kasir";
-            this.Size = new System.Drawing.Size(1688, 816);
+            this.Size = new System.Drawing.Size(1747, 816);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.kasir_DGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -688,7 +783,7 @@ namespace Natural_1.Kasir
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox nonMember_CB;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox pelangganBaru_CB;
         private System.Windows.Forms.Button gabung_BTN;
@@ -698,23 +793,23 @@ namespace Natural_1.Kasir
         private System.Windows.Forms.TextBox noTelepon_TB;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox barang_CB;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox jumlah_TB;
+        private System.Windows.Forms.Button tambah_BTN;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox hargaSatuan_TB;
+        private System.Windows.Forms.Button ambilBonus_BTN;
         private System.Windows.Forms.Button hapusbarang_BTN;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox ongkir_TB;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button baru_BTN;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.Button beli_BTN;
+        private System.Windows.Forms.Button cetakStruk_BTN;
+        private System.Windows.Forms.TextBox noStruk_TB;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button beliLangsung_BTN;
+        private System.Windows.Forms.DataGridView kasir_DGV;
         private System.Windows.Forms.TextBox namaPelanggan2_TB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox noPelanggan2_TB;
@@ -730,5 +825,13 @@ namespace Natural_1.Kasir
         private System.Windows.Forms.TextBox namaPelanggan_TB;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox noPelanggan_TB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn namaBarang_ColumnDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Distributor_ColumnDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Jumlah_ColumnDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Satuan_ColumnDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hargaSatuan_ColumnDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalHarga_ColumnDGV;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

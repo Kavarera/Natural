@@ -62,12 +62,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Karyawan.cs" />
+    <Compile Include="Kasir\Barang.cs" />
     <Compile Include="Kasir\KasirForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Kasir\KasirForm.Designer.cs">
       <DependentUpon>KasirForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Kasir\kasirHelper.cs" />
     <Compile Include="Kasir\UC_Belanja.cs">
       <SubType>UserControl</SubType>
     </Compile>
