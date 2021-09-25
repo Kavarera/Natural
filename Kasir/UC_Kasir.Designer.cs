@@ -30,7 +30,7 @@ namespace Natural_1.Kasir
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Kasir));
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.gabungData_CB = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.hapusbarang_BTN = new System.Windows.Forms.Button();
             this.ongkir_TB = new System.Windows.Forms.TextBox();
@@ -87,22 +87,24 @@ namespace Natural_1.Kasir
             this.ambilBonus_BTN = new System.Windows.Forms.Button();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kasir_DGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkBox3
+            // gabungData_CB
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(193, 319);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(186, 29);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Gabungkan Data";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.gabungData_CB.AutoSize = true;
+            this.gabungData_CB.Location = new System.Drawing.Point(193, 319);
+            this.gabungData_CB.Margin = new System.Windows.Forms.Padding(4);
+            this.gabungData_CB.Name = "gabungData_CB";
+            this.gabungData_CB.Size = new System.Drawing.Size(186, 29);
+            this.gabungData_CB.TabIndex = 2;
+            this.gabungData_CB.Text = "Gabungkan Data";
+            this.gabungData_CB.UseVisualStyleBackColor = true;
+            this.gabungData_CB.CheckedChanged += new System.EventHandler(this.gabungData_CB_CheckedChanged);
             // 
             // panel1
             // 
@@ -141,7 +143,6 @@ namespace Natural_1.Kasir
             // 
             // ongkir_TB
             // 
-            this.ongkir_TB.Enabled = false;
             this.ongkir_TB.Location = new System.Drawing.Point(1463, 23);
             this.ongkir_TB.Name = "ongkir_TB";
             this.ongkir_TB.Size = new System.Drawing.Size(208, 30);
@@ -205,6 +206,7 @@ namespace Natural_1.Kasir
             // 
             this.noStruk_TB.Location = new System.Drawing.Point(627, 18);
             this.noStruk_TB.Name = "noStruk_TB";
+            this.noStruk_TB.ReadOnly = true;
             this.noStruk_TB.Size = new System.Drawing.Size(154, 30);
             this.noStruk_TB.TabIndex = 2;
             // 
@@ -259,7 +261,7 @@ namespace Natural_1.Kasir
             this.groupBox2.Controls.Add(this.gabung_BTN);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.checkBox3);
+            this.groupBox2.Controls.Add(this.gabungData_CB);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.nonMember_CB);
@@ -306,6 +308,7 @@ namespace Natural_1.Kasir
             this.noPelanggan2_TB.Size = new System.Drawing.Size(281, 30);
             this.noPelanggan2_TB.TabIndex = 35;
             this.noPelanggan2_TB.TabStop = false;
+            this.noPelanggan2_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.noPelanggan2_TB_KeyUp);
             // 
             // bonusPelanggan2_TB
             // 
@@ -346,6 +349,7 @@ namespace Natural_1.Kasir
             this.noTelepon2_TB.Name = "noTelepon2_TB";
             this.noTelepon2_TB.Size = new System.Drawing.Size(281, 30);
             this.noTelepon2_TB.TabIndex = 31;
+            this.noTelepon2_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.noTelepon2_TB_KeyUp);
             // 
             // label2
             // 
@@ -475,19 +479,21 @@ namespace Natural_1.Kasir
             // 
             // gabung_BTN
             // 
-            this.gabung_BTN.BackColor = System.Drawing.Color.White;
+            this.gabung_BTN.BackColor = System.Drawing.Color.Red;
             this.gabung_BTN.Enabled = false;
             this.gabung_BTN.FlatAppearance.BorderSize = 0;
             this.gabung_BTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Lime;
             this.gabung_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gabung_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gabung_BTN.Location = new System.Drawing.Point(193, 638);
+            this.gabung_BTN.ForeColor = System.Drawing.Color.White;
+            this.gabung_BTN.Location = new System.Drawing.Point(215, 627);
             this.gabung_BTN.Margin = new System.Windows.Forms.Padding(4);
             this.gabung_BTN.Name = "gabung_BTN";
             this.gabung_BTN.Size = new System.Drawing.Size(247, 46);
             this.gabung_BTN.TabIndex = 13;
             this.gabung_BTN.Text = "Gabungkan";
             this.gabung_BTN.UseVisualStyleBackColor = false;
+            this.gabung_BTN.Click += new System.EventHandler(this.gabung_BTN_Click);
             // 
             // label6
             // 
@@ -692,7 +698,6 @@ namespace Natural_1.Kasir
             // tambah_BTN
             // 
             this.tambah_BTN.BackColor = System.Drawing.Color.Transparent;
-            this.tambah_BTN.Enabled = false;
             this.tambah_BTN.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(130)))), ((int)(((byte)(73)))));
             this.tambah_BTN.FlatAppearance.BorderSize = 2;
             this.tambah_BTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
@@ -752,6 +757,10 @@ namespace Natural_1.Kasir
             this.printPreviewDialog1.Name = "printPreviewDialog1";
             this.printPreviewDialog1.Visible = false;
             // 
+            // printDocument2
+            // 
+            this.printDocument2.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument2_PrintPage);
+            // 
             // UC_Kasir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -776,7 +785,7 @@ namespace Natural_1.Kasir
 
         #endregion
 
-        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox gabungData_CB;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label6;
@@ -833,5 +842,6 @@ namespace Natural_1.Kasir
         private System.Windows.Forms.DataGridViewTextBoxColumn totalHarga_ColumnDGV;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument2;
     }
 }

@@ -16,6 +16,7 @@ namespace Natural_1.Kasir
     public partial class UC_Kasir : UserControl
     {
         SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
+        int clickedBonus = 0;
         public UC_Kasir()
         {
             InitializeComponent();
@@ -32,13 +33,15 @@ namespace Natural_1.Kasir
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (noPelanggan_TB.Text != null && pelangganBaru_CB.Checked==false)
+                if (noPelanggan_TB.Text != null)
                 {
                     namaPelanggan_TB.Enabled = true;
                     noTelepon_TB.Enabled = true;
                     alamatPelanggan_TB.Enabled = true;
                     areaPelanggan_TB.Enabled = true;
                     bonusPelanggan_TB.Enabled = true;
+                    ambilBonus_BTN.Enabled = true;
+                    tambah_BTN.Enabled = true;
 
                     SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
                     try
@@ -56,12 +59,12 @@ namespace Natural_1.Kasir
                         }
                         if (Pelanggan.Nama != null)
                         {
+                            MessageBox.Show(Pelanggan.Bonus);
                             namaPelanggan_TB.Text = Pelanggan.Nama.ToString();
                             noTelepon_TB.Text = Pelanggan.Telepon.ToString();
                             alamatPelanggan_TB.Text = Pelanggan.Alamat.ToString();
                             areaPelanggan_TB.Text = Pelanggan.Area.ToString();
                             bonusPelanggan_TB.Text = Pelanggan.Bonus.ToString();
-                            Pelanggan.Clear();
                         }
                         else
                         {
@@ -102,11 +105,26 @@ namespace Natural_1.Kasir
 
         private void baru_BTN_Click(object sender, EventArgs e)
         {
+            Pelanggan.Clear();
+            con.Close();
+            kasirHelper.totalHarga = 0;
             kasir_DGV.Rows.Clear();
+            noPelanggan_TB.Clear();
+            namaPelanggan_TB.Clear();
+            noTelepon_TB.Clear();
+            alamatPelanggan_TB.Clear();
+            areaPelanggan_TB.Clear();
+            bonusPelanggan_TB.Clear();
+            noStruk_TB.Clear();
+            pelangganBaru_CB.Enabled = true;
+            nonMember_CB.Enabled = true;
+            pelangganBaru_CB.Checked = false;
+            gabungData_CB.Enabled = true;
+            nonMember_CB.Checked = false;
             kasirHelper.totalHarga = 0;
             if (nonMember_CB.Checked == false && pelangganBaru_CB.Checked == false)
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = {bonusPelanggan_TB.Text}", con);
+                SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{Pelanggan.ID_Pelanggan}' ", con);
                 try
                 {
                     con.Open();
@@ -115,6 +133,10 @@ namespace Natural_1.Kasir
                 catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message + "\nbaru_BTN_Click", "UC_Kasir.cs - baru_BTN_Click");
+                }
+                finally
+                {
+                    con.Close();
                 }
             }
         }
@@ -128,6 +150,10 @@ namespace Natural_1.Kasir
                 alamatPelanggan_TB.Enabled = true;
                 areaPelanggan_TB.Enabled = true;
                 bonusPelanggan_TB.Enabled = true;
+                gabungData_CB.Enabled = false;
+                tambah_BTN.Enabled = true;
+                noPelanggan_TB.Text = kasirHelper.GenerateNoPelanggan(con);
+
 
                 if (nonMember_CB.Checked == true)
                 {
@@ -200,6 +226,13 @@ namespace Natural_1.Kasir
                         {
                             MessageBox.Show("Ditambahkan ke Data Transaksi.","Transaksi berhasil");
                         }
+                        if (nonMember_CB.Checked != true)
+                        {
+                            kasirHelper.totalHarga += Barang.Harga_PCS * Convert.ToInt32(jumlah_TB.Text) +Convert.ToInt32(ongkir_TB.Text);
+                            cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat, Bonus, Area) VALUES" +
+                            $"('{noPelanggan_TB.Text}', '{namaPelanggan_TB.Text}','{noTelepon_TB.Text}', '{alamatPelanggan_TB.Text}', '0', '{areaPelanggan_TB.Text}' )", con);
+                            cmd.ExecuteNonQuery();
+                        }
                     }
                     catch(Exception ex)
                     {
@@ -223,6 +256,7 @@ namespace Natural_1.Kasir
         {
             if (nonMember_CB.Checked == true)
             {
+                gabungData_CB.Enabled = false;
                 noPelanggan_TB.Enabled = false;
                 noTelepon_TB.Enabled = false;
             }
@@ -239,9 +273,35 @@ namespace Natural_1.Kasir
             hargaSatuan_TB.Text = Barang.Harga_PCS.ToString();
         }
 
+        private bool checkPelanggan1TB()
+        {
+            if (nonMember_CB.Checked)
+            {
+                if (noPelanggan_TB.Text != "" && noTelepon_TB.Text != "" && alamatPelanggan_TB.Text != "" && namaPelanggan_TB.Text != "" && areaPelanggan_TB.Text != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (alamatPelanggan_TB.Text != "" && namaPelanggan_TB.Text != "" && areaPelanggan_TB.Text != "")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         private void tambah_BTN_Click(object sender, EventArgs e)
         {
-            if (jumlah_TB.Text != "")
+            if (jumlah_TB.Text != "" )
             {
                 beliLangsung_BTN.Enabled = false;
                 beli_BTN.Enabled = true;
@@ -298,6 +358,60 @@ namespace Natural_1.Kasir
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (!pelangganBaru_CB.Checked)
+                {
+                    namaPelanggan_TB.Enabled = true;
+                    noTelepon_TB.Enabled = true;
+                    alamatPelanggan_TB.Enabled = true;
+                    areaPelanggan_TB.Enabled = true;
+                    bonusPelanggan_TB.Enabled = true;
+                    ambilBonus_BTN.Enabled = true;
+
+                    SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
+                    try
+                    {
+                        SqlCommand cmdd = new SqlCommand($"SELECT Id_Pelanggan, Nama , No_Telp, Alamat,Area , Bonus FROM Pelanggan WHERE No_Telp ='{noTelepon_TB.Text}' ", con);
+                        con.Open();
+                        SqlDataReader sdr = cmdd.ExecuteReader();
+                        while (sdr.Read())
+                        {
+                            Pelanggan.ID_Pelanggan = sdr["Id_Pelanggan"].ToString();
+                            Pelanggan.Nama = sdr["Nama"].ToString();
+                            Pelanggan.Telepon = sdr["No_Telp"].ToString();
+                            Pelanggan.Alamat = sdr["Alamat"].ToString();
+                            Pelanggan.Area = sdr["Area"].ToString();
+                            Pelanggan.Bonus = sdr["Bonus"].ToString();
+                        }
+                        if (Pelanggan.Nama != null)
+                        {
+                            namaPelanggan_TB.Text = Pelanggan.Nama.ToString();
+                            noTelepon_TB.Text = Pelanggan.Telepon.ToString();
+                            alamatPelanggan_TB.Text = Pelanggan.Alamat.ToString();
+                            areaPelanggan_TB.Text = Pelanggan.Area.ToString();
+                            bonusPelanggan_TB.Text = Pelanggan.Bonus.ToString();
+                            noPelanggan_TB.Text = Pelanggan.ID_Pelanggan.ToString();
+                        }
+                        else
+                        {
+                            namaPelanggan_TB.Enabled = false;
+                            noTelepon_TB.Enabled = false;
+                            alamatPelanggan_TB.Enabled = false;
+                            areaPelanggan_TB.Enabled = false;
+                            bonusPelanggan_TB.Enabled = false;
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.MessageBox.Show(ex.Message + "\nError at UC_Kasir.cs noPelangganTB_KeyUp", "UC_KASIR.cs - noPelangganTB_Keyup");
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+
+
                 if (kasirHelper.checkTextBox(nonMember_CB, namaPelanggan_TB, alamatPelanggan_TB, areaPelanggan_TB, noTelepon_TB, noPelanggan_TB))
                 {
                     tambah_BTN.Enabled = true;
@@ -306,6 +420,7 @@ namespace Natural_1.Kasir
                 {
                     tambah_BTN.Enabled = false;
                 }
+
             }
         }
 
@@ -353,13 +468,49 @@ namespace Natural_1.Kasir
                 SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,Kegiatan,Modul,Pemasukan,Struk)" +
                     $"VALUES( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}'," +
                     $"'{Karyawan.Nama}','{barang_CB.SelectedItem.ToString()}','Kasir', {kasir_DGV.Rows[a].Cells[5].Value.ToString()}, '{noStruk_TB.Text.ToString()}' )", con);
+
+                SqlCommand cmd2 = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,Kegiatan,Modul,Pengeluaran,Struk, Keterangan)" +
+                    $"VALUES( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}'," +
+                    $"'{Karyawan.Nama}','{barang_CB.SelectedItem.ToString()}','Kasir', {kasir_DGV.Rows[a].Cells[4].Value.ToString()}, '{noStruk_TB.Text.ToString()}', '{clickedBonus.ToString()} Bonus Diambil')", con);
+                
                 try
                 {
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    if (clickedBonus > 0)
+                    {
+                        cmd2.ExecuteNonQuery();
+                        
+                    }
+                    if (nonMember_CB.Checked != true && !pelangganBaru_CB.Checked)
+                    {
+                        if(clickedBonus > 0)
+                        {
+                            Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus).ToString());
+                            clickedBonus = 0;
+                        }
+                        else
+                        {
+                            Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus) + Int32.Parse(kasir_DGV.Rows[a].Cells[2].Value.ToString())).ToString();
+                        }
+                        cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'", con);
+                        cmd.ExecuteNonQuery();
+                    }
+                    else if(pelangganBaru_CB.Checked && !nonMember_CB.Checked)
+                    {
+                        Pelanggan.Bonus += Convert.ToInt32(kasir_DGV.Rows[a].Cells[2].Value.ToString());
+                        cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat,Area, Bonus)" +
+                            $"VALUES( '{noPelanggan_TB.Text}','{namaPelanggan_TB.Text}','{noTelepon_TB.Text}','{alamatPelanggan_TB.Text}','{areaPelanggan_TB.Text}','{Pelanggan.Bonus}' )", con);
+                        cmd.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
                 }
                 catch(Exception ex)
                 {
+                    pelangganBaru_CB.Enabled = true;
+                    nonMember_CB.Enabled = true;
                     MessageBox.Show(ex.Message + "\n beliBTN_Click When upload it to database.", "UC_Kasir.cs - beli_BTN_Click Error");
                 }
                 finally
@@ -367,8 +518,15 @@ namespace Natural_1.Kasir
                     con.Close();
                 }
 
-                kasirHelper.totalHarga += Int32.Parse(kasir_DGV.Rows[a].Cells[5].Value.ToString());
-                if (ongkir_TB.Text == "")
+                if (kasir_DGV.Rows[a].Cells[5].Value.ToString()!="")
+                {
+                    kasirHelper.totalHarga += Int32.Parse(kasir_DGV.Rows[a].Cells[5].Value.ToString());
+                }
+                else
+                {
+                    kasirHelper.totalHarga += 0;
+                }
+                if (ongkir_TB.Text != "")
                 {
                     try
                     {
@@ -380,11 +538,12 @@ namespace Natural_1.Kasir
                     }
                 }
             }
+
             kasir_DGV.Rows.Add();
             totalRow = kasir_DGV.Rows.Count - 1;
             for(int a =0; a <= 4; a++)
             {
-                kasir_DGV.Rows[totalRow].Cells[a].Value = "====";
+                kasir_DGV.Rows[totalRow].Cells[a].Value = "";
             }
             // memberikan total harga yang harus dibayar.
             kasir_DGV.Rows[totalRow].Cells[5].Value = kasirHelper.totalHarga.ToString();
@@ -425,7 +584,7 @@ namespace Natural_1.Kasir
 
         private void cetakStruk_BTN_Click(object sender, EventArgs e)
         { 
-            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("paper", 216, 600);
+            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("paper",215,600);
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
         }
@@ -434,6 +593,7 @@ namespace Natural_1.Kasir
         {
             Font regular = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Regular);
             Font bold = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Bold);
+
             e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
             e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
@@ -447,17 +607,17 @@ namespace Natural_1.Kasir
             int y = 90;
             int x = 5;
             int totalRow = kasir_DGV.Rows.Count;
-            for (int i = 0; i < totalRow-1; i++)
+            for (int i = 0; i <= totalRow-1; i++)
             {
                 e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[0].Value}({kasir_DGV.Rows[i].Cells[2].Value})", regular, Brushes.Black, new Point(x, y + 10));
                 e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[5].Value}", regular, Brushes.Black, new Point(x + 120, y + 10));
                 y += 20;
             }
             e.Graphics.DrawString("Ongkos Kirim : ",regular,Brushes.Black,new Point(x, y + (5 * (totalRow - 1) + 5)));
-            e.Graphics.DrawString($"{kasirHelper.totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 5)));
-            e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x + 20, y + (5 * (totalRow - 1) + 20)));
-            e.Graphics.DrawString($"{kasirHelper.totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 20)));
-            y = y + (5 * (totalRow - 1) + 25);
+            e.Graphics.DrawString($"{ongkir_TB.Text}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 5)));
+            e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x + 20, y + (5 * (totalRow - 1) + 30)));
+            e.Graphics.DrawString($"{kasirHelper.totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 30)));
+            y = y + (5 * (totalRow - 1) + 35);
             e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, y + 20));
             e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0f, y+30f), new PointF(600f, y+32f));
 
@@ -465,9 +625,10 @@ namespace Natural_1.Kasir
 
         private void ambilBonus_BTN_Click(object sender, EventArgs e)
         {
+            beli_BTN.Enabled = true;
             int pBon = Int32.Parse(bonusPelanggan_TB.Text);
             int bBon = Barang.Bonus_PER;
-            if (pBon>bBon)
+            if (pBon>=bBon)
             {
                 int totalBonus = pBon - bBon;
                 Pelanggan.Bonus = totalBonus.ToString();
@@ -479,11 +640,159 @@ namespace Natural_1.Kasir
                 kasir_DGV.Rows[iRow].Cells[1].Value = "-";
                 kasir_DGV.Rows[iRow].Cells[2].Value = "1";
                 kasir_DGV.Rows[iRow].Cells[3].Value = Barang.Satuan;
-                kasir_DGV.Rows[iRow].Cells[4].Value = "0";
-                kasir_DGV.Rows[iRow].Cells[5].Value = "0";
+                kasir_DGV.Rows[iRow].Cells[4].Value = "-7000";
+                kasir_DGV.Rows[iRow].Cells[5].Value = "";
+                clickedBonus += 1;
+            }
+        }
+
+        private void gabung_BTN_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Menggabungkan data pelanggan akan menghapus data pelanggan ke 2 di database\n Apakah anda yakin?", "Warning", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Pelanggan.Bonus = (Convert.ToInt32(Pelanggan.Bonus) + Convert.ToInt32(bonusPelanggan2_TB.Text)).ToString();
+                SqlCommand cmd = new SqlCommand($"DELETE FROM Pelanggan WHERE Id_Pelanggan = '{noPelanggan2_TB.Text}'", con);
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand($"UPDATE Pelanggan " +
+                        $"SET Bonus = '{Pelanggan.Bonus}'  WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'  ",con);
+                    cmd.ExecuteNonQuery();
+                    bonusPelanggan_TB.Text = Pelanggan.Bonus;
+                    gabungData_CB.Checked = false;
+                    alamatPelanggan2_TB.Enabled = false;
+                    namaPelanggan2_TB.Enabled = false;
+                    noPelanggan2_TB.Enabled = false;
+                    noTelepon2_TB.Enabled = false;
+                    bonusPelanggan2_TB.Enabled = false;
+                    areaPelanggan2_TB.Enabled = false;
+                    //clear
+                    alamatPelanggan2_TB.Clear();
+                    namaPelanggan2_TB.Clear();
+                    noPelanggan2_TB.Clear();
+                    noTelepon2_TB.Clear();
+                    bonusPelanggan2_TB.Clear();
+                    areaPelanggan2_TB.Clear();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\nGabungBTN Click, When con open and trying to remove or delete db", "UC_KASIR.CS - gabungBTNClick ERROR");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                
+            }
+        }
+
+        private void gabungData_CB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (gabungData_CB.Checked)
+            {
+                noPelanggan2_TB.Enabled = true;
+                noTelepon2_TB.Enabled = true;
+                noPelanggan2_TB.Focus();
+            }
+        }
+
+        private void noPelanggan2_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT ID FROM Pelanggan WHERE Id_Pelanggan = '{noPelanggan2_TB.Text}'", con);
+                try
+                {
+                    con.Open();
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        cmd = new SqlCommand($"SELECT Nama, No_Telp, Alamat, Bonus,Area FROM Pelanggan WHERE Id_Pelanggan = '{noPelanggan2_TB.Text}'", con);
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        while (sdr.Read())
+                        {
+                            namaPelanggan2_TB.Text = sdr["Nama"].ToString();
+                            noTelepon2_TB.Text = sdr["No_Telp"].ToString();
+                            alamatPelanggan2_TB.Text = sdr["Alamat"].ToString();
+                            bonusPelanggan2_TB.Text = sdr["Bonus"].ToString();
+                            areaPelanggan2_TB.Text = sdr["Area"].ToString();
+                        }
+                        gabung_BTN.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pelanggan Tidak Ditemukan!");
+                    }
+                    
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\nnoPelanggan2_kEYUP", "UC_KASIR.CS - noPelanggan2TB Error");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        private void noTelepon2_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && noPelanggan2_TB.Text=="")
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT ID FROM Pelanggan WHERE No_Telp = '{noTelepon2_TB.Text}'", con);
+                try
+                {
+                    con.Open();
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        cmd = new SqlCommand($"SELECT Nama, Id_Pelanggan, Alamat, Bonus,Area FROM Pelanggan WHERE No_Telp = '{noTelepon2_TB.Text}' ", con);
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        while (sdr.Read())
+                        {
+                            namaPelanggan2_TB.Text = sdr["Nama"].ToString();
+                            noPelanggan2_TB.Text = sdr["Id_Pelanggan"].ToString();
+                            alamatPelanggan2_TB.Text = sdr["Alamat"].ToString();
+                            bonusPelanggan2_TB.Text = sdr["Bonus"].ToString();
+                            areaPelanggan2_TB.Text = sdr["Area"].ToString();
+                        }
+                        gabung_BTN.Enabled= true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pelanggan Tidak Ditemukan!");
+                    }
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "\nNoTelp2_KeyUP Error WHEN TRYN TO USING SQL", "UC_KASIR.CS - NOTELP2TBKEYUP");
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
         }
 
         
+
+        private void printDocument2_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Font regular = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Regular);
+            Font bold = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Bold);
+
+            e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
+            e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
+            e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
+            e.Graphics.DrawString("No Struk :\t\t" + noStruk_TB.Text.ToString(), regular, Brushes.Black, new Point(5, 45));
+            e.Graphics.DrawString("Date : " + DateTime.Now.ToShortDateString(), regular, Brushes.Black, new Point(5, 60));
+            e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 65f), new PointF(600f, 65f));
+            e.Graphics.DrawString("History", bold, Brushes.Black, new Point(35, 70));
+        }
     }
 }

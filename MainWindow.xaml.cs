@@ -58,7 +58,9 @@ namespace Natural_1
                 if (MySHA256ENC.SHA256Enc.Get_Enc(password_PB.Password) == Karyawan.Sandi && Karyawan.Username == username_TB.Text)
                 {
                     this.Dispatcher.Invoke(() => loginPage.BeginAnimation(OpacityProperty, new DoubleAnimation(1, 0, TimeSpan.FromSeconds(1.5))));
+                    login_BTN.IsEnabled = false;
                     await Task.Delay(1500);
+                    login_BTN.IsEnabled = true;
                     Helper.setLogin(Karyawan.Jobname, Karyawan.Status);
                     this.Hide();
                 }

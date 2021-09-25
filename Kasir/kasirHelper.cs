@@ -14,6 +14,26 @@ namespace Natural_1.Kasir
 
         public static int totalHarga { get; set; }
 
+     
+        public static string GenerateNoPelanggan(SqlConnection connection,string noPelanggan="P")
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT MAX(ID) AS ID FROM Pelanggan", connection);
+                connection.Open();
+                noPelanggan += cmd.ExecuteScalar()+2.ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nGenerateNoPelanggan", "kasirHelper.cs - Generate No Pelanggan ERROR");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return noPelanggan;
+        }
+        
         public static int getBarangID(SqlConnection con, string NamaBarang)
         {
             SqlCommand cmd = new SqlCommand($"SELECT ID FROM Barang WHERE Nama='{NamaBarang}'", con);
