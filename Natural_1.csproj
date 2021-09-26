@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Karyawan.cs" />
     <Compile Include="Kasir\Barang.cs" />
+    <Compile Include="Kasir\Distributor.cs" />
     <Compile Include="Kasir\KasirForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +71,7 @@
       <DependentUpon>KasirForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Kasir\kasirHelper.cs" />
+    <Compile Include="Kasir\ucbHelper.cs" />
     <Compile Include="Kasir\UC_Belanja.cs">
       <SubType>UserControl</SubType>
     </Compile>

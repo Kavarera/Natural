@@ -36,9 +36,7 @@ namespace Natural_1.Kasir
             kasir_BTN.ForeColor = Color.White;
             belanja_BTN.BackColor = Color.White;
             belanja_BTN.ForeColor = Color.Black;
-
-            UC_Kasir kasir = new UC_Kasir();
-            addUserControl(kasir);
+            addUserControl(new UC_Kasir());
 
         }
 
@@ -56,8 +54,8 @@ namespace Natural_1.Kasir
             kasir_BTN.ForeColor = Color.Black;
             belanja_BTN.BackColor = Color.Green;
             belanja_BTN.ForeColor = Color.White;
-            UC_Belanja belanja = new UC_Belanja();
-            addUserControl(belanja);
+            //UC_Belanja belanja = new UC_Belanja();
+            addUserControl(new UC_Belanja()) ;
         }
     }
 }

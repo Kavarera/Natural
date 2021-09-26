@@ -82,5 +82,15 @@ namespace Natural_1
             Form setting = new Setting.setting();
             setting.ShowDialog();
         }
+
+        private void username_TB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            username_TB.Text = "";
+        }
+
+        private void password_PB_GotFocus(object sender, RoutedEventArgs e)
+        {
+            password_PB.Password = "";
+        }
     }
 }

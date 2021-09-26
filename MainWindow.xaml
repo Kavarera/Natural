@@ -154,12 +154,12 @@
             </Grid.RowDefinitions>
 
             <TextBox x:Name="username_TB" Grid.Row="0" Margin="50,40,50,25" Background="Transparent"
-                     BorderThickness="0"
+                     BorderThickness="0" GotFocus="username_TB_GotFocus"
                      Text="Username" FontFamily="Arial" FontSize="26" TextAlignment="Left" BorderBrush="Transparent" />
             <Separator Width="400" Background="Black" Margin="0,0,0,-65" />
 
             <PasswordBox x:Name="password_PB" BorderThickness="0" Grid.Row="1"  Margin="50,30,50,30" Background="Transparent"
-                         Password="Admin" FontSize="23" BorderBrush="Transparent" />
+                         Password="Admin" FontSize="23" BorderBrush="Transparent" GotFocus="password_PB_GotFocus" />
             <Separator Width="400" Background="Black" Grid.Row="1" Margin="0,0,0,-65" />
 
         </Grid>
