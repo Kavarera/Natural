@@ -85,16 +85,19 @@ namespace Natural_1.Kasir
             string struk ="";
             struk += namaKaryawan.Substring(0, 1);
             struk += DateTime.Now.ToString("dd");
-            struk += DateTime.Now.ToString("mm");
+            struk += DateTime.Now.ToString("MM");
             struk += DateTime.Now.ToString("yy");
+            struk += DateTime.Now.ToString("fff").Substring(1,2);
             if (modul == "Distributor")
             {
                 struk += "D";
+                struk += totalTransaksi.ToString();
                 return struk;
             }
             else
             {
                 struk += "P";
+                struk += totalTransaksi.ToString();
                 return struk;
             }
             

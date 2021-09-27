@@ -123,23 +123,8 @@ namespace Natural_1.Kasir
             gabungData_CB.Enabled = true;
             nonMember_CB.Checked = false;
             kasirHelper.totalHarga = 0;
-            if (nonMember_CB.Checked == false && pelangganBaru_CB.Checked == false)
-            {
-                SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{Pelanggan.ID_Pelanggan}' ", con);
-                try
-                {
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message + "\nbaru_BTN_Click", "UC_Kasir.cs - baru_BTN_Click");
-                }
-                finally
-                {
-                    con.Close();
-                }
-            }
+            D_ItemDibeli.Clear();
+
         }
 
         private void pelangganBaru_CB_CheckedChanged(object sender, EventArgs e)
@@ -154,6 +139,7 @@ namespace Natural_1.Kasir
                 gabungData_CB.Enabled = false;
                 tambah_BTN.Enabled = true;
                 noPelanggan_TB.Text = kasirHelper.GenerateNoPelanggan(con);
+                bonusPelanggan_TB.Text = "0";
 
 
                 if (nonMember_CB.Checked == true)
@@ -193,7 +179,7 @@ namespace Natural_1.Kasir
                     kasir_DGV.Rows[rowIndex].Cells[0].Value = barang_CB.SelectedItem.ToString();
                     kasir_DGV.Rows[rowIndex].Cells[1].Value = "-";
                     kasir_DGV.Rows[rowIndex].Cells[2].Value = jumlah_TB.Text.ToString();
-                    kasir_DGV.Rows[rowIndex].Cells[3].Value = "Galon";
+                    kasir_DGV.Rows[rowIndex].Cells[3].Value = barang_CB.SelectedItem.ToString();
                     kasir_DGV.Rows[rowIndex].Cells[4].Value = hargaSatuan_TB.Text.ToString();
                     kasir_DGV.Rows[rowIndex].Cells[5].Value = Int32.Parse(hargaSatuan_TB.Text.ToString()) * Int32.Parse(jumlah_TB.Text.ToString());
 
@@ -229,15 +215,22 @@ namespace Natural_1.Kasir
                         }
                         if (nonMember_CB.Checked != true)
                         {
-                            kasirHelper.totalHarga += Barang.Harga_PCS * Convert.ToInt32(jumlah_TB.Text) +Convert.ToInt32(ongkir_TB.Text);
+                            kasirHelper.totalHarga += Barang.Harga_PCS * Convert.ToInt32(jumlah_TB.Text.ToString()) +Convert.ToInt32(ongkir_TB.Text.ToString());
                             cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat, Bonus, Area) VALUES" +
-                            $"('{noPelanggan_TB.Text}', '{namaPelanggan_TB.Text}','{noTelepon_TB.Text}', '{alamatPelanggan_TB.Text}', '0', '{areaPelanggan_TB.Text}' )", con);
+                            $"('{noPelanggan_TB.Text.ToString()}', '{namaPelanggan_TB.Text.ToString()}','{noTelepon_TB.Text.ToString()}', '{alamatPelanggan_TB.Text.ToString()}', '{bonusPelanggan_TB.Text.ToString()}', '{areaPelanggan_TB.Text.ToString()}' )", con);
                             cmd.ExecuteNonQuery();
                         }
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show(ex.Message + "\nAT BeliLangsungBTN_Click when try to input data from datagrid into Database Transaction Log", "UC_Kasir.cs-beliLangsungBTN_Click");
+                        if (jumlah_TB.Text != "")
+                        {
+                            MessageBox.Show("Isikan Jumlah barang!");
+                        }
+                        else
+                        {
+                            MessageBox.Show(ex.Message + "\nAT BeliLangsungBTN_Click when try to input data from datagrid into Database Transaction Log", "UC_Kasir.cs-beliLangsungBTN_Click");
+                        }
                     }
                     finally
                     {
@@ -250,6 +243,7 @@ namespace Natural_1.Kasir
                 {
                     MessageBox.Show(ex.Message + "\nError at beliLangsung_BTN_Click when pelangganBaru_Cb.Checked==true and\ntrying to add value into datagrid", "UC_Kasir.cs - beliLangsung_BTN_Click Eror");
                 }
+                totalTransaksi += 1;
             }
         }
 
@@ -475,8 +469,8 @@ namespace Natural_1.Kasir
                 else
                 {
                     D_ItemDibeli.pemasukan += Int32.Parse(kasir_DGV.Rows[i].Cells[5].Value.ToString());
-                    int bonus = Int32.Parse(bonusPelanggan_TB.Text) + Int32.Parse(kasir_DGV.Rows[i].Cells[2].Value.ToString());
-                    
+                    int bonus = Int32.Parse(kasir_DGV.Rows[i].Cells[2].Value.ToString());
+                    bonus += Int32.Parse(bonusPelanggan_TB.Text.ToString());
                     Pelanggan.Bonus = "";
                     Pelanggan.Bonus=bonus.ToString();
                 }
@@ -661,7 +655,7 @@ namespace Natural_1.Kasir
             e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
             e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
-            e.Graphics.DrawString("No Struk :\t\t" + noStruk_TB.Text.ToString(), regular, Brushes.Black, new Point(5, 45));
+            e.Graphics.DrawString("No Struk :\t" + noStruk_TB.Text.ToString(), regular, Brushes.Black, new Point(5, 45));
             e.Graphics.DrawString("Date : " + DateTime.Now.ToShortDateString(), regular, Brushes.Black, new Point(5, 60));
 
             //draw item

@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Data.SqlClient;
+using System.Drawing.Printing;
+
 namespace Natural_1.Kasir
 {
     public partial class UC_Belanja : UserControl
@@ -113,7 +115,7 @@ namespace Natural_1.Kasir
             {
                 belanja_DVG.Rows[i].Cells[4].Value = D_ItemDibeli.pemasukan + ongkir;
             }
-
+            totalTransaksi += 1;
             //Disabling the button for continue the process example baru btn and cetak struk btn
             beliBTN.Enabled = false;
             BTN_tambah.Enabled = false;
@@ -139,7 +141,9 @@ namespace Natural_1.Kasir
 
         private void cetakStrukBTN_Click(object sender, EventArgs e)
         {
-
+            printDocument1.DefaultPageSettings.PaperSize = new PaperSize("paper", 215, 600);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -150,7 +154,7 @@ namespace Natural_1.Kasir
             e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
             e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
             e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
-            e.Graphics.DrawString("No Struk :\t\t" + struk_TB.Text.ToString(), regular, Brushes.Black, new Point(5, 45));
+            e.Graphics.DrawString("No Struk :\t" + struk_TB.Text.ToString(), regular, Brushes.Black, new Point(5, 45));
             e.Graphics.DrawString("Date : " + TB_TglBeli.Text.ToString(), regular, Brushes.Black, new Point(5, 60));
 
             //draw item
@@ -160,16 +164,16 @@ namespace Natural_1.Kasir
             int y = 90;
             int x = 5;
             int totalRow = belanja_DVG.Rows.Count;
-            for (int i = 0; i <= totalRow - 1; i++)
+            for (int i = 0; i <= totalRow - 2; i++)
             {
-                e.Graphics.DrawString($"{belanja_DVG.Rows[i].Cells[0].Value}({belanja_DVG.Rows[i].Cells[2].Value})", regular, Brushes.Black, new Point(x, y + 10));
-                e.Graphics.DrawString($"{belanja_DVG.Rows[i].Cells[5].Value}", regular, Brushes.Black, new Point(x + 120, y + 10));
+                e.Graphics.DrawString($"{belanja_DVG.Rows[i].Cells[0].Value}", regular, Brushes.Black, new Point(x, y + 10));
+                e.Graphics.DrawString($"{belanja_DVG.Rows[i].Cells[4].Value}", regular, Brushes.Black, new Point(x + 120, y + 10));
                 y += 20;
             }
             e.Graphics.DrawString("Ongkos Kirim : ", regular, Brushes.Black, new Point(x, y + (5 * (totalRow - 1) + 5)));
-            e.Graphics.DrawString($"{ongkir_TB.Text}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 5)));
+            e.Graphics.DrawString($"{ongkir_TB.Text.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 5)));
             e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x + 20, y + (5 * (totalRow - 1) + 30)));
-            e.Graphics.DrawString($"{kasirHelper.totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 30)));
+            e.Graphics.DrawString($"{D_ItemDibeli.pemasukan.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 30)));
             y = y + (5 * (totalRow - 1) + 35);
             e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, y + 20));
             e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0f, y + 30f), new PointF(600f, y + 32f));
