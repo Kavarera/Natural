@@ -64,6 +64,7 @@
     <Compile Include="Karyawan.cs" />
     <Compile Include="Kasir\Barang.cs" />
     <Compile Include="Kasir\Distributor.cs" />
+    <Compile Include="Kasir\D_ItemDibeli.cs" />
     <Compile Include="Kasir\KasirForm.cs">
       <SubType>Form</SubType>
     </Compile>

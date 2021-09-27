@@ -80,33 +80,24 @@ namespace Natural_1.Kasir
             }
         }
 
-        public static string getNoStruk(SqlConnection con,string namaKaryawan)
+        public static string getNoStruk(string modul,string namaKaryawan, int totalTransaksi)
         {
-            SqlCommand cmd = new SqlCommand($"SELECT MAX(Id) AS ID FROM TransactionLog",con);
-            string struk;
-            try
-            {
-                con.Open();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message + "\ngetNoStruk", "kasirHelper.cs - getNoStruk");
-            }
-            struk = namaKaryawan.Substring(0,3).ToUpper();
-            struk += DateTime.Now.ToString("ddd").ToLower();
+            string struk ="";
+            struk += namaKaryawan.Substring(0, 1);
             struk += DateTime.Now.ToString("dd");
-            if (cmd.ExecuteScalar() == null)
+            struk += DateTime.Now.ToString("mm");
+            struk += DateTime.Now.ToString("yy");
+            if (modul == "Distributor")
             {
-                struk += "0";
-                con.Close();
+                struk += "D";
                 return struk;
             }
             else
             {
-                struk += cmd.ExecuteScalar().ToString();
-                con.Close();
+                struk += "P";
                 return struk;
             }
+            
         }
 
         public static bool checkTextBox(CheckBox nonMmember,TextBox namaTB, TextBox alamatTB, TextBox areaTB,TextBox nopel,TextBox notel)

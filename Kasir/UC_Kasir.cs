@@ -17,6 +17,7 @@ namespace Natural_1.Kasir
     {
         SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
         int clickedBonus = 0;
+        int totalTransaksi = 0;
         public UC_Kasir()
         {
             InitializeComponent();
@@ -59,7 +60,6 @@ namespace Natural_1.Kasir
                         }
                         if (Pelanggan.Nama != null)
                         {
-                            MessageBox.Show(Pelanggan.Bonus);
                             namaPelanggan_TB.Text = Pelanggan.Nama.ToString();
                             noTelepon_TB.Text = Pelanggan.Telepon.ToString();
                             alamatPelanggan_TB.Text = Pelanggan.Alamat.ToString();
@@ -119,6 +119,7 @@ namespace Natural_1.Kasir
             pelangganBaru_CB.Enabled = true;
             nonMember_CB.Enabled = true;
             pelangganBaru_CB.Checked = false;
+            noPelanggan_TB.Enabled = true;
             gabungData_CB.Enabled = true;
             nonMember_CB.Checked = false;
             kasirHelper.totalHarga = 0;
@@ -217,7 +218,7 @@ namespace Natural_1.Kasir
                     //Adding transaksi into database Log.
                     try
                     {
-                        noStruk_TB.Text = kasirHelper.getNoStruk(con, Karyawan.Nama);
+                        noStruk_TB.Text = kasirHelper.getNoStruk("Pelanggan", Karyawan.Nama, totalTransaksi);
                         SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam,Operator,Kegiatan,Modul,Pemasukan,Struk) " +
                         $"VALUES('{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', '{Karyawan.Nama.ToString()}', '{barang_CB.SelectedItem.ToString()}', 'Kasir', {kasir_DGV.Rows[rowIndex].Cells[5].Value.ToString()},'{noStruk_TB.Text.ToString()}')", con);
                         con.Open();
@@ -456,88 +457,149 @@ namespace Natural_1.Kasir
 
         private void beli_BTN_Click(object sender, EventArgs e)
         {
-            noStruk_TB.Text = kasirHelper.getNoStruk(con, Karyawan.Nama);
+            noStruk_TB.Text = kasirHelper.getNoStruk("Pelanggan", Karyawan.Nama, totalTransaksi);
+            totalTransaksi += 1;
             int totalRow = kasir_DGV.Rows.Count;
-            //input datagrid to database
-            for(int a=0; a < totalRow; a++)
+            string keterangan = "";
+            //calculate pengeluaran & pemasukan
+            D_ItemDibeli.Clear();
+
+
+            for(int i = 0; i < totalRow; i++)
             {
-                if (kasirHelper.totalHarga < 0)
+                if (kasir_DGV.Rows[i].Cells[5].Value.ToString() == "")
                 {
-                    kasirHelper.totalHarga = 0;
-                }
-                SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,Kegiatan,Modul,Pemasukan,Struk)" +
-                    $"VALUES( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}'," +
-                    $"'{Karyawan.Nama}','{barang_CB.SelectedItem.ToString()}','Kasir', {kasir_DGV.Rows[a].Cells[5].Value.ToString()}, '{noStruk_TB.Text.ToString()}' )", con);
-
-                SqlCommand cmd2 = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,Kegiatan,Modul,Pengeluaran,Struk, Keterangan)" +
-                    $"VALUES( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}'," +
-                    $"'{Karyawan.Nama}','{barang_CB.SelectedItem.ToString()}','Kasir', {kasir_DGV.Rows[a].Cells[4].Value.ToString()}, '{noStruk_TB.Text.ToString()}', '{clickedBonus.ToString()} Bonus Diambil')", con);
-                
-                try
-                {
-                    con.Open();
-                    if (clickedBonus > 0)
-                    {
-                        cmd2.ExecuteNonQuery();
-                        
-                    }
-                    if (nonMember_CB.Checked != true && !pelangganBaru_CB.Checked)
-                    {
-                        if(clickedBonus > 0)
-                        {
-                            Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus).ToString());
-                            clickedBonus = 0;
-                        }
-                        else
-                        {
-                            Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus) + Int32.Parse(kasir_DGV.Rows[a].Cells[2].Value.ToString())).ToString();
-                        }
-                        cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'", con);
-                        cmd.ExecuteNonQuery();
-                    }
-                    else if(pelangganBaru_CB.Checked && !nonMember_CB.Checked)
-                    {
-                        Pelanggan.Bonus += Convert.ToInt32(kasir_DGV.Rows[a].Cells[2].Value.ToString());
-                        cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat,Area, Bonus)" +
-                            $"VALUES( '{noPelanggan_TB.Text}','{namaPelanggan_TB.Text}','{noTelepon_TB.Text}','{alamatPelanggan_TB.Text}','{areaPelanggan_TB.Text}','{Pelanggan.Bonus}' )", con);
-                        cmd.ExecuteNonQuery();
-                    }
-                    else
-                    {
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch(Exception ex)
-                {
-                    pelangganBaru_CB.Enabled = true;
-                    nonMember_CB.Enabled = true;
-                    MessageBox.Show(ex.Message + "\n beliBTN_Click When upload it to database.", "UC_Kasir.cs - beli_BTN_Click Error");
-                }
-                finally
-                {
-                    con.Close();
-                }
-
-                if (kasir_DGV.Rows[a].Cells[5].Value.ToString()!="")
-                {
-                    kasirHelper.totalHarga += Int32.Parse(kasir_DGV.Rows[a].Cells[5].Value.ToString());
+                    D_ItemDibeli.pengeluaran += Int32.Parse(kasir_DGV.Rows[i].Cells[4].Value.ToString());
+                    keterangan = "Ada bonus yang diambil";
                 }
                 else
                 {
-                    kasirHelper.totalHarga += 0;
-                }
-                if (ongkir_TB.Text != "")
-                {
-                    try
-                    {
-                        kasirHelper.totalHarga += Int32.Parse(ongkir_TB.Text.ToString());
-                    }
-                    catch(Exception ex)
-                    {
-                        MessageBox.Show("Pastikan textbox ongkir hanya angka!\nError Message:\n" + ex.Message, "UC_Kasir.cs - beli_Btn_Click ERROR");
-                    }
+                    D_ItemDibeli.pemasukan += Int32.Parse(kasir_DGV.Rows[i].Cells[5].Value.ToString());
+                    int bonus = Int32.Parse(bonusPelanggan_TB.Text) + Int32.Parse(kasir_DGV.Rows[i].Cells[2].Value.ToString());
+                    
+                    Pelanggan.Bonus = "";
+                    Pelanggan.Bonus=bonus.ToString();
                 }
             }
+            //insert data to database
+
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan) " +
+                $"VALUES ( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{Karyawan.Nama}' , 'Pelanggan' , 'Kasir' , {D_ItemDibeli.pemasukan} , {D_ItemDibeli.pengeluaran} , " +
+                $"'{noStruk_TB.Text.ToString()}' , '{keterangan}')", con);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+                if(!nonMember_CB.Checked && !pelangganBaru_CB.Checked)
+                {
+                    //Updating bonus into database
+                    cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'", con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Success updating pelanggan bonus.");
+                }
+                else if(!nonMember_CB.Checked && pelangganBaru_CB.Checked)
+                {
+                    // Create new pelanggan db, with bonus =1;
+                    cmd = new SqlCommand($"INSERT INTO Pelanggan( Id_Pelanggan AS ID , Nama, No_Telp AS Telp, Alamat, Bonus, Area) " +
+                        $"VALUES('{noPelanggan_TB.Text}' , '{namaPelanggan_TB.Text}' , '{noTelepon_TB.Text}' , '{alamatPelanggan_TB.Text}' , '1','{areaPelanggan_TB.Text}')", con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Success adding new Pelanggan");
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + "beliBTNClick", "UC_KASIR.CS - Beli BTN Click ERROR");
+            }
+            finally
+            {
+                con.Close();
+            }
+
+
+            
+
+
+            #region code sebelum
+            //for (int a = 0; a < totalRow; a++)
+            //{
+            //    if (kasirHelper.totalHarga < 0)
+            //    {
+            //        kasirHelper.totalHarga = 0;
+            //    }
+            //    int bonus = 0;
+            //    if (kasir_DGV.Rows[a].Cells[5].Value.ToString() == "")
+            //    {
+            //        bonus += 0;
+            //    }
+            //    else
+            //    {
+            //        bonus += Int32.Parse(kasir_DGV.Rows[a].Cells[4].Value.ToString());
+            //    }
+            //    SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,Kegiatan,Modul,Pengeluaran,Pemasukan,Struk)" +
+            //        $"VALUES( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', " +
+            //        $"'{Karyawan.Nama}','{barang_CB.SelectedItem.ToString()}' , 'Kasir' , {bonus.ToString()}, {kasir_DGV.Rows[a].Cells[5].Value.ToString()}, " +
+            //        $"'{noStruk_TB.Text.ToString()}' )", con);
+            //    try
+            //    {
+            //        con.Open();
+            //        cmd.ExecuteNonQuery();
+            //        if (nonMember_CB.Checked != true && !pelangganBaru_CB.Checked)
+            //        {
+            //            if (clickedBonus > 0)
+            //            {
+            //                Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus).ToString());
+            //                clickedBonus = 0;
+            //            }
+            //            else
+            //            {
+            //                Pelanggan.Bonus = (Int32.Parse(Pelanggan.Bonus) + Int32.Parse(kasir_DGV.Rows[a].Cells[2].Value.ToString())).ToString();
+            //            }
+            //            cmd = new SqlCommand($"UPDATE Pelanggan SET Bonus = '{Pelanggan.Bonus}' WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'", con);
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //        else if (pelangganBaru_CB.Checked && !nonMember_CB.Checked)
+            //        {
+            //            Pelanggan.Bonus += Convert.ToInt32(kasir_DGV.Rows[a].Cells[2].Value.ToString());
+            //            cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat,Area, Bonus)" +
+            //                $"VALUES( '{noPelanggan_TB.Text}','{namaPelanggan_TB.Text}','{noTelepon_TB.Text}','{alamatPelanggan_TB.Text}','{areaPelanggan_TB.Text}','{Pelanggan.Bonus}' )", con);
+            //            cmd.ExecuteNonQuery();
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        pelangganBaru_CB.Enabled = true;
+            //        nonMember_CB.Enabled = true;
+            //        MessageBox.Show(ex.Message + "\n beliBTN_Click When upload it to database.", "UC_Kasir.cs - beli_BTN_Click Error");
+            //    }
+            //    finally
+            //    {
+            //        con.Close();
+            //    }
+
+            //    if (kasir_DGV.Rows[a].Cells[5].Value.ToString() != "")
+            //    {
+            //        kasirHelper.totalHarga += Int32.Parse(kasir_DGV.Rows[a].Cells[5].Value.ToString());
+            //    }
+            //    else
+            //    {
+            //        kasirHelper.totalHarga += 0;
+            //    }
+            //    if (ongkir_TB.Text != "")
+            //    {
+            //        try
+            //        {
+            //            kasirHelper.totalHarga += Int32.Parse(ongkir_TB.Text.ToString());
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            MessageBox.Show("Pastikan textbox ongkir hanya angka!\nError Message:\n" + ex.Message, "UC_Kasir.cs - beli_Btn_Click ERROR");
+            //        }
+            //    }
+            //}
+            #endregion
 
             kasir_DGV.Rows.Add();
             totalRow = kasir_DGV.Rows.Count - 1;
@@ -546,10 +608,11 @@ namespace Natural_1.Kasir
                 kasir_DGV.Rows[totalRow].Cells[a].Value = "";
             }
             // memberikan total harga yang harus dibayar.
-            kasir_DGV.Rows[totalRow].Cells[5].Value = kasirHelper.totalHarga.ToString();
+            kasir_DGV.Rows[totalRow].Cells[5].Value = D_ItemDibeli.pemasukan.ToString();
             #region Menonaktifkan_Button_Yang_Tidak_Terpakai
             //nonaktif
             pelangganBaru_CB.Enabled = false;
+            noPelanggan_TB.Enabled = false;
             nonMember_CB.Enabled = false;
             beliLangsung_BTN.Enabled = false;
             namaPelanggan_TB.Enabled = false;
@@ -569,6 +632,7 @@ namespace Natural_1.Kasir
             baru_BTN.Enabled = true;
             #endregion
 
+            D_ItemDibeli.Clear();
 
         }
 
@@ -640,7 +704,7 @@ namespace Natural_1.Kasir
                 kasir_DGV.Rows[iRow].Cells[1].Value = "-";
                 kasir_DGV.Rows[iRow].Cells[2].Value = "1";
                 kasir_DGV.Rows[iRow].Cells[3].Value = Barang.Satuan;
-                kasir_DGV.Rows[iRow].Cells[4].Value = "-7000";
+                kasir_DGV.Rows[iRow].Cells[4].Value = "7000";
                 kasir_DGV.Rows[iRow].Cells[5].Value = "";
                 clickedBonus += 1;
             }

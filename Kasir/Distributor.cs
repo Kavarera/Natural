@@ -15,5 +15,6 @@ namespace Natural_1.Kasir
         public static string Alamat { get; set; }
         public static string Status { get; set; }
         public static string Keterangan { get; set; }
+        public static string Area { get; set; }
     }
 }

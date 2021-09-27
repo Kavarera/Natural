@@ -12,7 +12,7 @@ namespace Natural_1.Kasir
     {
         public static void getDistributorDetail(SqlConnection con, string namaToko)
         {
-            SqlCommand cmd = new SqlCommand($"SELECT No_Distributor AS NoDis, Nama_Toko AS Nama,No_Telp AS Telp, Alamat, Status, Keterangan", con);
+            SqlCommand cmd = new SqlCommand($"SELECT No_Distributor AS NoDis, Nama_Toko AS Nama,No_Telp AS Telp, Alamat,Area, Status, Keterangan FROM Distributor WHERE Nama_Toko = '{namaToko}' ", con);
             try
             {
                 con.Open();
@@ -23,6 +23,7 @@ namespace Natural_1.Kasir
                     Distributor.NamaToko = sdr["Nama"].ToString();
                     Distributor.NoTelp = sdr["Telp"].ToString();
                     Distributor.Alamat = sdr["Alamat"].ToString();
+                    Distributor.Area = sdr["Area"].ToString();
                     Distributor.Status = sdr["Status"].ToString();
                     Distributor.Keterangan = sdr["Keterangan"].ToString();
                 }
@@ -36,5 +37,8 @@ namespace Natural_1.Kasir
                 con.Close();
             }
         }
+
+
+   
     }
 }
