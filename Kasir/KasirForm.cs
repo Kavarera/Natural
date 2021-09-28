@@ -43,7 +43,9 @@ namespace Natural_1.Kasir
         private void addUserControl(UserControl usercontrol)
         {
             panelContainer.Controls.Clear();
+            panelContainer.Visible = false;
             panelContainer.Controls.Add(usercontrol);
+            panelContainer.Visible = true;
             usercontrol.Dock = DockStyle.Fill;
             usercontrol.BringToFront();
         }

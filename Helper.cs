@@ -46,6 +46,9 @@ namespace Natural_1
                         break;
 
                     case "Admin":
+                        Form admin = new Admin.AdminForm();
+                        admin.Text = "Admin Natural";
+                        admin.Show();
                         break;
 
                     default:
