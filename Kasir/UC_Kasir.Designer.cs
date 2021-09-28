@@ -636,6 +636,7 @@ namespace Natural_1.Kasir
             this.kasir_DGV.ReadOnly = true;
             this.kasir_DGV.RowHeadersWidth = 62;
             this.kasir_DGV.RowTemplate.Height = 28;
+            this.kasir_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.kasir_DGV.Size = new System.Drawing.Size(1203, 532);
             this.kasir_DGV.TabIndex = 8;
             this.kasir_DGV.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.kasir_DGV_RowHeaderMouseDoubleClick);

@@ -30,7 +30,7 @@ namespace Natural_1.Kasir
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Belanja));
             this.panel1 = new System.Windows.Forms.Panel();
             this.hapusBTN = new System.Windows.Forms.Button();
@@ -293,14 +293,14 @@ namespace Natural_1.Kasir
             this.belanja_DVG.AllowUserToDeleteRows = false;
             this.belanja_DVG.BackgroundColor = System.Drawing.Color.White;
             this.belanja_DVG.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.belanja_DVG.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.belanja_DVG.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.belanja_DVG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.belanja_DVG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.namaBarang,
@@ -314,6 +314,7 @@ namespace Natural_1.Kasir
             this.belanja_DVG.ReadOnly = true;
             this.belanja_DVG.RowHeadersWidth = 62;
             this.belanja_DVG.RowTemplate.Height = 28;
+            this.belanja_DVG.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.belanja_DVG.Size = new System.Drawing.Size(990, 437);
             this.belanja_DVG.TabIndex = 20;
             // 

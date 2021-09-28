@@ -76,7 +76,14 @@ namespace Natural_1.Kasir
 
         private void hapusBTN_Click(object sender, EventArgs e)
         {
-            belanja_DVG.Rows.Remove(belanja_DVG.SelectedRows[0]);
+            try
+            {
+                belanja_DVG.Rows.Remove(belanja_DVG.SelectedRows[0]);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n\nPilih bagian yang ingin di hapus!", "UC_Belanja - hapusBTN-clik ERROR");
+            }
         }
 
         private void beliBTN_Click(object sender, EventArgs e)

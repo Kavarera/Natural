@@ -35,15 +35,15 @@ namespace Natural_1.Admin.Uc
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.id_TB = new System.Windows.Forms.TextBox();
+            this.nama_TB = new System.Windows.Forms.TextBox();
+            this.telepon_TB = new System.Windows.Forms.TextBox();
+            this.alamat_TB = new System.Windows.Forms.TextBox();
+            this.role_TB = new System.Windows.Forms.TextBox();
+            this.status_TB = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.baru_btn = new System.Windows.Forms.Button();
+            this.simpan_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.User_DGV = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -52,9 +52,9 @@ namespace Natural_1.Admin.Uc
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.aktivasi_btn = new System.Windows.Forms.Button();
+            this.ubah_btn = new System.Windows.Forms.Button();
+            this.nonaktif_btn = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.User_DGV)).BeginInit();
@@ -126,113 +126,117 @@ namespace Natural_1.Admin.Uc
             this.label6.TabIndex = 5;
             this.label6.Text = "Status :";
             // 
-            // textBox1
+            // id_TB
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(245, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(304, 32);
-            this.textBox1.TabIndex = 6;
+            this.id_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.id_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.id_TB.Location = new System.Drawing.Point(245, 50);
+            this.id_TB.Name = "id_TB";
+            this.id_TB.ReadOnly = true;
+            this.id_TB.Size = new System.Drawing.Size(304, 32);
+            this.id_TB.TabIndex = 6;
             // 
-            // textBox2
+            // nama_TB
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(245, 105);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(304, 32);
-            this.textBox2.TabIndex = 7;
+            this.nama_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nama_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nama_TB.Location = new System.Drawing.Point(245, 105);
+            this.nama_TB.Name = "nama_TB";
+            this.nama_TB.Size = new System.Drawing.Size(304, 32);
+            this.nama_TB.TabIndex = 7;
             // 
-            // textBox3
+            // telepon_TB
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(245, 160);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(304, 32);
-            this.textBox3.TabIndex = 8;
+            this.telepon_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.telepon_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.telepon_TB.Location = new System.Drawing.Point(245, 160);
+            this.telepon_TB.Name = "telepon_TB";
+            this.telepon_TB.Size = new System.Drawing.Size(304, 32);
+            this.telepon_TB.TabIndex = 8;
             // 
-            // textBox4
+            // alamat_TB
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(245, 215);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(304, 32);
-            this.textBox4.TabIndex = 9;
+            this.alamat_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.alamat_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.alamat_TB.Location = new System.Drawing.Point(245, 215);
+            this.alamat_TB.Name = "alamat_TB";
+            this.alamat_TB.Size = new System.Drawing.Size(304, 32);
+            this.alamat_TB.TabIndex = 9;
             // 
-            // textBox5
+            // role_TB
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(245, 270);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(304, 32);
-            this.textBox5.TabIndex = 10;
+            this.role_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.role_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.role_TB.Location = new System.Drawing.Point(245, 270);
+            this.role_TB.Name = "role_TB";
+            this.role_TB.Size = new System.Drawing.Size(304, 32);
+            this.role_TB.TabIndex = 10;
             // 
-            // textBox6
+            // status_TB
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(245, 325);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(304, 32);
-            this.textBox6.TabIndex = 11;
+            this.status_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.status_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.status_TB.Location = new System.Drawing.Point(245, 325);
+            this.status_TB.Name = "status_TB";
+            this.status_TB.ReadOnly = true;
+            this.status_TB.Size = new System.Drawing.Size(304, 32);
+            this.status_TB.TabIndex = 11;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(181)))), ((int)(((byte)(207)))));
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.baru_btn);
+            this.panel1.Controls.Add(this.simpan_btn);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBox6);
+            this.panel1.Controls.Add(this.status_TB);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox5);
+            this.panel1.Controls.Add(this.role_TB);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.alamat_TB);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.telepon_TB);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.nama_TB);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.id_TB);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(625, 525);
             this.panel1.TabIndex = 12;
             // 
-            // button5
+            // baru_btn
             // 
-            this.button5.BackColor = System.Drawing.Color.Transparent;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button5.ForeColor = System.Drawing.Color.Black;
-            this.button5.Location = new System.Drawing.Point(286, 392);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(127, 41);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "Baru";
-            this.button5.UseVisualStyleBackColor = false;
+            this.baru_btn.BackColor = System.Drawing.Color.Transparent;
+            this.baru_btn.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.baru_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
+            this.baru_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.baru_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.baru_btn.ForeColor = System.Drawing.Color.Black;
+            this.baru_btn.Location = new System.Drawing.Point(286, 392);
+            this.baru_btn.Name = "baru_btn";
+            this.baru_btn.Size = new System.Drawing.Size(127, 41);
+            this.baru_btn.TabIndex = 19;
+            this.baru_btn.Text = "Baru";
+            this.baru_btn.UseVisualStyleBackColor = false;
+            this.baru_btn.Click += new System.EventHandler(this.baru_btn_Click);
             // 
-            // button4
+            // simpan_btn
             // 
-            this.button4.BackColor = System.Drawing.Color.Transparent;
-            this.button4.Enabled = false;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(428, 392);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(127, 41);
-            this.button4.TabIndex = 18;
-            this.button4.Text = "Simpan";
-            this.button4.UseVisualStyleBackColor = false;
+            this.simpan_btn.BackColor = System.Drawing.Color.Transparent;
+            this.simpan_btn.Enabled = false;
+            this.simpan_btn.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.simpan_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.simpan_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.simpan_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.simpan_btn.ForeColor = System.Drawing.Color.Black;
+            this.simpan_btn.Location = new System.Drawing.Point(428, 392);
+            this.simpan_btn.Name = "simpan_btn";
+            this.simpan_btn.Size = new System.Drawing.Size(127, 41);
+            this.simpan_btn.TabIndex = 18;
+            this.simpan_btn.Text = "Simpan";
+            this.simpan_btn.UseVisualStyleBackColor = false;
+            this.simpan_btn.Click += new System.EventHandler(this.simpan_btn_Click);
             // 
             // panel2
             // 
@@ -256,12 +260,16 @@ namespace Natural_1.Admin.Uc
             this.User_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.User_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.User_DGV.Location = new System.Drawing.Point(111, 78);
+            this.User_DGV.MultiSelect = false;
             this.User_DGV.Name = "User_DGV";
             this.User_DGV.ReadOnly = true;
             this.User_DGV.RowHeadersWidth = 62;
             this.User_DGV.RowTemplate.Height = 28;
+            this.User_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.User_DGV.Size = new System.Drawing.Size(676, 277);
             this.User_DGV.TabIndex = 5;
+            this.User_DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.User_DGV_CellContentClick);
+            this.User_DGV.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.User_DGV_RowHeaderMouseClick);
             // 
             // panel6
             // 
@@ -320,62 +328,65 @@ namespace Natural_1.Admin.Uc
             this.textBox7.Size = new System.Drawing.Size(180, 23);
             this.textBox7.TabIndex = 15;
             // 
-            // button1
+            // aktivasi_btn
             // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(1361, 443);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 41);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Aktivasi";
-            this.button1.UseVisualStyleBackColor = false;
+            this.aktivasi_btn.BackColor = System.Drawing.Color.Green;
+            this.aktivasi_btn.Enabled = false;
+            this.aktivasi_btn.FlatAppearance.BorderSize = 0;
+            this.aktivasi_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime;
+            this.aktivasi_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aktivasi_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.aktivasi_btn.ForeColor = System.Drawing.Color.Black;
+            this.aktivasi_btn.Location = new System.Drawing.Point(1361, 443);
+            this.aktivasi_btn.Name = "aktivasi_btn";
+            this.aktivasi_btn.Size = new System.Drawing.Size(98, 41);
+            this.aktivasi_btn.TabIndex = 16;
+            this.aktivasi_btn.Text = "Aktivasi";
+            this.aktivasi_btn.UseVisualStyleBackColor = false;
+            this.aktivasi_btn.Click += new System.EventHandler(this.aktivasi_btn_Click);
             // 
-            // button2
+            // ubah_btn
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Enabled = false;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(107)))), ((int)(((byte)(173)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(1107, 443);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 41);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "Ubah";
-            this.button2.UseVisualStyleBackColor = false;
+            this.ubah_btn.BackColor = System.Drawing.Color.White;
+            this.ubah_btn.Enabled = false;
+            this.ubah_btn.FlatAppearance.BorderSize = 0;
+            this.ubah_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(107)))), ((int)(((byte)(173)))));
+            this.ubah_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ubah_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ubah_btn.ForeColor = System.Drawing.Color.Black;
+            this.ubah_btn.Location = new System.Drawing.Point(1107, 443);
+            this.ubah_btn.Name = "ubah_btn";
+            this.ubah_btn.Size = new System.Drawing.Size(98, 41);
+            this.ubah_btn.TabIndex = 17;
+            this.ubah_btn.Text = "Ubah";
+            this.ubah_btn.UseVisualStyleBackColor = false;
+            this.ubah_btn.Click += new System.EventHandler(this.ubah_btn_Click);
             // 
-            // button3
+            // nonaktif_btn
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.Enabled = false;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(1234, 443);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 41);
-            this.button3.TabIndex = 18;
-            this.button3.Text = "Nonaktif";
-            this.button3.UseVisualStyleBackColor = false;
+            this.nonaktif_btn.BackColor = System.Drawing.Color.Transparent;
+            this.nonaktif_btn.Enabled = false;
+            this.nonaktif_btn.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.nonaktif_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.nonaktif_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nonaktif_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.nonaktif_btn.ForeColor = System.Drawing.Color.Black;
+            this.nonaktif_btn.Location = new System.Drawing.Point(1234, 443);
+            this.nonaktif_btn.Name = "nonaktif_btn";
+            this.nonaktif_btn.Size = new System.Drawing.Size(98, 41);
+            this.nonaktif_btn.TabIndex = 18;
+            this.nonaktif_btn.Text = "Nonaktif";
+            this.nonaktif_btn.UseVisualStyleBackColor = false;
+            this.nonaktif_btn.Click += new System.EventHandler(this.nonaktif_btn_Click);
             // 
             // uc_user
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(181)))), ((int)(((byte)(207)))));
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.nonaktif_btn);
+            this.Controls.Add(this.ubah_btn);
+            this.Controls.Add(this.aktivasi_btn);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel2);
@@ -399,15 +410,15 @@ namespace Natural_1.Admin.Uc
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox id_TB;
+        private System.Windows.Forms.TextBox nama_TB;
+        private System.Windows.Forms.TextBox telepon_TB;
+        private System.Windows.Forms.TextBox alamat_TB;
+        private System.Windows.Forms.TextBox role_TB;
+        private System.Windows.Forms.TextBox status_TB;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button baru_btn;
+        private System.Windows.Forms.Button simpan_btn;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView User_DGV;
         private System.Windows.Forms.Panel panel6;
@@ -416,8 +427,8 @@ namespace Natural_1.Admin.Uc
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button aktivasi_btn;
+        private System.Windows.Forms.Button ubah_btn;
+        private System.Windows.Forms.Button nonaktif_btn;
     }
 }

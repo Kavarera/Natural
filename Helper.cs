@@ -53,12 +53,16 @@ namespace Natural_1
 
                     default:
                         System.Windows.MessageBox.Show("Job Tidak Terdaftar");
+                        var lp = new MainWindow();
+                        lp.Show();
                         break;
                 }
             }
             else
             {
                 MessageBox.Show("Akun terdaftar tetapi anda tidak bisa masuk.\nHubungi admin anda", "Akses Ditolak");
+                var lp = new MainWindow();
+                lp.Show();
             }
         }
 
