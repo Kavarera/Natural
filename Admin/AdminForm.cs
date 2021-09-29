@@ -89,6 +89,8 @@ namespace Natural_1.Admin
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
             log_BTN.ForeColor = Color.Black;
+
+            addUserControl(new UC.uc_pelanggan());
         }
 
         private void distributor_BTN_Click(object sender, EventArgs e)

@@ -29,62 +29,65 @@ namespace Natural_1.Admin.UC
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uc_pelanggan));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.transaksiPelanggan_DGV = new System.Windows.Forms.DataGridView();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.voidBTN = new System.Windows.Forms.Button();
+            this.cetakBTN = new System.Windows.Forms.Button();
+            this.cariTB = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.totalTB = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.bukaBTN = new System.Windows.Forms.Button();
+            this.selesaiDTP = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.mulaiDTP = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.telepontTB = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.namatTB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.simpanBTN = new System.Windows.Forms.Button();
+            this.baruBTN = new System.Windows.Forms.Button();
+            this.bonus_TB = new System.Windows.Forms.TextBox();
+            this.alamat_TB = new System.Windows.Forms.TextBox();
+            this.telep_TB = new System.Windows.Forms.TextBox();
+            this.nama_TB = new System.Windows.Forms.TextBox();
+            this.id_TB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pelanggan_DGV = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.cariPelangganTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.transaksiBTN = new System.Windows.Forms.Button();
+            this.aktifBTN = new System.Windows.Forms.Button();
+            this.nonaktifBTN = new System.Windows.Forms.Button();
+            this.ubahBTN = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.panel1.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transaksiPelanggan_DGV)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pelanggan_DGV)).BeginInit();
             this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -101,7 +104,7 @@ namespace Natural_1.Admin.UC
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.dataGridView2);
+            this.panel10.Controls.Add(this.transaksiPelanggan_DGV);
             this.panel10.Controls.Add(this.panel13);
             this.panel10.Controls.Add(this.panel12);
             this.panel10.Controls.Add(this.panel11);
@@ -111,20 +114,22 @@ namespace Natural_1.Admin.UC
             this.panel10.Size = new System.Drawing.Size(1344, 295);
             this.panel10.TabIndex = 1;
             // 
-            // dataGridView2
+            // transaksiPelanggan_DGV
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView2.Location = new System.Drawing.Point(105, 0);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersWidth = 62;
-            this.dataGridView2.RowTemplate.Height = 28;
-            this.dataGridView2.Size = new System.Drawing.Size(1134, 225);
-            this.dataGridView2.TabIndex = 7;
+            this.transaksiPelanggan_DGV.AllowUserToAddRows = false;
+            this.transaksiPelanggan_DGV.AllowUserToDeleteRows = false;
+            this.transaksiPelanggan_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.transaksiPelanggan_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.transaksiPelanggan_DGV.Location = new System.Drawing.Point(105, 0);
+            this.transaksiPelanggan_DGV.MultiSelect = false;
+            this.transaksiPelanggan_DGV.Name = "transaksiPelanggan_DGV";
+            this.transaksiPelanggan_DGV.ReadOnly = true;
+            this.transaksiPelanggan_DGV.RowHeadersWidth = 62;
+            this.transaksiPelanggan_DGV.RowTemplate.Height = 28;
+            this.transaksiPelanggan_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.transaksiPelanggan_DGV.Size = new System.Drawing.Size(1134, 225);
+            this.transaksiPelanggan_DGV.TabIndex = 7;
+            this.transaksiPelanggan_DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.transaksiPelanggan_DGV_CellClick);
             // 
             // panel13
             // 
@@ -144,11 +149,11 @@ namespace Natural_1.Admin.UC
             // 
             // panel11
             // 
-            this.panel11.Controls.Add(this.button8);
-            this.panel11.Controls.Add(this.button9);
-            this.panel11.Controls.Add(this.textBox10);
+            this.panel11.Controls.Add(this.voidBTN);
+            this.panel11.Controls.Add(this.cetakBTN);
+            this.panel11.Controls.Add(this.cariTB);
             this.panel11.Controls.Add(this.label12);
-            this.panel11.Controls.Add(this.textBox9);
+            this.panel11.Controls.Add(this.totalTB);
             this.panel11.Controls.Add(this.label11);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel11.Location = new System.Drawing.Point(0, 225);
@@ -156,23 +161,138 @@ namespace Natural_1.Admin.UC
             this.panel11.Size = new System.Drawing.Size(1344, 70);
             this.panel11.TabIndex = 1;
             // 
+            // voidBTN
+            // 
+            this.voidBTN.Enabled = false;
+            this.voidBTN.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.voidBTN.FlatAppearance.BorderSize = 3;
+            this.voidBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.voidBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
+            this.voidBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.voidBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.voidBTN.Location = new System.Drawing.Point(1091, 18);
+            this.voidBTN.Name = "voidBTN";
+            this.voidBTN.Size = new System.Drawing.Size(123, 37);
+            this.voidBTN.TabIndex = 16;
+            this.voidBTN.Text = "Void";
+            this.voidBTN.UseVisualStyleBackColor = true;
+            this.voidBTN.Click += new System.EventHandler(this.voidBTN_Click);
+            // 
+            // cetakBTN
+            // 
+            this.cetakBTN.Enabled = false;
+            this.cetakBTN.FlatAppearance.BorderSize = 3;
+            this.cetakBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.cetakBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Maroon;
+            this.cetakBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cetakBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cetakBTN.Location = new System.Drawing.Point(943, 18);
+            this.cetakBTN.Name = "cetakBTN";
+            this.cetakBTN.Size = new System.Drawing.Size(123, 37);
+            this.cetakBTN.TabIndex = 15;
+            this.cetakBTN.Text = "Cetak";
+            this.cetakBTN.UseVisualStyleBackColor = true;
+            this.cetakBTN.Click += new System.EventHandler(this.cetakBTN_Click);
+            // 
+            // cariTB
+            // 
+            this.cariTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cariTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cariTB.Location = new System.Drawing.Point(555, 27);
+            this.cariTB.Name = "cariTB";
+            this.cariTB.ReadOnly = true;
+            this.cariTB.Size = new System.Drawing.Size(143, 23);
+            this.cariTB.TabIndex = 14;
+            this.cariTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariTB_KeyUp);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
+            this.label12.Location = new System.Drawing.Point(481, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 26);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Cari";
+            // 
+            // totalTB
+            // 
+            this.totalTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.totalTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.totalTB.Location = new System.Drawing.Point(222, 24);
+            this.totalTB.Name = "totalTB";
+            this.totalTB.Size = new System.Drawing.Size(204, 23);
+            this.totalTB.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label11.Location = new System.Drawing.Point(30, 21);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(181, 29);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "Total Penjualan";
+            // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.button7);
-            this.panel9.Controls.Add(this.dateTimePicker2);
+            this.panel9.Controls.Add(this.bukaBTN);
+            this.panel9.Controls.Add(this.selesaiDTP);
             this.panel9.Controls.Add(this.label10);
-            this.panel9.Controls.Add(this.dateTimePicker1);
+            this.panel9.Controls.Add(this.mulaiDTP);
             this.panel9.Controls.Add(this.label9);
-            this.panel9.Controls.Add(this.textBox8);
+            this.panel9.Controls.Add(this.telepontTB);
             this.panel9.Controls.Add(this.label8);
-            this.panel9.Controls.Add(this.textBox7);
+            this.panel9.Controls.Add(this.namatTB);
             this.panel9.Controls.Add(this.label7);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Enabled = false;
             this.panel9.Location = new System.Drawing.Point(0, 0);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1344, 100);
             this.panel9.TabIndex = 0;
+            // 
+            // bukaBTN
+            // 
+            this.bukaBTN.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.bukaBTN.FlatAppearance.BorderSize = 2;
+            this.bukaBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.bukaBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Navy;
+            this.bukaBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bukaBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.bukaBTN.ForeColor = System.Drawing.Color.Black;
+            this.bukaBTN.Location = new System.Drawing.Point(1060, 48);
+            this.bukaBTN.Name = "bukaBTN";
+            this.bukaBTN.Size = new System.Drawing.Size(271, 37);
+            this.bukaBTN.TabIndex = 17;
+            this.bukaBTN.Text = "Buka";
+            this.bukaBTN.UseVisualStyleBackColor = true;
+            this.bukaBTN.Click += new System.EventHandler(this.bukaBTN_Click);
+            // 
+            // selesaiDTP
+            // 
+            this.selesaiDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.selesaiDTP.Location = new System.Drawing.Point(1110, 9);
+            this.selesaiDTP.Name = "selesaiDTP";
+            this.selesaiDTP.Size = new System.Drawing.Size(200, 26);
+            this.selesaiDTP.TabIndex = 16;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label10.Location = new System.Drawing.Point(966, 8);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(136, 29);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "Tgl Selesai";
+            // 
+            // mulaiDTP
+            // 
+            this.mulaiDTP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.mulaiDTP.Location = new System.Drawing.Point(754, 9);
+            this.mulaiDTP.Name = "mulaiDTP";
+            this.mulaiDTP.Size = new System.Drawing.Size(200, 26);
+            this.mulaiDTP.TabIndex = 14;
             // 
             // label9
             // 
@@ -184,14 +304,14 @@ namespace Natural_1.Admin.UC
             this.label9.TabIndex = 13;
             this.label9.Text = "Tgl Mulai";
             // 
-            // textBox8
+            // telepontTB
             // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox8.Location = new System.Drawing.Point(489, 11);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(119, 23);
-            this.textBox8.TabIndex = 12;
+            this.telepontTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.telepontTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.telepontTB.Location = new System.Drawing.Point(489, 11);
+            this.telepontTB.Name = "telepontTB";
+            this.telepontTB.Size = new System.Drawing.Size(119, 23);
+            this.telepontTB.TabIndex = 12;
             // 
             // label8
             // 
@@ -203,14 +323,14 @@ namespace Natural_1.Admin.UC
             this.label8.TabIndex = 11;
             this.label8.Text = "Telepon";
             // 
-            // textBox7
+            // namatTB
             // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox7.Location = new System.Drawing.Point(124, 11);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(204, 23);
-            this.textBox7.TabIndex = 10;
+            this.namatTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.namatTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.namatTB.Location = new System.Drawing.Point(124, 11);
+            this.namatTB.Name = "namatTB";
+            this.namatTB.Size = new System.Drawing.Size(204, 23);
+            this.namatTB.TabIndex = 10;
             // 
             // label7
             // 
@@ -224,13 +344,14 @@ namespace Natural_1.Admin.UC
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox4);
-            this.panel2.Controls.Add(this.textBox3);
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
+            this.panel2.Controls.Add(this.simpanBTN);
+            this.panel2.Controls.Add(this.baruBTN);
+            this.panel2.Controls.Add(this.bonus_TB);
+            this.panel2.Controls.Add(this.alamat_TB);
+            this.panel2.Controls.Add(this.telep_TB);
+            this.panel2.Controls.Add(this.nama_TB);
+            this.panel2.Controls.Add(this.id_TB);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
@@ -242,78 +363,82 @@ namespace Natural_1.Admin.UC
             this.panel2.Size = new System.Drawing.Size(631, 401);
             this.panel2.TabIndex = 1;
             // 
-            // button2
+            // simpanBTN
             // 
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
-            this.button2.FlatAppearance.BorderSize = 3;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button2.Location = new System.Drawing.Point(424, 319);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(115, 45);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "Simpan";
-            this.button2.UseVisualStyleBackColor = true;
+            this.simpanBTN.Enabled = false;
+            this.simpanBTN.FlatAppearance.BorderColor = System.Drawing.Color.Cyan;
+            this.simpanBTN.FlatAppearance.BorderSize = 3;
+            this.simpanBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DodgerBlue;
+            this.simpanBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.simpanBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.simpanBTN.Location = new System.Drawing.Point(424, 319);
+            this.simpanBTN.Name = "simpanBTN";
+            this.simpanBTN.Size = new System.Drawing.Size(115, 45);
+            this.simpanBTN.TabIndex = 11;
+            this.simpanBTN.Text = "Simpan";
+            this.simpanBTN.UseVisualStyleBackColor = true;
+            this.simpanBTN.Click += new System.EventHandler(this.simpanBTN_Click);
             // 
-            // button1
+            // baruBTN
             // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.button1.FlatAppearance.BorderSize = 3;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(281, 319);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(115, 45);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Baru";
-            this.button1.UseVisualStyleBackColor = true;
+            this.baruBTN.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.baruBTN.FlatAppearance.BorderSize = 3;
+            this.baruBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
+            this.baruBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.baruBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.baruBTN.Location = new System.Drawing.Point(281, 319);
+            this.baruBTN.Name = "baruBTN";
+            this.baruBTN.Size = new System.Drawing.Size(115, 45);
+            this.baruBTN.TabIndex = 10;
+            this.baruBTN.Text = "Baru";
+            this.baruBTN.UseVisualStyleBackColor = true;
+            this.baruBTN.Click += new System.EventHandler(this.baruBTN_Click);
             // 
-            // textBox5
+            // bonus_TB
             // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox5.Location = new System.Drawing.Point(238, 253);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(267, 23);
-            this.textBox5.TabIndex = 9;
+            this.bonus_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.bonus_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.bonus_TB.Location = new System.Drawing.Point(238, 253);
+            this.bonus_TB.Name = "bonus_TB";
+            this.bonus_TB.Size = new System.Drawing.Size(267, 23);
+            this.bonus_TB.TabIndex = 9;
             // 
-            // textBox4
+            // alamat_TB
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox4.Location = new System.Drawing.Point(238, 200);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(267, 23);
-            this.textBox4.TabIndex = 8;
+            this.alamat_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.alamat_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.alamat_TB.Location = new System.Drawing.Point(238, 200);
+            this.alamat_TB.Name = "alamat_TB";
+            this.alamat_TB.Size = new System.Drawing.Size(267, 23);
+            this.alamat_TB.TabIndex = 8;
             // 
-            // textBox3
+            // telep_TB
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox3.Location = new System.Drawing.Point(238, 148);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(267, 23);
-            this.textBox3.TabIndex = 7;
+            this.telep_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.telep_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.telep_TB.Location = new System.Drawing.Point(238, 148);
+            this.telep_TB.Name = "telep_TB";
+            this.telep_TB.Size = new System.Drawing.Size(267, 23);
+            this.telep_TB.TabIndex = 7;
             // 
-            // textBox2
+            // nama_TB
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox2.Location = new System.Drawing.Point(238, 95);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(267, 23);
-            this.textBox2.TabIndex = 6;
+            this.nama_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nama_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.nama_TB.Location = new System.Drawing.Point(238, 95);
+            this.nama_TB.Name = "nama_TB";
+            this.nama_TB.Size = new System.Drawing.Size(267, 23);
+            this.nama_TB.TabIndex = 6;
             // 
-            // textBox1
+            // id_TB
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(238, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(267, 23);
-            this.textBox1.TabIndex = 5;
+            this.id_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.id_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.id_TB.Location = new System.Drawing.Point(238, 42);
+            this.id_TB.Name = "id_TB";
+            this.id_TB.ReadOnly = true;
+            this.id_TB.Size = new System.Drawing.Size(267, 23);
+            this.id_TB.TabIndex = 5;
             // 
             // label5
             // 
@@ -367,7 +492,7 @@ namespace Natural_1.Admin.UC
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.pelanggan_DGV);
             this.panel3.Controls.Add(this.panel8);
             this.panel3.Controls.Add(this.panel7);
             this.panel3.Controls.Add(this.panel6);
@@ -379,23 +504,27 @@ namespace Natural_1.Admin.UC
             this.panel3.Size = new System.Drawing.Size(713, 401);
             this.panel3.TabIndex = 2;
             // 
-            // dataGridView1
+            // pelanggan_DGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(91, 34);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.Size = new System.Drawing.Size(531, 231);
-            this.dataGridView1.TabIndex = 6;
+            this.pelanggan_DGV.AllowUserToAddRows = false;
+            this.pelanggan_DGV.AllowUserToDeleteRows = false;
+            this.pelanggan_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.pelanggan_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pelanggan_DGV.Location = new System.Drawing.Point(91, 34);
+            this.pelanggan_DGV.MultiSelect = false;
+            this.pelanggan_DGV.Name = "pelanggan_DGV";
+            this.pelanggan_DGV.ReadOnly = true;
+            this.pelanggan_DGV.RowHeadersWidth = 62;
+            this.pelanggan_DGV.RowTemplate.Height = 28;
+            this.pelanggan_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.pelanggan_DGV.Size = new System.Drawing.Size(531, 231);
+            this.pelanggan_DGV.TabIndex = 6;
+            this.pelanggan_DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.pelanggan_DGV_CellClick);
+            this.pelanggan_DGV.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.pelanggan_DGV_RowHeaderMouseClick);
             // 
             // panel8
             // 
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(91, 0);
             this.panel8.Name = "panel8";
@@ -404,6 +533,7 @@ namespace Natural_1.Admin.UC
             // 
             // panel7
             // 
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
             this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel7.Location = new System.Drawing.Point(91, 265);
             this.panel7.Name = "panel7";
@@ -412,6 +542,7 @@ namespace Natural_1.Admin.UC
             // 
             // panel6
             // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel6.Location = new System.Drawing.Point(622, 0);
             this.panel6.Name = "panel6";
@@ -420,6 +551,7 @@ namespace Natural_1.Admin.UC
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
@@ -428,26 +560,28 @@ namespace Natural_1.Admin.UC
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.textBox6);
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(99)))), ((int)(((byte)(159)))), ((int)(((byte)(173)))));
+            this.panel4.Controls.Add(this.cariPelangganTB);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.button6);
-            this.panel4.Controls.Add(this.button5);
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button3);
+            this.panel4.Controls.Add(this.transaksiBTN);
+            this.panel4.Controls.Add(this.aktifBTN);
+            this.panel4.Controls.Add(this.nonaktifBTN);
+            this.panel4.Controls.Add(this.ubahBTN);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 301);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(713, 100);
             this.panel4.TabIndex = 0;
             // 
-            // textBox6
+            // cariPelangganTB
             // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox6.Location = new System.Drawing.Point(80, 14);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(143, 23);
-            this.textBox6.TabIndex = 5;
+            this.cariPelangganTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cariPelangganTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cariPelangganTB.Location = new System.Drawing.Point(80, 14);
+            this.cariPelangganTB.Name = "cariPelangganTB";
+            this.cariPelangganTB.Size = new System.Drawing.Size(143, 23);
+            this.cariPelangganTB.TabIndex = 5;
+            this.cariPelangganTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariPelangganTB_KeyUp);
             // 
             // label6
             // 
@@ -459,164 +593,83 @@ namespace Natural_1.Admin.UC
             this.label6.TabIndex = 4;
             this.label6.Text = "Cari";
             // 
-            // button6
+            // transaksiBTN
             // 
-            this.button6.Enabled = false;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
-            this.button6.FlatAppearance.BorderSize = 3;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button6.Location = new System.Drawing.Point(397, 56);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(271, 37);
-            this.button6.TabIndex = 3;
-            this.button6.Text = "Transaksi";
-            this.button6.UseVisualStyleBackColor = true;
+            this.transaksiBTN.Enabled = false;
+            this.transaksiBTN.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
+            this.transaksiBTN.FlatAppearance.BorderSize = 3;
+            this.transaksiBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
+            this.transaksiBTN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Olive;
+            this.transaksiBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.transaksiBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.transaksiBTN.Location = new System.Drawing.Point(397, 56);
+            this.transaksiBTN.Name = "transaksiBTN";
+            this.transaksiBTN.Size = new System.Drawing.Size(271, 37);
+            this.transaksiBTN.TabIndex = 3;
+            this.transaksiBTN.Text = "Transaksi";
+            this.transaksiBTN.UseVisualStyleBackColor = true;
+            this.transaksiBTN.Click += new System.EventHandler(this.transaksiBTN_Click);
             // 
-            // button5
+            // aktifBTN
             // 
-            this.button5.Enabled = false;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
-            this.button5.FlatAppearance.BorderSize = 2;
-            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button5.Location = new System.Drawing.Point(545, 7);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(123, 37);
-            this.button5.TabIndex = 2;
-            this.button5.Text = "Aktif";
-            this.button5.UseVisualStyleBackColor = true;
+            this.aktifBTN.Enabled = false;
+            this.aktifBTN.FlatAppearance.BorderColor = System.Drawing.Color.Lime;
+            this.aktifBTN.FlatAppearance.BorderSize = 2;
+            this.aktifBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
+            this.aktifBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.aktifBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.aktifBTN.Location = new System.Drawing.Point(545, 7);
+            this.aktifBTN.Name = "aktifBTN";
+            this.aktifBTN.Size = new System.Drawing.Size(123, 37);
+            this.aktifBTN.TabIndex = 2;
+            this.aktifBTN.Text = "Aktif";
+            this.aktifBTN.UseVisualStyleBackColor = true;
+            this.aktifBTN.Click += new System.EventHandler(this.aktifBTN_Click);
             // 
-            // button4
+            // nonaktifBTN
             // 
-            this.button4.Enabled = false;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Red;
-            this.button4.FlatAppearance.BorderSize = 2;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button4.Location = new System.Drawing.Point(397, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(123, 37);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Non-Aktif";
-            this.button4.UseVisualStyleBackColor = true;
+            this.nonaktifBTN.Enabled = false;
+            this.nonaktifBTN.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.nonaktifBTN.FlatAppearance.BorderSize = 2;
+            this.nonaktifBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
+            this.nonaktifBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nonaktifBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.nonaktifBTN.Location = new System.Drawing.Point(397, 7);
+            this.nonaktifBTN.Name = "nonaktifBTN";
+            this.nonaktifBTN.Size = new System.Drawing.Size(123, 37);
+            this.nonaktifBTN.TabIndex = 1;
+            this.nonaktifBTN.Text = "Non-Aktif";
+            this.nonaktifBTN.UseVisualStyleBackColor = true;
+            this.nonaktifBTN.Click += new System.EventHandler(this.nonaktifBTN_Click);
             // 
-            // button3
+            // ubahBTN
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.Enabled = false;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button3.Location = new System.Drawing.Point(249, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 37);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Ubah";
-            this.button3.UseVisualStyleBackColor = false;
+            this.ubahBTN.BackColor = System.Drawing.Color.White;
+            this.ubahBTN.Enabled = false;
+            this.ubahBTN.FlatAppearance.BorderSize = 0;
+            this.ubahBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ubahBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.ubahBTN.Location = new System.Drawing.Point(249, 7);
+            this.ubahBTN.Name = "ubahBTN";
+            this.ubahBTN.Size = new System.Drawing.Size(123, 37);
+            this.ubahBTN.TabIndex = 0;
+            this.ubahBTN.Text = "Ubah";
+            this.ubahBTN.UseVisualStyleBackColor = false;
+            this.ubahBTN.Click += new System.EventHandler(this.ubahBTN_Click);
             // 
-            // dateTimePicker1
+            // printDocument1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(754, 9);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker1.TabIndex = 14;
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // dateTimePicker2
+            // printPreviewDialog1
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(1110, 9);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 26);
-            this.dateTimePicker2.TabIndex = 16;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label10.Location = new System.Drawing.Point(966, 8);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(136, 29);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "Tgl Selesai";
-            // 
-            // button7
-            // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button7.Location = new System.Drawing.Point(1060, 48);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(271, 37);
-            this.button7.TabIndex = 17;
-            this.button7.Text = "Buka";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // textBox9
-            // 
-            this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox9.Location = new System.Drawing.Point(222, 24);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(204, 23);
-            this.textBox9.TabIndex = 12;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label11.Location = new System.Drawing.Point(30, 21);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(181, 29);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "Total Penjualan";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox10.Location = new System.Drawing.Point(555, 27);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(143, 23);
-            this.textBox10.TabIndex = 14;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.label12.Location = new System.Drawing.Point(481, 25);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 26);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Cari";
-            // 
-            // button8
-            // 
-            this.button8.Enabled = false;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button8.Location = new System.Drawing.Point(1091, 18);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(123, 37);
-            this.button8.TabIndex = 16;
-            this.button8.Text = "Void";
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.Enabled = false;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button9.Location = new System.Drawing.Point(943, 18);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(123, 37);
-            this.button9.TabIndex = 15;
-            this.button9.Text = "Cetak";
-            this.button9.UseVisualStyleBackColor = true;
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // uc_pelanggan
             // 
@@ -629,7 +682,7 @@ namespace Natural_1.Admin.UC
             this.Size = new System.Drawing.Size(1344, 796);
             this.panel1.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transaksiPelanggan_DGV)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -637,7 +690,7 @@ namespace Natural_1.Admin.UC
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pelanggan_DGV)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.ResumeLayout(false);
@@ -654,45 +707,47 @@ namespace Natural_1.Admin.UC
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox id_TB;
+        private System.Windows.Forms.Button simpanBTN;
+        private System.Windows.Forms.Button baruBTN;
+        private System.Windows.Forms.TextBox bonus_TB;
+        private System.Windows.Forms.TextBox alamat_TB;
+        private System.Windows.Forms.TextBox telep_TB;
+        private System.Windows.Forms.TextBox nama_TB;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView pelanggan_DGV;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox cariPelangganTB;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button transaksiBTN;
+        private System.Windows.Forms.Button aktifBTN;
+        private System.Windows.Forms.Button nonaktifBTN;
+        private System.Windows.Forms.Button ubahBTN;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView transaksiPelanggan_DGV;
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Panel panel12;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox telepontTB;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox namatTB;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button voidBTN;
+        private System.Windows.Forms.Button cetakBTN;
+        private System.Windows.Forms.TextBox cariTB;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox totalTB;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.Button bukaBTN;
+        private System.Windows.Forms.DateTimePicker selesaiDTP;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker mulaiDTP;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
