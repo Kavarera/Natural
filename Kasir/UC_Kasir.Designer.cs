@@ -444,6 +444,7 @@ namespace Natural_1.Kasir
             this.bonusPelanggan_TB.ReadOnly = true;
             this.bonusPelanggan_TB.Size = new System.Drawing.Size(281, 30);
             this.bonusPelanggan_TB.TabIndex = 17;
+            this.bonusPelanggan_TB.Text = "0";
             // 
             // areaPelanggan_TB
             // 

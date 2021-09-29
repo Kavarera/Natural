@@ -205,8 +205,9 @@ namespace Natural_1.Kasir
                     try
                     {
                         noStruk_TB.Text = kasirHelper.getNoStruk("Pelanggan", Karyawan.Nama, totalTransaksi);
-                        SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam,Operator,Kegiatan,Modul,Pemasukan,Struk) " +
-                        $"VALUES('{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', '{Karyawan.Nama.ToString()}', '{barang_CB.SelectedItem.ToString()}', 'Kasir', {kasir_DGV.Rows[rowIndex].Cells[5].Value.ToString()},'{noStruk_TB.Text.ToString()}')", con);
+                        SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam,Operator,NamaPelanggan,Kegiatan,Modul,Pemasukan,Struk) " +
+                        $"VALUES('{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', '{Karyawan.Nama.ToString()}', '{namaPelanggan_TB.Text}' ,'{barang_CB.SelectedItem.ToString()}', 'Kasir', {kasir_DGV.Rows[rowIndex].Cells[5].Value.ToString()},'{noStruk_TB.Text.ToString()}' " +
+                        $" )", con);
                         con.Open();
                         int status = cmd.ExecuteNonQuery();
                         if (status > 0)
@@ -254,6 +255,8 @@ namespace Natural_1.Kasir
                 gabungData_CB.Enabled = false;
                 noPelanggan_TB.Enabled = false;
                 noTelepon_TB.Enabled = false;
+                beli_BTN.Enabled = true;
+                tambah_BTN.Enabled = true;
             }
             else
             {
@@ -477,9 +480,14 @@ namespace Natural_1.Kasir
             }
             //insert data to database
 
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan) " +
-                $"VALUES ( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{Karyawan.Nama}' , 'Pelanggan' , 'Kasir' , {D_ItemDibeli.pemasukan} , {D_ItemDibeli.pengeluaran} , " +
-                $"'{noStruk_TB.Text.ToString()}' , '{keterangan}')", con);
+            if (namaPelanggan_TB.Text == "")
+            {
+                namaPelanggan_TB.Text = "Non-Member";
+            }
+
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,NamaPelanggan , Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan) " +
+                $"VALUES ( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{Karyawan.Nama}', '{namaPelanggan_TB.Text}' , 'Pelanggan' , 'Kasir' , {D_ItemDibeli.pemasukan} , " +
+                $"{D_ItemDibeli.pengeluaran},  '{noStruk_TB.Text}' , '{keterangan}')", con);
 
             try
             {
@@ -496,7 +504,7 @@ namespace Natural_1.Kasir
                 else if(!nonMember_CB.Checked && pelangganBaru_CB.Checked)
                 {
                     // Create new pelanggan db, with bonus =1;
-                    cmd = new SqlCommand($"INSERT INTO Pelanggan( Id_Pelanggan AS ID , Nama, No_Telp AS Telp, Alamat, Bonus, Area) " +
+                    cmd = new SqlCommand($"INSERT INTO Pelanggan( Id_Pelanggan , Nama, No_Telp , Alamat, Bonus, Area) " +
                         $"VALUES('{noPelanggan_TB.Text}' , '{namaPelanggan_TB.Text}' , '{noTelepon_TB.Text}' , '{alamatPelanggan_TB.Text}' , '1','{areaPelanggan_TB.Text}')", con);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Success adding new Pelanggan");

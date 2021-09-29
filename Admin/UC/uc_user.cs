@@ -235,5 +235,45 @@ namespace Natural_1.Admin.Uc
                 }
             }
         }
+
+        private void cari_TB_Enter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.Show("Masukan ID User saja", (TextBox)sender, 0, -30, 5000);
+        }
+
+        private void cari_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT Username, Nama,No_Telepon,Alamat, Role,Status FROM Karyawan WHERE Id_Karyawan LIKE  '{cari_TB.Text}%' ", con);
+                if (cari_TB.Text != "")
+                {
+                    try
+                    {
+                        con.Open();
+                        User_DGV.Columns.Clear();
+                        SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                        cmd.ExecuteNonQuery();
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        User_DGV.DataSource = dt.DefaultView;
+                        dt.Dispose();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message + "\ncariSearchFailed" + "uc_users.cs - carisearch error");
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+                }
+                else
+                {
+                    adminHelper.loadData(con, "User", User_DGV);
+                }
+            }
+        }
     }
 }

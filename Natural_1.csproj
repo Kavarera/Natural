@@ -74,6 +74,12 @@
     <Compile Include="Admin\SetPassword.Designer.cs">
       <DependentUpon>SetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="Admin\UC\uc_pelanggan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UC\uc_pelanggan.Designer.cs">
+      <DependentUpon>uc_pelanggan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UC\uc_user.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\SetPassword.resx">
       <DependentUpon>SetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UC\uc_pelanggan.resx">
+      <DependentUpon>uc_pelanggan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Admin\UC\uc_user.resx">
       <DependentUpon>uc_user.cs</DependentUpon>

@@ -99,9 +99,9 @@ namespace Natural_1.Kasir
             {
                 D_ItemDibeli.pemasukan += Int32.Parse(belanja_DVG.Rows[i].Cells[4].Value.ToString());
             }
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan)" +
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan , NamaPelanggan)" +
                 $"VALUES( '{TB_TglBeli.Text.ToString() + TB_Jam.Text.ToString()}' , '{Karyawan.Nama}' , 'Distributor' , 'Belanja' , '{D_ItemDibeli.pemasukan.ToString()}' , '{D_ItemDibeli.pengeluaran}'," +
-                $"'{struk_TB.Text.ToString()}' , 'Distributor' )", con);
+                $"'{struk_TB.Text.ToString()}' , 'Distributor' , '{CBX_namaToko.SelectedItem.ToString()}' )", con);
             try
             {
                 con.Open();

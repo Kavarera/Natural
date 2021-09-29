@@ -51,7 +51,7 @@ namespace Natural_1.Admin.Uc
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.cari_TB = new System.Windows.Forms.TextBox();
             this.aktivasi_btn = new System.Windows.Forms.Button();
             this.ubah_btn = new System.Windows.Forms.Button();
             this.nonaktif_btn = new System.Windows.Forms.Button();
@@ -319,14 +319,16 @@ namespace Natural_1.Admin.Uc
             this.label7.TabIndex = 14;
             this.label7.Text = "Cari :";
             // 
-            // textBox7
+            // cari_TB
             // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(818, 443);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(180, 23);
-            this.textBox7.TabIndex = 15;
+            this.cari_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.cari_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cari_TB.Location = new System.Drawing.Point(818, 443);
+            this.cari_TB.Name = "cari_TB";
+            this.cari_TB.Size = new System.Drawing.Size(180, 23);
+            this.cari_TB.TabIndex = 15;
+            this.cari_TB.Enter += new System.EventHandler(this.cari_TB_Enter);
+            this.cari_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cari_TB_KeyUp);
             // 
             // aktivasi_btn
             // 
@@ -387,7 +389,7 @@ namespace Natural_1.Admin.Uc
             this.Controls.Add(this.nonaktif_btn);
             this.Controls.Add(this.ubah_btn);
             this.Controls.Add(this.aktivasi_btn);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.cari_TB);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -426,7 +428,7 @@ namespace Natural_1.Admin.Uc
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox cari_TB;
         private System.Windows.Forms.Button aktivasi_btn;
         private System.Windows.Forms.Button ubah_btn;
         private System.Windows.Forms.Button nonaktif_btn;
