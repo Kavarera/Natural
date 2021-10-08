@@ -200,9 +200,9 @@ namespace Natural_1.Admin.UC
             this.cariTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cariTB.Location = new System.Drawing.Point(555, 27);
             this.cariTB.Name = "cariTB";
-            this.cariTB.ReadOnly = true;
             this.cariTB.Size = new System.Drawing.Size(143, 23);
             this.cariTB.TabIndex = 14;
+            this.cariTB.Enter += new System.EventHandler(this.cariTB_Enter);
             this.cariTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariTB_KeyUp);
             // 
             // label12
@@ -581,6 +581,7 @@ namespace Natural_1.Admin.UC
             this.cariPelangganTB.Name = "cariPelangganTB";
             this.cariPelangganTB.Size = new System.Drawing.Size(143, 23);
             this.cariPelangganTB.TabIndex = 5;
+            this.cariPelangganTB.Enter += new System.EventHandler(this.cariPelangganTB_Enter);
             this.cariPelangganTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariPelangganTB_KeyUp);
             // 
             // label6

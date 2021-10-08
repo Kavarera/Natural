@@ -17,6 +17,17 @@ namespace Natural_1.Admin
             InitializeComponent();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleparam = base.CreateParams;
+                handleparam.ExStyle |= 0x2000000;
+                return handleparam;
+            }
+        }
+
+
         private void addUserControl(UserControl uc)
         {
             panelContainer.Controls.Clear();
@@ -119,6 +130,8 @@ namespace Natural_1.Admin
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
             log_BTN.ForeColor = Color.Black;
+
+            addUserControl(new UC.Distributor());
         }
 
         private void item_BTN_Click(object sender, EventArgs e)
@@ -147,6 +160,9 @@ namespace Natural_1.Admin
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
             log_BTN.ForeColor = Color.Black;
+
+            addUserControl(new UC.items());
+
         }
 
         private void log_BTN_Click(object sender, EventArgs e)

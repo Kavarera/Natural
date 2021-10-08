@@ -57,7 +57,7 @@ namespace Natural_1.Admin
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1260, 84);
+            this.panel1.Size = new System.Drawing.Size(1260, 78);
             this.panel1.TabIndex = 0;
             // 
             // label2
@@ -79,7 +79,7 @@ namespace Natural_1.Admin
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(534, 9);
+            this.label1.Location = new System.Drawing.Point(480, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(249, 55);
             this.label1.TabIndex = 2;
@@ -94,7 +94,7 @@ namespace Natural_1.Admin
             this.close_BTN.Image = global::Natural_1.Properties.Resources.close;
             this.close_BTN.Location = new System.Drawing.Point(1149, 0);
             this.close_BTN.Name = "close_BTN";
-            this.close_BTN.Size = new System.Drawing.Size(111, 84);
+            this.close_BTN.Size = new System.Drawing.Size(111, 78);
             this.close_BTN.TabIndex = 1;
             this.close_BTN.UseVisualStyleBackColor = true;
             this.close_BTN.Click += new System.EventHandler(this.close_BTN_Click);
@@ -105,7 +105,7 @@ namespace Natural_1.Admin
             this.pictureBox1.Image = global::Natural_1.Properties.Resources.Logo;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(136, 84);
+            this.pictureBox1.Size = new System.Drawing.Size(136, 78);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -119,7 +119,7 @@ namespace Natural_1.Admin
             this.panel2.Controls.Add(this.pelanggan_BTN);
             this.panel2.Controls.Add(this.user_BTN);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 84);
+            this.panel2.Location = new System.Drawing.Point(0, 78);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1260, 71);
             this.panel2.TabIndex = 1;
@@ -210,9 +210,9 @@ namespace Natural_1.Admin
             // panelContainer
             // 
             this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(0, 155);
+            this.panelContainer.Location = new System.Drawing.Point(0, 149);
             this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(1260, 318);
+            this.panelContainer.Size = new System.Drawing.Size(1260, 324);
             this.panelContainer.TabIndex = 2;
             // 
             // AdminForm
@@ -223,6 +223,7 @@ namespace Natural_1.Admin
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";

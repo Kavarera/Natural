@@ -19,6 +19,16 @@ namespace Natural_1.Kasir
             InitializeComponent();
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleparam = base.CreateParams;
+                handleparam.ExStyle |= 0x2000000;
+                return handleparam;
+            }
+        }
+
         private void close_BTN_Click(object sender, EventArgs e)
         {
             var loginPage = new MainWindow();

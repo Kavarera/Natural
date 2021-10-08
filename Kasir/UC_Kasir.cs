@@ -221,6 +221,28 @@ namespace Natural_1.Kasir
                             $"('{noPelanggan_TB.Text.ToString()}', '{namaPelanggan_TB.Text.ToString()}','{noTelepon_TB.Text.ToString()}', '{alamatPelanggan_TB.Text.ToString()}', '{bonusPelanggan_TB.Text.ToString()}', '{areaPelanggan_TB.Text.ToString()}' )", con);
                             cmd.ExecuteNonQuery();
                         }
+
+                        //add to baranglog
+
+                        int iRow = kasir_DGV.Rows.Count;
+                        for (int i = 0; i < iRow; i++)
+                        {
+                            MessageBox.Show(i.ToString(), iRow.ToString());
+                            cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
+                                $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}', " +
+                                $"'{kasir_DGV.Rows[i].Cells[2].Value.ToString()}', 0, '{noStruk_TB.Text}' , " +
+                                $" '{kasir_DGV.Rows[i].Cells[5].Value.ToString()}') ", con);
+
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message + " insert into baranglog failed", "uckasir beli btn error");
+                            }
+                        }
+
                     }
                     catch(Exception ex)
                     {
@@ -509,6 +531,27 @@ namespace Natural_1.Kasir
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Success adding new Pelanggan");
                 }
+                // adding to barangLog
+
+                int iRow = kasir_DGV.Rows.Count;
+                for(int i=0; i < iRow; i++)
+                {
+                    MessageBox.Show(i.ToString(), iRow.ToString());
+                    cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
+                        $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}', " +
+                        $"'{kasir_DGV.Rows[i].Cells[2].Value.ToString()}', 0, '{noStruk_TB.Text}' , " +
+                        $" '{kasir_DGV.Rows[i].Cells[5].Value.ToString()}') ", con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message + " insert into baranglog failed", "uckasir beli btn error");
+                    }
+                }
+
 
             }
             catch(Exception ex)

@@ -395,21 +395,89 @@ namespace Natural_1.Admin.UC
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            Font regular = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Regular);
-            Font bold = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Bold);
 
-            e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
-            e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
-            e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
-            e.Graphics.DrawString("No Struk :\t" + transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString(), regular, Brushes.Black, new Point(5, 45));
-            e.Graphics.DrawString("Date : " + transaksiPelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString(), regular, Brushes.Black, new Point(5, 60));
+            DataTable dt = new DataTable();
+            SqlCommand cmd = new SqlCommand($"SELECT TanggalJam, Operator, BarangLog.NamaBarang as 'Nama_Barang' " +
+                $", BarangLog.Pengurangan as 'Jumlah' , BarangLog.totalHarga as 'Total' from TransactionLog " +
+                $"inner join BarangLog on TransactionLog.Struk = BarangLog.Struk" +
+                $" WHERE TransactionLog.Struk = '{transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString()}' ", con);
+            try
+            {
+                con.Close();
+                con.Open();
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                cmd.ExecuteNonQuery();
+                sda.Fill(dt);
 
-            e.Graphics.DrawString("STRUK CETAK ULANG", new Font(FontFamily.GenericSansSerif,10.0f,FontStyle.Bold),Brushes.Black, new Point(15, 95));
+                Font regular = new Font(FontFamily.GenericSansSerif, 8.0f, FontStyle.Regular);
+                Font bold = new Font(FontFamily.GenericSansSerif, 20.0f, FontStyle.Bold);
 
-            e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(5, 125));
-            e.Graphics.DrawString($"{totalTB.Text}", regular, Brushes.Black, new Point(100,125));
-            e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, 145));
+                e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
+                e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
+                e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
+                e.Graphics.DrawString("No Struk :\t" + transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString(), regular, Brushes.Black, new Point(5, 45));
+                e.Graphics.DrawString("Date : " + transaksiPelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString(), regular, Brushes.Black, new Point(5, 60));
 
+                e.Graphics.DrawString("Barang(pcs)", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(5, 75));
+                e.Graphics.DrawString("Total Harga", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(120, 75));
+                e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0f, 85f), new PointF(600f, 87f));
+
+                int totalHarga = 0;
+                int x = 5;
+                int y = 90;
+                dt.Rows[0].ItemArray[0].ToString();
+
+                int dtRIndex = dt.Rows.Count;
+                for (int i = 0; i < dtRIndex; i++)
+                {
+                    e.Graphics.DrawString($"{dt.Rows[i].ItemArray[2].ToString()}", regular, Brushes.Black, new Point(x, y + 10));
+                    e.Graphics.DrawString($"{dt.Rows[i].ItemArray[4].ToString()}", regular, Brushes.Black, new Point(x + 120, y + 10));
+                    y += 20;
+                    totalHarga += Int32.Parse(dt.Rows[i].ItemArray[4].ToString());
+                }
+                e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x + 20, y + (5 * (dtRIndex - 1) + 30)));
+                e.Graphics.DrawString($"{totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (dtRIndex - 1) + 30)));
+                y = y + (5 * (dtRIndex - 1) + 35);
+                e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, y + 20));
+                e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0f, y + 30f), new PointF(600f, y + 32f));
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ucPelanggan - printDoc");
+            }
+
+            finally
+            {
+                con.Close();
+            }
+
+
+
+            //e.Graphics.DrawString("NATURAL", bold, Brushes.Black, new Point(35, 0));
+            //e.Graphics.DrawString("AIR MINUM ISI ULANG", new Font(FontFamily.GenericSansSerif, 6.0f, FontStyle.Regular), Brushes.Black, new Point(60, 30));
+            //e.Graphics.DrawLine(new Pen(Color.Black, 3), new PointF(0f, 43f), new PointF(600f, 43f));
+            //e.Graphics.DrawString("No Struk :\t" + transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString(), regular, Brushes.Black, new Point(5, 45));
+            //e.Graphics.DrawString("Date : " + transaksiPelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString(), regular, Brushes.Black, new Point(5, 60));
+
+            //e.Graphics.DrawString("STRUK CETAK ULANG", new Font(FontFamily.GenericSansSerif,10.0f,FontStyle.Bold),Brushes.Black, new Point(15, 95));
+
+            //e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(5, 125));
+            //e.Graphics.DrawString($"{totalTB.Text}", regular, Brushes.Black, new Point(100,125));
+            //e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, 145));
+
+        }
+
+        private void cariPelangganTB_Enter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.Show("Masukan ID Pelanggan saja", (TextBox)sender, 0, -30, 3000);
+        }
+
+        private void cariTB_Enter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.Show("Masukan Nomor Struk saja", (TextBox)sender, 0, -30, 3000);
         }
     }
 }

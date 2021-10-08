@@ -100,12 +100,32 @@ namespace Natural_1.Kasir
                 D_ItemDibeli.pemasukan += Int32.Parse(belanja_DVG.Rows[i].Cells[4].Value.ToString());
             }
             SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan , NamaPelanggan)" +
-                $"VALUES( '{TB_TglBeli.Text.ToString() + TB_Jam.Text.ToString()}' , '{Karyawan.Nama}' , 'Distributor' , 'Belanja' , '{D_ItemDibeli.pemasukan.ToString()}' , '{D_ItemDibeli.pengeluaran}'," +
+                $"VALUES( '{TB_TglBeli.Text.ToString()+" " + TB_Jam.Text.ToString()}' , '{Karyawan.Nama}' , 'Distributor' , 'Belanja' , '{D_ItemDibeli.pemasukan.ToString()}' , '{D_ItemDibeli.pengeluaran}'," +
                 $"'{struk_TB.Text.ToString()}' , 'Distributor' , '{CBX_namaToko.SelectedItem.ToString()}' )", con);
             try
             {
                 con.Open();
                 cmd.ExecuteScalar();
+
+                int iRow = belanja_DVG.Rows.Count;
+                for (int i = 0; i < iRow; i++)
+                {
+                    MessageBox.Show(i.ToString(), iRow.ToString());
+                    cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
+                        $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{belanja_DVG.Rows[i].Cells[0].Value.ToString()}', " +
+                        $"'{belanja_DVG.Rows[i].Cells[1].Value.ToString()}', 0, '{struk_TB.Text}' , " +
+                        $" '{belanja_DVG.Rows[i].Cells[4].Value.ToString()}') ", con);
+
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message + " insert into baranglog failed", "uckasir beli btn error");
+                    }
+                }
+
             }
             catch (Exception ex)
             {
