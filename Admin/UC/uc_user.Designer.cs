@@ -255,6 +255,7 @@ namespace Natural_1.Admin.Uc
             // 
             this.User_DGV.AllowUserToAddRows = false;
             this.User_DGV.AllowUserToDeleteRows = false;
+            this.User_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.User_DGV.BackgroundColor = System.Drawing.Color.White;
             this.User_DGV.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.User_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySHA256ENC">
       <HintPath>.\MySHA256ENC.dll</HintPath>
     </Reference>
@@ -85,6 +89,12 @@
     </Compile>
     <Compile Include="Admin\UC\items.Designer.cs">
       <DependentUpon>items.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UC\UC_Log.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Admin\UC\UC_Log.Designer.cs">
+      <DependentUpon>UC_Log.cs</DependentUpon>
     </Compile>
     <Compile Include="Admin\UC\uc_pelanggan.cs">
       <SubType>UserControl</SubType>
@@ -169,6 +179,9 @@
     <EmbeddedResource Include="Admin\UC\items.resx">
       <DependentUpon>items.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UC\UC_Log.resx">
+      <DependentUpon>UC_Log.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Admin\UC\uc_pelanggan.resx">
       <DependentUpon>uc_pelanggan.cs</DependentUpon>
     </EmbeddedResource>
@@ -191,6 +204,7 @@
     <EmbeddedResource Include="Setting\setting.resx">
       <DependentUpon>setting.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -211,6 +225,25 @@
   <ItemGroup>
     <Resource Include="Resources\Image\close.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

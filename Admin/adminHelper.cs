@@ -12,6 +12,27 @@ namespace Natural_1.Admin
 {
     public class adminHelper
     {
+
+        public static string GenerateNoPelanggan(SqlConnection connection, string noPelanggan = "P",string Table="User")
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand($"SELECT MAX(ID) AS ID FROM {Table} ", connection);
+                connection.Open();
+                noPelanggan += cmd.ExecuteScalar() + 1.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\nGenerateNoPelanggan", "kasirHelper.cs - Generate No Pelanggan ERROR");
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return noPelanggan;
+        }
+
+
         public static void loadData(SqlConnection con, string tipe, DataGridView dgv , string idp = "-")
         {
             con.Close();
@@ -210,6 +231,34 @@ namespace Natural_1.Admin
                 {
                     con.Close();
                 }
+            }
+
+            if (tipe == "Log")
+            {
+                SqlCommand cmd = new SqlCommand($"select top 50 Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
+                    $"Id_Target as 'Id Target', Keterangan from Log order by ID desc", con);
+
+                try
+                {
+                    con.Close();
+                    con.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    cmd.ExecuteNonQuery();
+                    DataTable dt = new DataTable();
+                    sda.Fill(dt);
+                    dgv.DataSource = dt.DefaultView;
+                    dt.Dispose();
+                    sda.Dispose();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Log-LoadData");
+                }
+                finally
+                {
+                    con.Close();
+                }
+
             }
 
 

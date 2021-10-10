@@ -167,6 +167,7 @@ namespace Natural_1.Admin.UC
             // 
             this.distTran_DGV.AllowUserToAddRows = false;
             this.distTran_DGV.AllowUserToDeleteRows = false;
+            this.distTran_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.distTran_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.distTran_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.distTran_DGV.Location = new System.Drawing.Point(69, 100);
@@ -447,6 +448,7 @@ namespace Natural_1.Admin.UC
             // 
             this.Distributor_DGV.AllowUserToAddRows = false;
             this.Distributor_DGV.AllowUserToDeleteRows = false;
+            this.Distributor_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Distributor_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Distributor_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Distributor_DGV.Location = new System.Drawing.Point(0, 47);
@@ -668,6 +670,7 @@ namespace Natural_1.Admin.UC
             this.alamatTB.Name = "alamatTB";
             this.alamatTB.Size = new System.Drawing.Size(277, 28);
             this.alamatTB.TabIndex = 8;
+            this.alamatTB.Enter += new System.EventHandler(this.alamatTB_Enter);
             // 
             // teleponTB
             // 

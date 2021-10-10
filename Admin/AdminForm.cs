@@ -191,6 +191,8 @@ namespace Natural_1.Admin
             user_BTN.Font = new Font("Microsoft Sans Serif", 10);
             user_BTN.BackColor = Color.White;
             user_BTN.ForeColor = Color.Black;
+
+            addUserControl(new UC.UC_Log());
         }
 
         private void close_BTN_Click(object sender, EventArgs e)

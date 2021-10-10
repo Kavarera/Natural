@@ -162,6 +162,8 @@ namespace Natural_1.Kasir
                 areaPelanggan_TB.Enabled = false;
                 bonusPelanggan_TB.Enabled = false;
 
+                gabungData_CB.Enabled = true;
+
                 beliLangsung_BTN.Enabled = false;
             }
         }
@@ -227,7 +229,7 @@ namespace Natural_1.Kasir
                         int iRow = kasir_DGV.Rows.Count;
                         for (int i = 0; i < iRow; i++)
                         {
-                            MessageBox.Show(i.ToString(), iRow.ToString());
+                            //MessageBox.Show(i.ToString(), iRow.ToString());
                             cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
                                 $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}', " +
                                 $"'{kasir_DGV.Rows[i].Cells[2].Value.ToString()}', 0, '{noStruk_TB.Text}' , " +
@@ -240,6 +242,19 @@ namespace Natural_1.Kasir
                             catch (Exception ex)
                             {
                                 MessageBox.Show(ex.Message + " insert into baranglog failed", "uckasir beli btn error");
+                            }
+                        }
+                        for(int i = 0; i < iRow; i++)
+                        {
+                            cmd = new SqlCommand($"update Barang set Jumlah = (select Jumlah from barang where nama = '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}')" +
+                                $" -{kasir_DGV.Rows[i].Cells[2].Value.ToString()} where Nama='{kasir_DGV.Rows[i].Cells[0].Value.ToString()}' ", con);
+                            try
+                            {
+                                cmd.ExecuteNonQuery();
+                            }
+                            catch(Exception ex)
+                            {
+                                MessageBox.Show("Fail to update stock. Error Message : \n" + ex.Message, "UC_KASIR-BELILANGSUNG");
                             }
                         }
 
@@ -282,6 +297,7 @@ namespace Natural_1.Kasir
             }
             else
             {
+                gabungData_CB.Enabled = true;
                 noPelanggan_TB.Enabled = true;
                 noTelepon_TB.Enabled = true;
             }
@@ -536,15 +552,18 @@ namespace Natural_1.Kasir
                 int iRow = kasir_DGV.Rows.Count;
                 for(int i=0; i < iRow; i++)
                 {
-                    MessageBox.Show(i.ToString(), iRow.ToString());
+                    //MessageBox.Show(i.ToString(), iRow.ToString());
                     cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
                         $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}', " +
                         $"'{kasir_DGV.Rows[i].Cells[2].Value.ToString()}', 0, '{noStruk_TB.Text}' , " +
                         $" '{kasir_DGV.Rows[i].Cells[5].Value.ToString()}') ", con);
+                    SqlCommand cmd2 = new SqlCommand($"update Barang set Jumlah = (select Jumlah from barang where nama = '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}')" +
+                            $" -{kasir_DGV.Rows[i].Cells[2].Value.ToString()} where Nama='{kasir_DGV.Rows[i].Cells[0].Value.ToString()}' ", con);
 
                     try
                     {
                         cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
                     }
                     catch(Exception ex)
                     {
@@ -654,6 +673,7 @@ namespace Natural_1.Kasir
             }
             // memberikan total harga yang harus dibayar.
             kasir_DGV.Rows[totalRow].Cells[5].Value = D_ItemDibeli.pemasukan.ToString();
+            kasirHelper.totalHarga = Int32.Parse(kasir_DGV.Rows[totalRow].Cells[5].Value.ToString());
             #region Menonaktifkan_Button_Yang_Tidak_Terpakai
             //nonaktif
             pelangganBaru_CB.Enabled = false;
@@ -716,18 +736,26 @@ namespace Natural_1.Kasir
             int y = 90;
             int x = 5;
             int totalRow = kasir_DGV.Rows.Count;
-            for (int i = 0; i <= totalRow-1; i++)
+            for (int i = 0; i < totalRow; i++)
             {
-                e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[0].Value}({kasir_DGV.Rows[i].Cells[2].Value})", regular, Brushes.Black, new Point(x, y + 10));
+                if (kasir_DGV.Rows[i].Cells[0].Value.ToString().Length > 10)
+                {
+                    e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[0].Value}({kasir_DGV.Rows[i].Cells[2].Value})", 
+                        new Font(FontFamily.GenericSansSerif,5.0f,FontStyle.Regular), Brushes.Black, new Point(x, y + 10));
+                }
+                else
+                {
+                    e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[0].Value}({kasir_DGV.Rows[i].Cells[2].Value})", regular, Brushes.Black, new Point(x, y + 10));
+                }
                 e.Graphics.DrawString($"{kasir_DGV.Rows[i].Cells[5].Value}", regular, Brushes.Black, new Point(x + 120, y + 10));
                 y += 20;
             }
             e.Graphics.DrawString("Ongkos Kirim : ",regular,Brushes.Black,new Point(x, y + (5 * (totalRow - 1) + 5)));
             e.Graphics.DrawString($"{ongkir_TB.Text}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 5)));
-            e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x + 20, y + (5 * (totalRow - 1) + 30)));
+            e.Graphics.DrawString("TOTAL HARGA : ", regular, Brushes.Black, new Point(x, y + (5 * (totalRow - 1) + 30)));
             e.Graphics.DrawString($"{kasirHelper.totalHarga.ToString()}", regular, Brushes.Black, new Point(x + 120, y + (5 * (totalRow - 1) + 30)));
             y = y + (5 * (totalRow - 1) + 35);
-            e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, y + 20));
+            e.Graphics.DrawString("========== TERIMA KASIH ==========", regular, Brushes.Black, new Point(5, y + 15));
             e.Graphics.DrawLine(new Pen(Color.Black, 2), new PointF(0f, y+30f), new PointF(600f, y+32f));
 
         }
@@ -762,10 +790,14 @@ namespace Natural_1.Kasir
             {
                 Pelanggan.Bonus = (Convert.ToInt32(Pelanggan.Bonus) + Convert.ToInt32(bonusPelanggan2_TB.Text)).ToString();
                 SqlCommand cmd = new SqlCommand($"DELETE FROM Pelanggan WHERE Id_Pelanggan = '{noPelanggan2_TB.Text}'", con);
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target, Id_Target) " +
+                    $"values ('{DateTime.Now.ToString("MM/dd/yy")}', '{DateTime.Now.ToString("hh:mm tt")}', '{Karyawan.Nama}', 'Gabung Bonus', 'Kasir','Pelanggan', " +
+                    $"'{namaPelanggan2_TB.Text}', '{noPelanggan2_TB.Text}' )", con);
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                     cmd = new SqlCommand($"UPDATE Pelanggan " +
                         $"SET Bonus = '{Pelanggan.Bonus}'  WHERE Id_Pelanggan = '{noPelanggan_TB.Text}'  ",con);
                     cmd.ExecuteNonQuery();

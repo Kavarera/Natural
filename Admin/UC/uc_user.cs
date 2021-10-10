@@ -69,12 +69,12 @@ namespace Natural_1.Admin.Uc
         {
             if (User_DGV.SelectedRows.Count > 0)
             {
-                id_TB.Text = User_DGV.Rows[0].Cells[0].Value.ToString();
-                nama_TB.Text = User_DGV.Rows[0].Cells[2].Value.ToString();
-                telepon_TB.Text= User_DGV.Rows[0].Cells[3].Value.ToString();
-                alamat_TB.Text= User_DGV.Rows[0].Cells[4].Value.ToString();
-                role_TB.Text= User_DGV.Rows[0].Cells[5].Value.ToString();
-                status_TB.Text= User_DGV.Rows[0].Cells[6].Value.ToString();
+                id_TB.Text = User_DGV.SelectedRows[0].Cells[0].Value.ToString();
+                nama_TB.Text = User_DGV.SelectedRows[0].Cells[2].Value.ToString();
+                telepon_TB.Text= User_DGV.SelectedRows[0].Cells[3].Value.ToString();
+                alamat_TB.Text= User_DGV.SelectedRows[0].Cells[4].Value.ToString();
+                role_TB.Text= User_DGV.SelectedRows[0].Cells[5].Value.ToString();
+                status_TB.Text= User_DGV.SelectedRows[0].Cells[6].Value.ToString();
                 simpan_btn.Enabled = true;
                 baru_btn.Enabled = false;
                 
@@ -91,11 +91,15 @@ namespace Natural_1.Admin.Uc
             {
                 SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Nama = '{nama_TB.Text.ToString()}' , No_Telepon = '{telepon_TB.Text.ToString()}', " +
                     $"Alamat = '{alamat_TB.Text.ToString()}', Role = '{role_TB.Text}' WHERE Id_Karyawan = '{id_TB.Text}' ", con);
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'User', 'Karyawan','{nama_TB.Text}'," +
+                    $" '{id_TB.Text}') ", con);
 
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch(Exception ex)
                 {
@@ -129,10 +133,14 @@ namespace Natural_1.Admin.Uc
             if (User_DGV.SelectedRows.Count > 0)
             {
                 SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Inactive' WHERE Id_Karyawan = '{User_DGV.SelectedRows[0].Cells[0].Value}'", con);
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
+                    $" '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch(Exception ex)
                 {
@@ -160,10 +168,14 @@ namespace Natural_1.Admin.Uc
             if (User_DGV.SelectedRows.Count > 0)
             {
                 SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Active' WHERE Id_Karyawan = '{User_DGV.SelectedRows[0].Cells[0].Value}'", con);
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
+                    $" '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
@@ -191,6 +203,7 @@ namespace Natural_1.Admin.Uc
             if (id_TB.Text == "")
             {
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(Id_Karyawan) FROM Karyawan WHERE Role ='{role_TB.Text}'", con);
+                
                 int idkar = 0;
                 try
                 {
@@ -207,6 +220,11 @@ namespace Natural_1.Admin.Uc
                          $"VALUES ( '{role_TB.Text.Substring(0,1).ToUpper() + idkar.ToString()}', '{role_TB.Text.Substring(0, 2).ToUpper() + idkar.ToString()}', '{encPwd}', " +
                          $" '{nama_TB.Text}', '{telepon_TB.Text}', '{alamat_TB.Text}', '{role_TB.Text.Substring(0,1).ToUpper() + role_TB.Text.Substring(1,role_TB.Text.Length-1).ToLower()}' )", con);
                         cmd.ExecuteNonQuery();
+                        id_TB.Text = role_TB.Text.Substring(0, 1).ToUpper() + idkar.ToString();
+                        SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                        $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'User', 'Karyawan','{nama_TB.Text}'," +
+                        $" '{id_TB.Text}') ", con);
+                        cmd2.ExecuteNonQuery();
                         setpas.Dispose();
                     }
 

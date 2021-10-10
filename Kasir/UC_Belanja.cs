@@ -110,7 +110,7 @@ namespace Natural_1.Kasir
                 int iRow = belanja_DVG.Rows.Count;
                 for (int i = 0; i < iRow; i++)
                 {
-                    MessageBox.Show(i.ToString(), iRow.ToString());
+                    //MessageBox.Show(i.ToString(), iRow.ToString());
                     cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
                         $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{belanja_DVG.Rows[i].Cells[0].Value.ToString()}', " +
                         $"'{belanja_DVG.Rows[i].Cells[1].Value.ToString()}', 0, '{struk_TB.Text}' , " +
@@ -123,6 +123,19 @@ namespace Natural_1.Kasir
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message + " insert into baranglog failed", "uckasir beli btn error");
+                    }
+                }
+                for (int i = 0; i < iRow; i++)
+                {
+                    cmd = new SqlCommand($"update Barang set Jumlah = (select Jumlah from barang where nama = '{belanja_DVG.Rows[i].Cells[0].Value.ToString()}')" +
+                        $" -{belanja_DVG.Rows[i].Cells[1].Value.ToString()} where Nama='{belanja_DVG.Rows[i].Cells[0].Value.ToString()}' ", con);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Fail to update stock. Error Message : \n" + ex.Message, "UC BELANJA-BELILANGSUNG");
                     }
                 }
 

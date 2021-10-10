@@ -67,10 +67,18 @@ namespace Natural_1.Admin.UC
         {
             SqlCommand cmd = new SqlCommand($"update Distributor set status = 'Inactive'" +
                 $"where No_Distributor = '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}' ", con);
+
+
+            SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $" '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
+
+
             try
             {
                 con.Open();
                 cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
             }
             catch(Exception ex)
             {
@@ -87,10 +95,17 @@ namespace Natural_1.Admin.UC
         {
             SqlCommand cmd = new SqlCommand($"update Distributor set status = 'Active'" +
                 $"where No_Distributor = '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}' ", con);
+
+
+            SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $" '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
+
             try
             {
                 con.Open();
                 cmd.ExecuteNonQuery();
+                cmd2.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -111,6 +126,11 @@ namespace Natural_1.Admin.UC
                 SqlCommand cmd = new SqlCommand($"update Distributor set Nama_Toko = '{namaTB.Text}', " +
                     $"No_Telp = '{teleponTB.Text}', Alamat ='{alamatTB.Text}' , Keterangan='{keteranganTB.Text}' " +
                     $"where No_Distributor = '{idTB.Text}' ", con);
+
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
+                   $" '{idTB.Text}') ", con);
+
                 try
                 {
                     con.Open();
@@ -154,6 +174,11 @@ namespace Natural_1.Admin.UC
                 {
                     SqlCommand cmd = new SqlCommand($"insert into Distributor(No_Distributor, Nama_Toko, No_Telp, Alamat, Keterangan,Area) " +
                     $"values('{idTB.Text}', '{namaTB.Text}', '{teleponTB.Text}', '{arrtext[0]}', '{keteranganTB.Text}', '{arrtext[1]}' )", con);
+
+
+                    SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
+                   $" '{idTB.Text}') ", con);
                     try
                     {
                         con.Open();
@@ -305,10 +330,16 @@ namespace Natural_1.Admin.UC
             {
                 SqlCommand cmd = new SqlCommand($"update TransactionLog set status = 'Refunded' , " +
                     $"TglUbah = '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' where Struk = '{distTran_DGV.SelectedRows[0].Cells[4].Value.ToString()}'", con);
+
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Refund', 'Distributor', 'Pelanggan','{namaTransTB.Text}'," +
+                   $" (select No_Distributor from Distributor where Nama_Toko = '{namaTransTB.Text}' and No_Telp='{telTransTB.Text}')) ", con);
+
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                 }
                 catch(Exception ex)
                 {
@@ -329,7 +360,7 @@ namespace Natural_1.Admin.UC
                 if (cariTransTB.Text != "")
                 {
                     SqlCommand cmd = new SqlCommand($"select TanggalJam as 'Tgl & Jam' , Operator , Kegiatan as 'Kategori' , Pemasukan as 'Jumlah' , " +
-                        $"Struk , Status , TglUbah as 'Tgl Ubah' from TransactionLog where Struk = '{cariTransTB.Text}'", con);
+                        $"Struk , Status , TglUbah as 'Tgl Ubah' from TransactionLog where Struk = '{cariTransTB.Text}' and Kegiatan = 'Distributor' ", con);
                     try
                     {
                         con.Open();
@@ -433,6 +464,12 @@ namespace Natural_1.Admin.UC
         {
             ToolTip tt = new ToolTip();
             tt.Show("Masukan Nomor Distributor saja", (TextBox)sender, 0, -30, 5000);
+        }
+
+        private void alamatTB_Enter(object sender, EventArgs e)
+        {
+            ToolTip tt = new ToolTip();
+            tt.Show("Gunakan / untuk memasukan area.\n xxxxx /Jakarta", (TextBox)sender, 0, -60, 2000);
         }
     }
 }

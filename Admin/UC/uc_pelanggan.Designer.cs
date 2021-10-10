@@ -118,6 +118,7 @@ namespace Natural_1.Admin.UC
             // 
             this.transaksiPelanggan_DGV.AllowUserToAddRows = false;
             this.transaksiPelanggan_DGV.AllowUserToDeleteRows = false;
+            this.transaksiPelanggan_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.transaksiPelanggan_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.transaksiPelanggan_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.transaksiPelanggan_DGV.Location = new System.Drawing.Point(105, 0);
@@ -402,6 +403,7 @@ namespace Natural_1.Admin.UC
             this.bonus_TB.Name = "bonus_TB";
             this.bonus_TB.Size = new System.Drawing.Size(267, 23);
             this.bonus_TB.TabIndex = 9;
+            this.bonus_TB.Text = "0";
             // 
             // alamat_TB
             // 
@@ -508,6 +510,7 @@ namespace Natural_1.Admin.UC
             // 
             this.pelanggan_DGV.AllowUserToAddRows = false;
             this.pelanggan_DGV.AllowUserToDeleteRows = false;
+            this.pelanggan_DGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.pelanggan_DGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.pelanggan_DGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pelanggan_DGV.Location = new System.Drawing.Point(91, 34);
