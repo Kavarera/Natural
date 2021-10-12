@@ -208,7 +208,7 @@ namespace Natural_1.Kasir
                     {
                         noStruk_TB.Text = kasirHelper.getNoStruk("Pelanggan", Karyawan.Nama, totalTransaksi);
                         SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam,Operator,NamaPelanggan,Kegiatan,Modul,Pemasukan,Struk) " +
-                        $"VALUES('{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', '{Karyawan.Nama.ToString()}', '{namaPelanggan_TB.Text}' ,'{barang_CB.SelectedItem.ToString()}', 'Kasir', {kasir_DGV.Rows[rowIndex].Cells[5].Value.ToString()},'{noStruk_TB.Text.ToString()}' " +
+                        $"VALUES('{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}', '{Karyawan.Nama.ToString()}', '{namaPelanggan_TB.Text}' ,'Pelanggan', 'Kasir', {kasir_DGV.Rows[rowIndex].Cells[5].Value.ToString()},'{noStruk_TB.Text.ToString()}' " +
                         $" )", con);
                         con.Open();
                         int status = cmd.ExecuteNonQuery();
@@ -523,9 +523,9 @@ namespace Natural_1.Kasir
                 namaPelanggan_TB.Text = "Non-Member";
             }
 
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,NamaPelanggan , Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan) " +
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator,NamaPelanggan , Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan, Bonus) " +
                 $"VALUES ( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{Karyawan.Nama}', '{namaPelanggan_TB.Text}' , 'Pelanggan' , 'Kasir' , {D_ItemDibeli.pemasukan} , " +
-                $"{D_ItemDibeli.pengeluaran},  '{noStruk_TB.Text}' , '{keterangan}')", con);
+                $"{D_ItemDibeli.pengeluaran},  '{noStruk_TB.Text}' , '{keterangan}' , {clickedBonus.ToString()})", con);
 
             try
             {

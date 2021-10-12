@@ -247,7 +247,6 @@ namespace Natural_1.Kasir
             // 
             this.hargaSatuan_TB.Location = new System.Drawing.Point(470, 15);
             this.hargaSatuan_TB.Name = "hargaSatuan_TB";
-            this.hargaSatuan_TB.ReadOnly = true;
             this.hargaSatuan_TB.Size = new System.Drawing.Size(134, 26);
             this.hargaSatuan_TB.TabIndex = 4;
             // 

@@ -132,6 +132,25 @@
     <Compile Include="Kasir\UC_Kasir.Designer.cs">
       <DependentUpon>UC_Kasir.cs</DependentUpon>
     </Compile>
+    <Compile Include="Manager\Manager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Manager\Manager.Designer.cs">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\managerHelper.cs" />
+    <Compile Include="Manager\UC\pll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Manager\UC\pll.Designer.cs">
+      <DependentUpon>pll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Manager\UC\transaksi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Manager\UC\transaksi.Designer.cs">
+      <DependentUpon>transaksi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pelanggan.cs" />
     <Compile Include="Setting\setting.cs">
       <SubType>Form</SubType>
@@ -197,6 +216,15 @@
     <EmbeddedResource Include="Kasir\UC_Kasir.resx">
       <DependentUpon>UC_Kasir.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Manager\Manager.resx">
+      <DependentUpon>Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manager\UC\pll.resx">
+      <DependentUpon>pll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Manager\UC\transaksi.resx">
+      <DependentUpon>transaksi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -245,5 +273,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

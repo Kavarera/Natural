@@ -45,14 +45,14 @@ namespace Natural_1.Kasir
         private void BTN_tambah_Click(object sender, EventArgs e)
         {
             ongkir_TB.Enabled = true;
-            if((TB_alamat.Text!=""&&TB_Area.Text != ""&&TB_NoDistr.Text != ""&&TB_NoTel.Text != ""&&TB_Area.Text != "" && TB_Kurir.Text!="") && TB_Jumlah.Text != "")
+            if((TB_alamat.Text!=""&& hargaSatuan_TB.Text!="" && TB_Area.Text != ""&&TB_NoDistr.Text != ""&&TB_NoTel.Text != ""&&TB_Area.Text != "" && TB_Kurir.Text!="") && TB_Jumlah.Text != "")
             {
                 belanja_DVG.Rows.Add();
                 belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[0].Value = Barang.NamaBarang;
                 belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[1].Value = TB_Jumlah.Text;
-                belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[2].Value = Barang.Satuan;
+                belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[2].Value = hargaSatuan_TB.Text;
                 belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[3].Value = Barang.Harga_PCS;
-                belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[4].Value = Int32.Parse(Barang.Harga_PCS.ToString()) * Int32.Parse(TB_Jumlah.Text.ToString());
+                belanja_DVG.Rows[belanja_DVG.Rows.Count - 1].Cells[4].Value = Int32.Parse(hargaSatuan_TB.Text.ToString()) * Int32.Parse(TB_Jumlah.Text.ToString());
                 hapusBTN.Enabled = true;
                 beliBTN.Enabled = true;
             }
@@ -99,9 +99,9 @@ namespace Natural_1.Kasir
             {
                 D_ItemDibeli.pemasukan += Int32.Parse(belanja_DVG.Rows[i].Cells[4].Value.ToString());
             }
-            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pemasukan, Pengeluaran, Struk, Keterangan , NamaPelanggan)" +
-                $"VALUES( '{TB_TglBeli.Text.ToString()+" " + TB_Jam.Text.ToString()}' , '{Karyawan.Nama}' , 'Distributor' , 'Belanja' , '{D_ItemDibeli.pemasukan.ToString()}' , '{D_ItemDibeli.pengeluaran}'," +
-                $"'{struk_TB.Text.ToString()}' , 'Distributor' , '{CBX_namaToko.SelectedItem.ToString()}' )", con);
+            SqlCommand cmd = new SqlCommand($"INSERT INTO TransactionLog(TanggalJam, Operator, Kegiatan, Modul, Pengeluaran, Struk, Keterangan , NamaPelanggan)" +
+                $"VALUES( '{TB_TglBeli.Text.ToString()+" " + TB_Jam.Text.ToString()}' , '{Karyawan.Nama}' , 'Distributor' , 'Belanja' , '{D_ItemDibeli.pemasukan.ToString()}' ," +
+                $"'{struk_TB.Text.ToString()}' , 'Belanja Barang' , '{CBX_namaToko.SelectedItem.ToString()}' )", con);
             try
             {
                 con.Open();

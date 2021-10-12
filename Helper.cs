@@ -43,6 +43,8 @@ namespace Natural_1
                         break;
 
                     case "Manager":
+                        Form manager = new Manager.Manager();
+                        manager.ShowDialog();
                         break;
 
                     case "Admin":

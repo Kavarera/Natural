@@ -34,7 +34,7 @@ namespace Natural_1
 
         private void exit_BTN_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            System.Windows.Application.Current.Shutdown();
         }
 
         private async void login_BTN_Click(object sender, RoutedEventArgs e)

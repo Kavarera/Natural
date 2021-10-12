@@ -47,13 +47,13 @@ namespace Natural_1.Admin
                     DataTable dt = new DataTable("userDT");
                     sda.Fill(dt);
                     dgv.DataSource = dt.DefaultView;
-                    dgv.Columns[0].Width = 80; //id
-                    dgv.Columns[1].Width = 130; // username
-                    dgv.Columns[2].Width = 250; // nama
-                    dgv.Columns[3].Width = 250; // telepon
-                    dgv.Columns[4].Width = 250; // alamat
-                    dgv.Columns[5].Width = 130; //role
-                    dgv.Columns[6].Width = 160; //status
+                    //dgv.Columns[0].Width = 80; //id
+                    //dgv.Columns[1].Width = 130; // username
+                    //dgv.Columns[2].Width = 250; // nama
+                    //dgv.Columns[3].Width = 250; // telepon
+                    //dgv.Columns[4].Width = 250; // alamat
+                    //dgv.Columns[5].Width = 130; //role
+                    //dgv.Columns[6].Width = 160; //status
                     dt.Dispose();
                 }
                 catch (Exception ex)
@@ -78,13 +78,13 @@ namespace Natural_1.Admin
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     dgv.DataSource = dt.DefaultView;
-                    dgv.Columns[0].Width = 80; //id
-                    dgv.Columns[1].Width = 130; // Nama
-                    dgv.Columns[2].Width = 250; // Telepon
-                    dgv.Columns[3].Width = 250; // alamat
-                    dgv.Columns[4].Width = 250; // Bonus
-                    dgv.Columns[5].Width = 150; //area
-                    dgv.Columns[6].Width = 60; // status
+                    //dgv.Columns[0].Width = 80; //id
+                    //dgv.Columns[1].Width = 130; // Nama
+                    //dgv.Columns[2].Width = 250; // Telepon
+                    //dgv.Columns[3].Width = 250; // alamat
+                    //dgv.Columns[4].Width = 250; // Bonus
+                    //dgv.Columns[5].Width = 150; //area
+                    //dgv.Columns[6].Width = 60; // status
                     dt.Dispose();
 
                 }
@@ -151,12 +151,12 @@ namespace Natural_1.Admin
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     dgv.DataSource = dt.DefaultView;
-                    dgv.Columns[0].Width = 80; //id
-                    dgv.Columns[1].Width = 130; // Nama
-                    dgv.Columns[2].Width = 250; // Telepon
-                    dgv.Columns[3].Width = 250; // alamat
-                    dgv.Columns[4].Width = 250; // status
-                    dgv.Columns[5].Width = 150; //keterangan
+                    //dgv.Columns[0].Width = 80; //id
+                    //dgv.Columns[1].Width = 130; // Nama
+                    //dgv.Columns[2].Width = 250; // Telepon
+                    //dgv.Columns[3].Width = 250; // alamat
+                    //dgv.Columns[4].Width = 250; // status
+                    //dgv.Columns[5].Width = 150; //keterangan
                     dt.Dispose();
                 }
                 catch(Exception ex)
@@ -171,7 +171,7 @@ namespace Natural_1.Admin
 
             if (tipe == "TD")
             {
-                SqlCommand cmd = new SqlCommand($"select TanggalJam as 'Tgl & Jam', Operator,Kegiatan as Kategori, Pemasukan as Jumlah, Struk as 'No Struk', Status, TglUbah as 'Tgl Ubah'" +
+                SqlCommand cmd = new SqlCommand($"select TanggalJam as 'Tgl & Jam', Operator,Kegiatan as 'Kategori', Pengeluaran as 'Jumlah', Struk as 'No Struk', Status, TglUbah as 'Tgl Ubah'" +
                     $" From TransactionLog where NamaPelanggan = (select Nama_Toko from Distributor where No_Distributor='{idp}')", con);
                 try
                 {
