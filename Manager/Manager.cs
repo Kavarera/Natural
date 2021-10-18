@@ -79,6 +79,9 @@ namespace Natural_1.Manager
             satuanBTN.Font = new Font("Microsoft Sans Serif", 11);
             satuanBTN.BackColor = Color.White;
             satuanBTN.ForeColor = Color.Black;
+
+            addUserControl(new UC.pll());
+
         }
 
         private void satuanBTN_Click(object sender, EventArgs e)
