@@ -57,6 +57,11 @@ namespace Natural_1.Manager
             satuanBTN.BackColor = Color.White;
             satuanBTN.ForeColor = Color.Black;
 
+            item_BTN.Width = 164;
+            item_BTN.Font = new Font("Microsoft Sans Serif", 11);
+            item_BTN.BackColor = Color.White;
+            item_BTN.ForeColor = Color.Black;
+
             addUserControl(new UC.transaksi());
 
 
@@ -80,8 +85,20 @@ namespace Natural_1.Manager
             satuanBTN.BackColor = Color.White;
             satuanBTN.ForeColor = Color.Black;
 
+            item_BTN.Width = 164;
+            item_BTN.Font = new Font("Microsoft Sans Serif", 11);
+            item_BTN.BackColor = Color.White;
+            item_BTN.ForeColor = Color.Black;
+
             addUserControl(new UC.pll());
 
+        }
+
+        private void clsBTN_Click(object sender, EventArgs e)
+        {
+            var loginPage = new MainWindow();
+            loginPage.Show();
+            this.Close();
         }
 
         private void satuanBTN_Click(object sender, EventArgs e)
@@ -101,13 +118,44 @@ namespace Natural_1.Manager
             transaksiBTN.Font = new Font("Microsoft Sans Serif", 11);
             transaksiBTN.BackColor = Color.White;
             transaksiBTN.ForeColor = Color.Black;
+
+            item_BTN.Width = 164;
+            item_BTN.Font = new Font("Microsoft Sans Serif", 11);
+            item_BTN.BackColor = Color.White;
+            item_BTN.ForeColor = Color.Black;
+
+            //add uc
+
+            addUserControl(new UC.UC_Satuan());
+
         }
 
-        private void clsBTN_Click(object sender, EventArgs e)
+        private void item_BTN_Click(object sender, EventArgs e)
         {
-            var loginPage = new MainWindow();
-            loginPage.Show();
-            this.Close();
+            item_BTN.Width = 195;
+            item_BTN.Font = new Font("Microsoft Sans Serif", 14);
+            item_BTN.BackColor = ColorTranslator.FromHtml("#4A6FF6");
+            item_BTN.ForeColor = Color.White;
+
+
+            //change another button
+            satuanBTN.Width = 164;
+            satuanBTN.Font = new Font("Microsoft Sans Serif", 11);
+            satuanBTN.BackColor = Color.White;
+            satuanBTN.ForeColor = Color.Black;
+
+            pllBTN.Width = 164;
+            pllBTN.Font = new Font("Microsoft Sans Serif", 11);
+            pllBTN.BackColor = Color.White;
+            pllBTN.ForeColor = Color.Black;
+
+            transaksiBTN.Width = 164;
+            transaksiBTN.Font = new Font("Microsoft Sans Serif", 11);
+            transaksiBTN.BackColor = Color.White;
+            transaksiBTN.ForeColor = Color.Black;
+
+            addUserControl(new Admin.UC.items());
+
         }
     }
 }

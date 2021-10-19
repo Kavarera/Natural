@@ -20,6 +20,7 @@ namespace Natural_1.Admin.UC
             InitializeComponent();
             adminHelper.loadData(con, "Items", itemsDGV);
             idTB.Text = itemsDGV.Rows.Count.ToString();
+            Kasir.kasirHelper.loadCBX(satuanCBX, "SatuanBarang", "Nama", con);
         }
 
         private void ubahBTN_Click(object sender, EventArgs e)
@@ -67,7 +68,8 @@ namespace Natural_1.Admin.UC
             if (namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text!="" || bonusTB.Text != "")
             {
                 SqlCommand cmd = new SqlCommand($"update Barang set " +
-                    $"Nama = '{namabarangTB.Text}' , Jumlah='{jumlahTB.Text}', Harga_pcs='{hargaTB.Text}'," +
+                    $"Nama = '{namabarangTB.Text}' , Jumlah='{jumlahTB.Text}',Satuan = (select ID from SatuanBarang where Nama = '{satuanCBX.SelectedItem.ToString()}')," +
+                    $" Harga_pcs='{hargaTB.Text}'," +
                     $" Bonus_per= '{bonusTB.Text}' where ID = {idTB.Text}", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
@@ -171,7 +173,8 @@ namespace Natural_1.Admin.UC
             if(namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text != "" || bonusTB.Text != "")
             {
                 SqlCommand cmd = new SqlCommand($"insert into Barang (Nama, Jumlah, Satuan, Harga_pcs, Bonus_per) " +
-                    $"values('{namabarangTB.Text}', {jumlahTB.Text}, 'Pcs' , '{hargaTB.Text}', '{bonusTB.Text}') ", con);
+                    $"values('{namabarangTB.Text}', {jumlahTB.Text}, (select ID from SatuanBarang Where Nama = '{satuanCBX.SelectedItem.ToString()}')" +
+                    $" , '{hargaTB.Text}', '{bonusTB.Text}') ", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Items', 'Barang','{namabarangTB.Text}'," +

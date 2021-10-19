@@ -30,6 +30,7 @@ namespace Natural_1.Admin.UC
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.satuanCBX = new System.Windows.Forms.ComboBox();
             this.simpanBTN = new System.Windows.Forms.Button();
             this.baruBTN = new System.Windows.Forms.Button();
             this.statusTB = new System.Windows.Forms.TextBox();
@@ -41,6 +42,7 @@ namespace Natural_1.Admin.UC
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -64,6 +66,7 @@ namespace Natural_1.Admin.UC
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
+            this.panel1.Controls.Add(this.satuanCBX);
             this.panel1.Controls.Add(this.simpanBTN);
             this.panel1.Controls.Add(this.baruBTN);
             this.panel1.Controls.Add(this.statusTB);
@@ -75,6 +78,7 @@ namespace Natural_1.Admin.UC
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -84,6 +88,16 @@ namespace Natural_1.Admin.UC
             this.panel1.Size = new System.Drawing.Size(674, 717);
             this.panel1.TabIndex = 0;
             // 
+            // satuanCBX
+            // 
+            this.satuanCBX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.satuanCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.satuanCBX.FormattingEnabled = true;
+            this.satuanCBX.Location = new System.Drawing.Point(275, 182);
+            this.satuanCBX.Name = "satuanCBX";
+            this.satuanCBX.Size = new System.Drawing.Size(213, 33);
+            this.satuanCBX.TabIndex = 14;
+            // 
             // simpanBTN
             // 
             this.simpanBTN.Enabled = false;
@@ -92,7 +106,7 @@ namespace Natural_1.Admin.UC
             this.simpanBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(202)))), ((int)(((byte)(239)))));
             this.simpanBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.simpanBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.simpanBTN.Location = new System.Drawing.Point(507, 438);
+            this.simpanBTN.Location = new System.Drawing.Point(507, 499);
             this.simpanBTN.Name = "simpanBTN";
             this.simpanBTN.Size = new System.Drawing.Size(124, 56);
             this.simpanBTN.TabIndex = 13;
@@ -108,7 +122,7 @@ namespace Natural_1.Admin.UC
             this.baruBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.baruBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.baruBTN.ForeColor = System.Drawing.Color.White;
-            this.baruBTN.Location = new System.Drawing.Point(364, 438);
+            this.baruBTN.Location = new System.Drawing.Point(364, 499);
             this.baruBTN.Name = "baruBTN";
             this.baruBTN.Size = new System.Drawing.Size(124, 56);
             this.baruBTN.TabIndex = 12;
@@ -120,7 +134,7 @@ namespace Natural_1.Admin.UC
             // 
             this.statusTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statusTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusTB.Location = new System.Drawing.Point(275, 369);
+            this.statusTB.Location = new System.Drawing.Point(275, 430);
             this.statusTB.Name = "statusTB";
             this.statusTB.ReadOnly = true;
             this.statusTB.Size = new System.Drawing.Size(213, 28);
@@ -131,7 +145,7 @@ namespace Natural_1.Admin.UC
             // 
             this.bonusTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bonusTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bonusTB.Location = new System.Drawing.Point(275, 307);
+            this.bonusTB.Location = new System.Drawing.Point(275, 368);
             this.bonusTB.Name = "bonusTB";
             this.bonusTB.Size = new System.Drawing.Size(213, 28);
             this.bonusTB.TabIndex = 10;
@@ -140,7 +154,7 @@ namespace Natural_1.Admin.UC
             // 
             this.hargaTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hargaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hargaTB.Location = new System.Drawing.Point(275, 245);
+            this.hargaTB.Location = new System.Drawing.Point(275, 306);
             this.hargaTB.Name = "hargaTB";
             this.hargaTB.Size = new System.Drawing.Size(213, 28);
             this.hargaTB.TabIndex = 9;
@@ -149,7 +163,7 @@ namespace Natural_1.Admin.UC
             // 
             this.jumlahTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.jumlahTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jumlahTB.Location = new System.Drawing.Point(275, 183);
+            this.jumlahTB.Location = new System.Drawing.Point(275, 244);
             this.jumlahTB.Name = "jumlahTB";
             this.jumlahTB.Size = new System.Drawing.Size(213, 28);
             this.jumlahTB.TabIndex = 8;
@@ -177,7 +191,7 @@ namespace Natural_1.Admin.UC
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(149, 368);
+            this.label6.Location = new System.Drawing.Point(149, 429);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 29);
             this.label6.TabIndex = 5;
@@ -187,7 +201,7 @@ namespace Natural_1.Admin.UC
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(105, 306);
+            this.label5.Location = new System.Drawing.Point(105, 367);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(135, 29);
             this.label5.TabIndex = 4;
@@ -197,17 +211,27 @@ namespace Natural_1.Admin.UC
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(82, 244);
+            this.label4.Location = new System.Drawing.Point(82, 305);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 29);
             this.label4.TabIndex = 3;
             this.label4.Text = "Harga / PCS :";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label8.Location = new System.Drawing.Point(141, 178);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(99, 29);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Satuan :";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(138, 182);
+            this.label3.Location = new System.Drawing.Point(138, 243);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 29);
             this.label3.TabIndex = 2;
@@ -420,5 +444,7 @@ namespace Natural_1.Admin.UC
         private System.Windows.Forms.TextBox cariTB;
         private System.Windows.Forms.Button ubahBTN;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox satuanCBX;
+        private System.Windows.Forms.Label label8;
     }
 }

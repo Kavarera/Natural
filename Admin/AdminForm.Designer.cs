@@ -37,7 +37,6 @@ namespace Natural_1.Admin
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.log_BTN = new System.Windows.Forms.Button();
-            this.item_BTN = new System.Windows.Forms.Button();
             this.distributor_BTN = new System.Windows.Forms.Button();
             this.pelanggan_BTN = new System.Windows.Forms.Button();
             this.user_BTN = new System.Windows.Forms.Button();
@@ -114,7 +113,6 @@ namespace Natural_1.Admin
             // 
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.log_BTN);
-            this.panel2.Controls.Add(this.item_BTN);
             this.panel2.Controls.Add(this.distributor_BTN);
             this.panel2.Controls.Add(this.pelanggan_BTN);
             this.panel2.Controls.Add(this.user_BTN);
@@ -131,7 +129,7 @@ namespace Natural_1.Admin
             this.log_BTN.FlatAppearance.BorderSize = 0;
             this.log_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.log_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.log_BTN.Location = new System.Drawing.Point(544, 0);
+            this.log_BTN.Location = new System.Drawing.Point(408, 0);
             this.log_BTN.Margin = new System.Windows.Forms.Padding(20, 3, 25, 3);
             this.log_BTN.Name = "log_BTN";
             this.log_BTN.Size = new System.Drawing.Size(136, 71);
@@ -139,22 +137,6 @@ namespace Natural_1.Admin
             this.log_BTN.Text = "Log";
             this.log_BTN.UseVisualStyleBackColor = true;
             this.log_BTN.Click += new System.EventHandler(this.log_BTN_Click);
-            // 
-            // item_BTN
-            // 
-            this.item_BTN.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.item_BTN.Dock = System.Windows.Forms.DockStyle.Left;
-            this.item_BTN.FlatAppearance.BorderSize = 0;
-            this.item_BTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.item_BTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.item_BTN.Location = new System.Drawing.Point(408, 0);
-            this.item_BTN.Margin = new System.Windows.Forms.Padding(20, 3, 25, 3);
-            this.item_BTN.Name = "item_BTN";
-            this.item_BTN.Size = new System.Drawing.Size(136, 71);
-            this.item_BTN.TabIndex = 3;
-            this.item_BTN.Text = "Item";
-            this.item_BTN.UseVisualStyleBackColor = true;
-            this.item_BTN.Click += new System.EventHandler(this.item_BTN_Click);
             // 
             // distributor_BTN
             // 
@@ -246,7 +228,6 @@ namespace Natural_1.Admin
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button log_BTN;
-        private System.Windows.Forms.Button item_BTN;
         private System.Windows.Forms.Button distributor_BTN;
         private System.Windows.Forms.Button pelanggan_BTN;
         private System.Windows.Forms.Button user_BTN;

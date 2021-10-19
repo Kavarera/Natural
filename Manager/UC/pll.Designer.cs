@@ -30,13 +30,13 @@ namespace Natural_1.Manager.UC
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.TB_discount = new System.Windows.Forms.TextBox();
             this.discountCB = new System.Windows.Forms.CheckBox();
             this.baruBTN = new System.Windows.Forms.Button();
             this.simpanBTN = new System.Windows.Forms.Button();
             this.hargatotalTB = new System.Windows.Forms.TextBox();
             this.hargasatuanTB = new System.Windows.Forms.TextBox();
-            this.satuanTB = new System.Windows.Forms.TextBox();
             this.jumlahTB = new System.Windows.Forms.TextBox();
             this.targettransaksi_TB = new System.Windows.Forms.TextBox();
             this.namatransaksiTB = new System.Windows.Forms.TextBox();
@@ -83,13 +83,13 @@ namespace Natural_1.Manager.UC
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(109)))), ((int)(((byte)(144)))));
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.TB_discount);
             this.panel1.Controls.Add(this.discountCB);
             this.panel1.Controls.Add(this.baruBTN);
             this.panel1.Controls.Add(this.simpanBTN);
             this.panel1.Controls.Add(this.hargatotalTB);
             this.panel1.Controls.Add(this.hargasatuanTB);
-            this.panel1.Controls.Add(this.satuanTB);
             this.panel1.Controls.Add(this.jumlahTB);
             this.panel1.Controls.Add(this.targettransaksi_TB);
             this.panel1.Controls.Add(this.namatransaksiTB);
@@ -105,6 +105,15 @@ namespace Natural_1.Manager.UC
             this.panel1.Size = new System.Drawing.Size(644, 643);
             this.panel1.TabIndex = 0;
             this.panel1.TabStop = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(265, 244);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(239, 28);
+            this.comboBox1.TabIndex = 16;
             // 
             // TB_discount
             // 
@@ -135,6 +144,7 @@ namespace Natural_1.Manager.UC
             // 
             // baruBTN
             // 
+            this.baruBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.baruBTN.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(255)))), ((int)(((byte)(153)))));
             this.baruBTN.FlatAppearance.BorderSize = 3;
             this.baruBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(219)))), ((int)(((byte)(44)))));
@@ -151,6 +161,7 @@ namespace Natural_1.Manager.UC
             // 
             // simpanBTN
             // 
+            this.simpanBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.simpanBTN.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(104)))), ((int)(((byte)(255)))));
             this.simpanBTN.FlatAppearance.BorderSize = 3;
             this.simpanBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(255)))));
@@ -184,15 +195,7 @@ namespace Natural_1.Manager.UC
             this.hargasatuanTB.Size = new System.Drawing.Size(239, 25);
             this.hargasatuanTB.TabIndex = 10;
             this.hargasatuanTB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.hargasatuanTB_KeyPress);
-            // 
-            // satuanTB
-            // 
-            this.satuanTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.satuanTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.satuanTB.Location = new System.Drawing.Point(265, 247);
-            this.satuanTB.Name = "satuanTB";
-            this.satuanTB.Size = new System.Drawing.Size(239, 25);
-            this.satuanTB.TabIndex = 9;
+            this.hargasatuanTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.hargasatuanTB_KeyUp);
             // 
             // jumlahTB
             // 
@@ -422,6 +425,7 @@ namespace Natural_1.Manager.UC
             // cetakstrukBTN
             // 
             this.cetakstrukBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(176)))), ((int)(((byte)(101)))));
+            this.cetakstrukBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cetakstrukBTN.Enabled = false;
             this.cetakstrukBTN.FlatAppearance.BorderSize = 0;
             this.cetakstrukBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -437,6 +441,7 @@ namespace Natural_1.Manager.UC
             // 
             // hapusbarangBTN
             // 
+            this.hapusbarangBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.hapusbarangBTN.Enabled = false;
             this.hapusbarangBTN.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(6)))), ((int)(((byte)(0)))));
             this.hapusbarangBTN.FlatAppearance.BorderSize = 3;
@@ -455,6 +460,7 @@ namespace Natural_1.Manager.UC
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(106)))), ((int)(((byte)(140)))), ((int)(((byte)(101)))));
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button5.Enabled = false;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
@@ -475,6 +481,7 @@ namespace Natural_1.Manager.UC
             this.biayaProsesTB.Name = "biayaProsesTB";
             this.biayaProsesTB.Size = new System.Drawing.Size(183, 25);
             this.biayaProsesTB.TabIndex = 16;
+            this.biayaProsesTB.Text = "0";
             // 
             // label10
             // 
@@ -490,6 +497,7 @@ namespace Natural_1.Manager.UC
             // beliBTN
             // 
             this.beliBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(229)))), ((int)(((byte)(101)))));
+            this.beliBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.beliBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.beliBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
             this.beliBTN.ForeColor = System.Drawing.Color.Black;
@@ -504,6 +512,7 @@ namespace Natural_1.Manager.UC
             // inputBTN
             // 
             this.inputBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(140)))), ((int)(((byte)(101)))));
+            this.inputBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.inputBTN.Enabled = false;
             this.inputBTN.FlatAppearance.BorderSize = 0;
             this.inputBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -618,7 +627,6 @@ namespace Natural_1.Manager.UC
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox hargatotalTB;
         private System.Windows.Forms.TextBox hargasatuanTB;
-        private System.Windows.Forms.TextBox satuanTB;
         private System.Windows.Forms.TextBox jumlahTB;
         private System.Windows.Forms.TextBox targettransaksi_TB;
         private System.Windows.Forms.TextBox namatransaksiTB;
@@ -659,5 +667,6 @@ namespace Natural_1.Manager.UC
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

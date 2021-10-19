@@ -141,7 +141,10 @@ namespace Natural_1.Kasir
                 SqlDataReader sdr = cmd.ExecuteReader();
                 while (sdr.Read())
                 {
-                    combobox.Items.Add(sdr[item]);
+                    if (sdr[item] != null)
+                    {
+                        combobox.Items.Add(sdr[item]);
+                    }
                 }
             }
             catch(Exception ex)
@@ -151,7 +154,10 @@ namespace Natural_1.Kasir
             finally
             {
                 con.Close();
-                combobox.SelectedIndex = 0;
+                if (combobox.Items.Count > 0)
+                {
+                    combobox.SelectedIndex = 0;
+                }
             }
             return combobox;
         }

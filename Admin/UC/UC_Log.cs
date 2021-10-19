@@ -27,7 +27,7 @@ namespace Natural_1.Admin.UC
         {
             if (operatorTB.Text != "" || modulTB.Text != "")
             {
-                MessageBox.Show(tglMulaiDTP.Value.ToString("MM/dd/yy"));
+                //MessageBox.Show(tglMulaiDTP.Value.ToString("MM/dd/yy"));
                 SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
                     $"Id_Target as 'ID Target', Keterangan from Log where Operator = '{operatorTB.Text}' and Tanggal between '{tglMulaiDTP.Value.ToString("MM/dd/yy")}' and " +
                     $"'{tglSelesaiDTP.Value.ToString("MM/dd/yy")}' " +

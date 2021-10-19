@@ -60,11 +60,6 @@ namespace Natural_1.Admin
             distributor_BTN.BackColor = Color.White;
             distributor_BTN.ForeColor = Color.Black;
 
-            item_BTN.Width = 136;
-            item_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            item_BTN.BackColor = Color.White;
-            item_BTN.ForeColor = Color.Black;
-
             log_BTN.Width = 136;
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
@@ -91,11 +86,6 @@ namespace Natural_1.Admin
             distributor_BTN.BackColor = Color.White;
             distributor_BTN.ForeColor = Color.Black;
 
-            item_BTN.Width = 136;
-            item_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            item_BTN.BackColor = Color.White;
-            item_BTN.ForeColor = Color.Black;
-
             log_BTN.Width = 136;
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
@@ -121,11 +111,6 @@ namespace Natural_1.Admin
             user_BTN.BackColor = Color.White;
             user_BTN.ForeColor = Color.Black;
 
-            item_BTN.Width = 136;
-            item_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            item_BTN.BackColor = Color.White;
-            item_BTN.ForeColor = Color.Black;
-
             log_BTN.Width = 136;
             log_BTN.Font = new Font("Microsoft Sans Serif", 10);
             log_BTN.BackColor = Color.White;
@@ -134,36 +119,7 @@ namespace Natural_1.Admin
             addUserControl(new UC.Distributor());
         }
 
-        private void item_BTN_Click(object sender, EventArgs e)
-        {
-            item_BTN.Width = 195;
-            item_BTN.Font = new Font("Microsoft Sans Serif", 14);
-            item_BTN.BackColor = ColorTranslator.FromHtml("#4A6FF6");
-            item_BTN.ForeColor = Color.White;
-            //make another button to be normal.
-            pelanggan_BTN.Width = 136;
-            pelanggan_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            pelanggan_BTN.BackColor = Color.White;
-            pelanggan_BTN.ForeColor = Color.Black;
-
-            distributor_BTN.Width = 136;
-            distributor_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            distributor_BTN.BackColor = Color.White;
-            distributor_BTN.ForeColor = Color.Black;
-
-            user_BTN.Width = 136;
-            user_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            user_BTN.BackColor = Color.White;
-            user_BTN.ForeColor = Color.Black;
-
-            log_BTN.Width = 136;
-            log_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            log_BTN.BackColor = Color.White;
-            log_BTN.ForeColor = Color.Black;
-
-            addUserControl(new UC.items());
-
-        }
+        
 
         private void log_BTN_Click(object sender, EventArgs e)
         {
@@ -182,10 +138,6 @@ namespace Natural_1.Admin
             distributor_BTN.BackColor = Color.White;
             distributor_BTN.ForeColor = Color.Black;
 
-            item_BTN.Width = 136;
-            item_BTN.Font = new Font("Microsoft Sans Serif", 10);
-            item_BTN.BackColor = Color.White;
-            item_BTN.ForeColor = Color.Black;
 
             user_BTN.Width = 136;
             user_BTN.Font = new Font("Microsoft Sans Serif", 10);
