@@ -661,6 +661,7 @@ namespace Natural_1.Admin.UC
             this.keteranganTB.Name = "keteranganTB";
             this.keteranganTB.Size = new System.Drawing.Size(277, 28);
             this.keteranganTB.TabIndex = 9;
+            this.keteranganTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keteranganTB_KeyUp);
             // 
             // alamatTB
             // 
@@ -671,6 +672,7 @@ namespace Natural_1.Admin.UC
             this.alamatTB.Size = new System.Drawing.Size(277, 28);
             this.alamatTB.TabIndex = 8;
             this.alamatTB.Enter += new System.EventHandler(this.alamatTB_Enter);
+            this.alamatTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alamatTB_KeyUp);
             // 
             // teleponTB
             // 
@@ -680,6 +682,7 @@ namespace Natural_1.Admin.UC
             this.teleponTB.Name = "teleponTB";
             this.teleponTB.Size = new System.Drawing.Size(277, 28);
             this.teleponTB.TabIndex = 7;
+            this.teleponTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.teleponTB_KeyUp);
             // 
             // namaTB
             // 
@@ -689,6 +692,7 @@ namespace Natural_1.Admin.UC
             this.namaTB.Name = "namaTB";
             this.namaTB.Size = new System.Drawing.Size(277, 28);
             this.namaTB.TabIndex = 6;
+            this.namaTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.namaTB_KeyUp);
             // 
             // idTB
             // 

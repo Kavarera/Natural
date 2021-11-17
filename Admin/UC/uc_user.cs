@@ -19,6 +19,7 @@ namespace Natural_1.Admin.Uc
         {
             InitializeComponent();
             adminHelper.loadData(con, "User", User_DGV);
+            Kasir.kasirHelper.loadCBX(role_TB, "Job", "Pekerjaan", con);
         }
 
         private void User_DGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -69,12 +70,13 @@ namespace Natural_1.Admin.Uc
         {
             if (User_DGV.SelectedRows.Count > 0)
             {
-                id_TB.Text = User_DGV.SelectedRows[0].Cells[0].Value.ToString();
-                nama_TB.Text = User_DGV.SelectedRows[0].Cells[2].Value.ToString();
-                telepon_TB.Text= User_DGV.SelectedRows[0].Cells[3].Value.ToString();
-                alamat_TB.Text= User_DGV.SelectedRows[0].Cells[4].Value.ToString();
-                role_TB.Text= User_DGV.SelectedRows[0].Cells[5].Value.ToString();
-                status_TB.Text= User_DGV.SelectedRows[0].Cells[6].Value.ToString();
+                User_DGV.Enabled = false;
+                id_TB.Text = "UPDATING";
+                nama_TB.Text = User_DGV.SelectedRows[0].Cells[1].Value.ToString();
+                telepon_TB.Text= User_DGV.SelectedRows[0].Cells[2].Value.ToString();
+                alamat_TB.Text= User_DGV.SelectedRows[0].Cells[3].Value.ToString();
+                role_TB.Text= User_DGV.SelectedRows[0].Cells[4].Value.ToString();
+                status_TB.Text= User_DGV.SelectedRows[0].Cells[5].Value.ToString();
                 simpan_btn.Enabled = true;
                 baru_btn.Enabled = false;
                 
@@ -89,10 +91,11 @@ namespace Natural_1.Admin.Uc
         {
             if (nama_TB.Text != "" && alamat_TB.Text != "" && telepon_TB.Text != "" && role_TB.Text != "")
             {
+                User_DGV.Enabled = true;
                 SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Nama = '{nama_TB.Text.ToString()}' , No_Telepon = '{telepon_TB.Text.ToString()}', " +
-                    $"Alamat = '{alamat_TB.Text.ToString()}', Role = '{role_TB.Text}' WHERE Id_Karyawan = '{id_TB.Text}' ", con);
+                    $"Alamat = '{alamat_TB.Text.ToString()}', Role = '{role_TB.Text}' WHERE Username = '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}' ", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'User', 'Karyawan','{nama_TB.Text}'," +
+                    $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'User', 'Karyawan','{nama_TB.Text}'," +
                     $" '{id_TB.Text}') ", con);
 
                 try
@@ -113,7 +116,7 @@ namespace Natural_1.Admin.Uc
                     nama_TB.Clear();
                     telepon_TB.Clear();
                     alamat_TB.Clear();
-                    role_TB.Clear();
+                    role_TB.SelectedIndex=0;
                     status_TB.Clear();
                     simpan_btn.Enabled = false;
                     baru_btn.Enabled = true;
@@ -132,10 +135,11 @@ namespace Natural_1.Admin.Uc
         {
             if (User_DGV.SelectedRows.Count > 0)
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Inactive' WHERE Id_Karyawan = '{User_DGV.SelectedRows[0].Cells[0].Value}'", con);
+                SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Inactive' WHERE Username = '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}'", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
+                    $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
                     $" '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
+
                 try
                 {
                     con.Open();
@@ -167,9 +171,9 @@ namespace Natural_1.Admin.Uc
         {
             if (User_DGV.SelectedRows.Count > 0)
             {
-                SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Active' WHERE Id_Karyawan = '{User_DGV.SelectedRows[0].Cells[0].Value}'", con);
+                SqlCommand cmd = new SqlCommand($"UPDATE Karyawan SET Status = 'Active' WHERE Username = '{User_DGV.SelectedRows[0].Cells[0].Value}'", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                    $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
+                    $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'User', 'Karyawan','{User_DGV.SelectedRows[0].Cells[2].Value.ToString()}'," +
                     $" '{User_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
                 try
                 {
@@ -200,7 +204,7 @@ namespace Natural_1.Admin.Uc
 
         private void baru_btn_Click(object sender, EventArgs e)
         {
-            if (id_TB.Text == "")
+            if (nama_TB.Text!="" && alamat_TB.Text!= "" && telepon_TB.Text!="")
             {
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(Id_Karyawan) FROM Karyawan WHERE Role ='{role_TB.Text}'", con);
                 
@@ -222,10 +226,11 @@ namespace Natural_1.Admin.Uc
                         cmd.ExecuteNonQuery();
                         id_TB.Text = role_TB.Text.Substring(0, 1).ToUpper() + idkar.ToString();
                         SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                        $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'User', 'Karyawan','{nama_TB.Text}'," +
+                        $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'User', 'Karyawan','{nama_TB.Text}'," +
                         $" '{id_TB.Text}') ", con);
                         cmd2.ExecuteNonQuery();
                         setpas.Dispose();
+                        MessageBox.Show("User baru telah ditambahkan ke database!");
                     }
 
                 }
@@ -236,14 +241,13 @@ namespace Natural_1.Admin.Uc
                 finally
                 {
                     con.Close();
-                    MessageBox.Show("User baru telah ditambahkan ke database!");
 
                     //updating
                     id_TB.Clear();
                     nama_TB.Clear();
                     telepon_TB.Clear();
                     alamat_TB.Clear();
-                    role_TB.Clear();
+                    role_TB.SelectedIndex=0;
                     status_TB.Clear();
                     simpan_btn.Enabled = false;
                     baru_btn.Enabled = true;
@@ -252,19 +256,23 @@ namespace Natural_1.Admin.Uc
 
                 }
             }
+            else
+            {
+                MessageBox.Show("Ada Data yang belum terisi!");
+            }
         }
 
         private void cari_TB_Enter(object sender, EventArgs e)
         {
             ToolTip tt = new ToolTip();
-            tt.Show("Masukan ID User saja", (TextBox)sender, 0, -30, 5000);
+            tt.Show("Masukan Nama User saja", (TextBox)sender, 0, -30, 5000);
         }
 
         private void cari_TB_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                SqlCommand cmd = new SqlCommand($"SELECT Username, Nama,No_Telepon,Alamat, Role,Status FROM Karyawan WHERE Id_Karyawan LIKE  '{cari_TB.Text}%' ", con);
+                SqlCommand cmd = new SqlCommand($"SELECT Username, Nama,No_Telepon,Alamat, Role,Status FROM Karyawan WHERE Nama LIKE  '%{cari_TB.Text}%' ", con);
                 if (cari_TB.Text != "")
                 {
                     try
@@ -292,6 +300,55 @@ namespace Natural_1.Admin.Uc
                     adminHelper.loadData(con, "User", User_DGV);
                 }
             }
+        }
+
+        private void nama_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                telepon_TB.Focus();
+            }
+        }
+
+        private void telepon_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                alamat_TB.Focus();
+            }
+        }
+
+        private void alamat_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                role_TB.Focus();
+            }
+        }
+
+        private void role_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                if (simpan_btn.Enabled == true)
+                {
+                    simpan_btn.Focus();
+                }
+                else
+                {
+                    baru_btn.Focus();
+                }
+            }
+        }
+
+        private void status_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void baru_btn_KeyUp(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

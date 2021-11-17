@@ -563,7 +563,7 @@ namespace Natural_1.Manager.UC
             // dateTimePicker2
             // 
             this.dateTimePicker2.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.dateTimePicker2.CustomFormat = "MM/dd/yyyy";
+            this.dateTimePicker2.CustomFormat = "dd/MM/yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(358, 35);
             this.dateTimePicker2.Name = "dateTimePicker2";

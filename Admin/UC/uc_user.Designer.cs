@@ -39,7 +39,6 @@ namespace Natural_1.Admin.Uc
             this.nama_TB = new System.Windows.Forms.TextBox();
             this.telepon_TB = new System.Windows.Forms.TextBox();
             this.alamat_TB = new System.Windows.Forms.TextBox();
-            this.role_TB = new System.Windows.Forms.TextBox();
             this.status_TB = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.baru_btn = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@ namespace Natural_1.Admin.Uc
             this.aktivasi_btn = new System.Windows.Forms.Button();
             this.ubah_btn = new System.Windows.Forms.Button();
             this.nonaktif_btn = new System.Windows.Forms.Button();
+            this.role_TB = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.User_DGV)).BeginInit();
@@ -134,7 +134,7 @@ namespace Natural_1.Admin.Uc
             this.id_TB.Name = "id_TB";
             this.id_TB.ReadOnly = true;
             this.id_TB.Size = new System.Drawing.Size(304, 32);
-            this.id_TB.TabIndex = 6;
+            this.id_TB.TabIndex = 1;
             // 
             // nama_TB
             // 
@@ -143,7 +143,8 @@ namespace Natural_1.Admin.Uc
             this.nama_TB.Location = new System.Drawing.Point(245, 105);
             this.nama_TB.Name = "nama_TB";
             this.nama_TB.Size = new System.Drawing.Size(304, 32);
-            this.nama_TB.TabIndex = 7;
+            this.nama_TB.TabIndex = 2;
+            this.nama_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.nama_TB_KeyUp);
             // 
             // telepon_TB
             // 
@@ -152,7 +153,8 @@ namespace Natural_1.Admin.Uc
             this.telepon_TB.Location = new System.Drawing.Point(245, 160);
             this.telepon_TB.Name = "telepon_TB";
             this.telepon_TB.Size = new System.Drawing.Size(304, 32);
-            this.telepon_TB.TabIndex = 8;
+            this.telepon_TB.TabIndex = 3;
+            this.telepon_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.telepon_TB_KeyUp);
             // 
             // alamat_TB
             // 
@@ -161,16 +163,8 @@ namespace Natural_1.Admin.Uc
             this.alamat_TB.Location = new System.Drawing.Point(245, 215);
             this.alamat_TB.Name = "alamat_TB";
             this.alamat_TB.Size = new System.Drawing.Size(304, 32);
-            this.alamat_TB.TabIndex = 9;
-            // 
-            // role_TB
-            // 
-            this.role_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.role_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.role_TB.Location = new System.Drawing.Point(245, 270);
-            this.role_TB.Name = "role_TB";
-            this.role_TB.Size = new System.Drawing.Size(304, 32);
-            this.role_TB.TabIndex = 10;
+            this.alamat_TB.TabIndex = 4;
+            this.alamat_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.alamat_TB_KeyUp);
             // 
             // status_TB
             // 
@@ -180,17 +174,18 @@ namespace Natural_1.Admin.Uc
             this.status_TB.Name = "status_TB";
             this.status_TB.ReadOnly = true;
             this.status_TB.Size = new System.Drawing.Size(304, 32);
-            this.status_TB.TabIndex = 11;
+            this.status_TB.TabIndex = 6;
+            this.status_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.status_TB_KeyUp);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(133)))), ((int)(((byte)(181)))), ((int)(((byte)(207)))));
+            this.panel1.Controls.Add(this.role_TB);
             this.panel1.Controls.Add(this.baru_btn);
             this.panel1.Controls.Add(this.simpan_btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.status_TB);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.role_TB);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.alamat_TB);
             this.panel1.Controls.Add(this.label4);
@@ -203,7 +198,8 @@ namespace Natural_1.Admin.Uc
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(625, 525);
-            this.panel1.TabIndex = 12;
+            this.panel1.TabIndex = 0;
+            this.panel1.TabStop = true;
             // 
             // baru_btn
             // 
@@ -216,10 +212,11 @@ namespace Natural_1.Admin.Uc
             this.baru_btn.Location = new System.Drawing.Point(286, 392);
             this.baru_btn.Name = "baru_btn";
             this.baru_btn.Size = new System.Drawing.Size(127, 41);
-            this.baru_btn.TabIndex = 19;
+            this.baru_btn.TabIndex = 10;
             this.baru_btn.Text = "Baru";
             this.baru_btn.UseVisualStyleBackColor = false;
             this.baru_btn.Click += new System.EventHandler(this.baru_btn_Click);
+            this.baru_btn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.baru_btn_KeyUp);
             // 
             // simpan_btn
             // 
@@ -233,7 +230,7 @@ namespace Natural_1.Admin.Uc
             this.simpan_btn.Location = new System.Drawing.Point(428, 392);
             this.simpan_btn.Name = "simpan_btn";
             this.simpan_btn.Size = new System.Drawing.Size(127, 41);
-            this.simpan_btn.TabIndex = 18;
+            this.simpan_btn.TabIndex = 11;
             this.simpan_btn.Text = "Simpan";
             this.simpan_btn.UseVisualStyleBackColor = false;
             this.simpan_btn.Click += new System.EventHandler(this.simpan_btn_Click);
@@ -268,7 +265,8 @@ namespace Natural_1.Admin.Uc
             this.User_DGV.RowTemplate.Height = 28;
             this.User_DGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.User_DGV.Size = new System.Drawing.Size(676, 277);
-            this.User_DGV.TabIndex = 5;
+            this.User_DGV.TabIndex = 10;
+            this.User_DGV.TabStop = false;
             this.User_DGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.User_DGV_CellContentClick);
             this.User_DGV.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.User_DGV_RowHeaderMouseClick);
             // 
@@ -314,11 +312,11 @@ namespace Natural_1.Admin.Uc
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(733, 441);
+            this.label7.Location = new System.Drawing.Point(684, 441);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 26);
+            this.label7.Size = new System.Drawing.Size(129, 26);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Cari :";
+            this.label7.Text = "Cari Nama :";
             // 
             // cari_TB
             // 
@@ -327,7 +325,7 @@ namespace Natural_1.Admin.Uc
             this.cari_TB.Location = new System.Drawing.Point(818, 443);
             this.cari_TB.Name = "cari_TB";
             this.cari_TB.Size = new System.Drawing.Size(180, 23);
-            this.cari_TB.TabIndex = 15;
+            this.cari_TB.TabIndex = 12;
             this.cari_TB.Enter += new System.EventHandler(this.cari_TB_Enter);
             this.cari_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cari_TB_KeyUp);
             // 
@@ -343,7 +341,7 @@ namespace Natural_1.Admin.Uc
             this.aktivasi_btn.Location = new System.Drawing.Point(1361, 443);
             this.aktivasi_btn.Name = "aktivasi_btn";
             this.aktivasi_btn.Size = new System.Drawing.Size(98, 41);
-            this.aktivasi_btn.TabIndex = 16;
+            this.aktivasi_btn.TabIndex = 15;
             this.aktivasi_btn.Text = "Aktivasi";
             this.aktivasi_btn.UseVisualStyleBackColor = false;
             this.aktivasi_btn.Click += new System.EventHandler(this.aktivasi_btn_Click);
@@ -360,7 +358,7 @@ namespace Natural_1.Admin.Uc
             this.ubah_btn.Location = new System.Drawing.Point(1107, 443);
             this.ubah_btn.Name = "ubah_btn";
             this.ubah_btn.Size = new System.Drawing.Size(98, 41);
-            this.ubah_btn.TabIndex = 17;
+            this.ubah_btn.TabIndex = 13;
             this.ubah_btn.Text = "Ubah";
             this.ubah_btn.UseVisualStyleBackColor = false;
             this.ubah_btn.Click += new System.EventHandler(this.ubah_btn_Click);
@@ -377,10 +375,21 @@ namespace Natural_1.Admin.Uc
             this.nonaktif_btn.Location = new System.Drawing.Point(1234, 443);
             this.nonaktif_btn.Name = "nonaktif_btn";
             this.nonaktif_btn.Size = new System.Drawing.Size(98, 41);
-            this.nonaktif_btn.TabIndex = 18;
+            this.nonaktif_btn.TabIndex = 14;
             this.nonaktif_btn.Text = "Nonaktif";
             this.nonaktif_btn.UseVisualStyleBackColor = false;
             this.nonaktif_btn.Click += new System.EventHandler(this.nonaktif_btn_Click);
+            // 
+            // role_TB
+            // 
+            this.role_TB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.role_TB.FormattingEnabled = true;
+            this.role_TB.Location = new System.Drawing.Point(245, 270);
+            this.role_TB.Name = "role_TB";
+            this.role_TB.Size = new System.Drawing.Size(304, 28);
+            this.role_TB.TabIndex = 9;
+            this.role_TB.TabStop = false;
+            this.role_TB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.role_TB_KeyUp);
             // 
             // uc_user
             // 
@@ -417,7 +426,6 @@ namespace Natural_1.Admin.Uc
         private System.Windows.Forms.TextBox nama_TB;
         private System.Windows.Forms.TextBox telepon_TB;
         private System.Windows.Forms.TextBox alamat_TB;
-        private System.Windows.Forms.TextBox role_TB;
         private System.Windows.Forms.TextBox status_TB;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button baru_btn;
@@ -433,5 +441,6 @@ namespace Natural_1.Admin.Uc
         private System.Windows.Forms.Button aktivasi_btn;
         private System.Windows.Forms.Button ubah_btn;
         private System.Windows.Forms.Button nonaktif_btn;
+        private System.Windows.Forms.ComboBox role_TB;
     }
 }

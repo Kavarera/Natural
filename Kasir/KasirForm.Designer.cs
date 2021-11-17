@@ -147,6 +147,7 @@ namespace Natural_1.Kasir
             this.panelContainer.Name = "panelContainer";
             this.panelContainer.Size = new System.Drawing.Size(1076, 467);
             this.panelContainer.TabIndex = 2;
+            this.panelContainer.TabStop = true;
             // 
             // KasirForm
             // 
@@ -156,7 +157,6 @@ namespace Natural_1.Kasir
             this.Controls.Add(this.panelContainer);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "KasirForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -19,8 +19,7 @@ namespace Natural_1.Admin.UC
         {
             InitializeComponent();
             adminHelper.loadData(con, "Log", logDGV);
-            tglMulaiDTP.CustomFormat = "MM/dd/yy";
-            tglSelesaiDTP.CustomFormat = "MM/dd/yy";
+            Kasir.kasirHelper.loadCBX(operatorTB, "Karyawan", "Nama", con);
         }
 
         private void cariBTN_Click(object sender, EventArgs e)
@@ -29,8 +28,8 @@ namespace Natural_1.Admin.UC
             {
                 //MessageBox.Show(tglMulaiDTP.Value.ToString("MM/dd/yy"));
                 SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
-                    $"Id_Target as 'ID Target', Keterangan from Log where Operator = '{operatorTB.Text}' and Tanggal between '{tglMulaiDTP.Value.ToString("MM/dd/yy")}' and " +
-                    $"'{tglSelesaiDTP.Value.ToString("MM/dd/yy")}' " +
+                    $"Id_Target as 'ID Target', Keterangan from Log where Operator = '{operatorTB.SelectedItem.ToString()}' and Tanggal between '{tglMulaiDTP.Value.ToString("dd/MM/yyyy")}' and " +
+                    $"'{tglSelesaiDTP.Value.ToString("dd/MM/yyyy")}' and Modul = '{modulTB.Text}' " +
                     $" order by ID Desc", con);
                 DataTable dt = new DataTable();
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
@@ -56,7 +55,7 @@ namespace Natural_1.Admin.UC
 
         private void button2_Click(object sender, EventArgs e)
         {
-            operatorTB.Clear();
+            operatorTB.SelectedIndex = 0;
             modulTB.Clear();
             adminHelper.loadData(con, "Log", logDGV);
         }
@@ -99,7 +98,7 @@ namespace Natural_1.Admin.UC
                 if (katakunciTB.Text != "")
                 {
                     SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target' , ID_Target as 'ID Target'," +
-                        $" Keterangan from Log where Nama_Target = '{katakunciTB.Text}'", con);
+                        $" Keterangan from Log where Tanggal LIKE '%{katakunciTB.Text}%'", con);
 
                     try
                     {
@@ -126,12 +125,57 @@ namespace Natural_1.Admin.UC
                     adminHelper.loadData(con, "Log", logDGV);
                 }
             }
+
+            if (e.KeyCode == Keys.Tab)
+            {
+                button2.Focus();
+            }
         }
 
         private void katakunciTB_Enter(object sender, EventArgs e)
         {
             ToolTip tt = new ToolTip();
-            tt.Show("Masukan Nama Target", (TextBox)sender, 0, -30, 3000);
+            tt.Show("Masukan Tanggal", (TextBox)sender, 0, -30, 3000);
+        }
+
+        private void tglMulaiDTP_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                tglSelesaiDTP.Focus();
+            }
+        }
+
+        private void tglSelesaiDTP_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                modulTB.Focus();
+            }
+        }
+
+        private void operatorTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                cariBTN.Focus();
+            }
+        }
+
+        private void cariBTN_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                katakunciTB.Focus() ;
+            }
+        }
+
+        private void modulTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                operatorTB.Focus();
+            }
         }
     }
 }

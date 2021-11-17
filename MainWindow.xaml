@@ -159,7 +159,7 @@
             <Separator Width="400" Background="Black" Margin="0,0,0,-65" />
 
             <PasswordBox x:Name="password_PB" BorderThickness="0" Grid.Row="1"  Margin="50,30,50,30" Background="Transparent"
-                         Password="Admin" FontSize="23" BorderBrush="Transparent" GotFocus="password_PB_GotFocus" />
+                         Password="Admin" FontSize="23" BorderBrush="Transparent" GotFocus="password_PB_GotFocus" KeyUp="password_PB_KeyUp" />
             <Separator Width="400" Background="Black" Grid.Row="1" Margin="0,0,0,-65" />
 
         </Grid>

@@ -38,10 +38,11 @@ namespace Natural_1.Admin.UC
                 //transfer selected value to tb
                 idTB.Text = itemsDGV.SelectedRows[0].Cells[0].Value.ToString();
                 namabarangTB.Text = itemsDGV.SelectedRows[0].Cells[1].Value.ToString();
-                jumlahTB.Text= itemsDGV.SelectedRows[0].Cells[2].Value.ToString();
-                hargaTB.Text= itemsDGV.SelectedRows[0].Cells[3].Value.ToString();
-                bonusTB.Text= itemsDGV.SelectedRows[0].Cells[4].Value.ToString();
-                statusTB.Text= itemsDGV.SelectedRows[0].Cells[5].Value.ToString();
+                distributor_tb.Text = itemsDGV.SelectedRows[0].Cells[2].Value.ToString();
+                jumlahTB.Text = itemsDGV.SelectedRows[0].Cells[3].Value.ToString();
+                hargaTB.Text = itemsDGV.SelectedRows[0].Cells[4].Value.ToString();
+                bonusTB.Text = itemsDGV.SelectedRows[0].Cells[5].Value.ToString();
+                statusTB.Text = itemsDGV.SelectedRows[0].Cells[6].Value.ToString();
             }
         }
 
@@ -65,15 +66,15 @@ namespace Natural_1.Admin.UC
 
         private void simpanBTN_Click(object sender, EventArgs e)
         {
-            if (namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text!="" || bonusTB.Text != "")
+            if (namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text!="" || bonusTB.Text != "" || distributor_tb.Text!="")
             {
                 SqlCommand cmd = new SqlCommand($"update Barang set " +
                     $"Nama = '{namabarangTB.Text}' , Jumlah='{jumlahTB.Text}',Satuan = (select ID from SatuanBarang where Nama = '{satuanCBX.SelectedItem.ToString()}')," +
                     $" Harga_pcs='{hargaTB.Text}'," +
-                    $" Bonus_per= '{bonusTB.Text}' where ID = {idTB.Text}", con);
+                    $" Bonus_per= '{bonusTB.Text}', distributor='{distributor_tb.Text}' where ID = {idTB.Text}", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Items', 'Barang','{namabarangTB.Text}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Items', 'Barang','{namabarangTB.Text}'," +
                   $" '{idTB.Text}') ", con);
 
 
@@ -115,7 +116,7 @@ namespace Natural_1.Admin.UC
                 $"where ID = {itemsDGV.SelectedRows[0].Cells[0].Value.ToString()}",con);
 
             SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Items', 'Barang','{itemsDGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Items', 'Barang','{itemsDGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                   $" '{itemsDGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
 
             try
@@ -144,7 +145,7 @@ namespace Natural_1.Admin.UC
                 $"where ID = {itemsDGV.SelectedRows[0].Cells[0].Value.ToString()}", con);
 
             SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Items', 'Barang','{itemsDGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Items', 'Barang','{itemsDGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                   $" '{itemsDGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
 
 
@@ -170,14 +171,14 @@ namespace Natural_1.Admin.UC
 
         private void baruBTN_Click(object sender, EventArgs e)
         {
-            if(namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text != "" || bonusTB.Text != "")
+            if(namabarangTB.Text != "" || jumlahTB.Text != "" || hargaTB.Text != "" || bonusTB.Text != "" || distributor_tb.Text!="")
             {
-                SqlCommand cmd = new SqlCommand($"insert into Barang (Nama, Jumlah, Satuan, Harga_pcs, Bonus_per) " +
+                SqlCommand cmd = new SqlCommand($"insert into Barang (Nama, Jumlah, Satuan, Harga_pcs, Bonus_per, distributor) " +
                     $"values('{namabarangTB.Text}', {jumlahTB.Text}, (select ID from SatuanBarang Where Nama = '{satuanCBX.SelectedItem.ToString()}')" +
-                    $" , '{hargaTB.Text}', '{bonusTB.Text}') ", con);
+                    $" , '{hargaTB.Text}', '{bonusTB.Text}' , '{distributor_tb.Text}') ", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Items', 'Barang','{namabarangTB.Text}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Items', 'Barang','{namabarangTB.Text}'," +
                   $" '{idTB.Text}' ) ", con);
 
                 try

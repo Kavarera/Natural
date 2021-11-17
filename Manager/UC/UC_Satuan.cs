@@ -52,7 +52,7 @@ namespace Natural_1.Manager.UC
                 SqlCommand cmd = new SqlCommand($"insert into SatuanBarang(Nama) values('{textBox1.Text}')", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Menambahkan', 'Satuan', '{textBox1.Text}','{textBox1.Text}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Menambahkan', 'Satuan', '{textBox1.Text}','{textBox1.Text}'," +
                   $" '{textBox1.Text}') ", con);
 
                 try
@@ -81,7 +81,7 @@ namespace Natural_1.Manager.UC
                     $"from SatuanBarang where Nama = '{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Memperbarui', 'Satuan', '{textBox1.Text}','{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Memperbarui', 'Satuan', '{textBox1.Text}','{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}'," +
                   $" '{textBox1.Text}') ", con);
 
                 try
@@ -125,7 +125,7 @@ namespace Natural_1.Manager.UC
             {
                 SqlCommand cmd = new SqlCommand($"delete SatuanBarang where Nama = '{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}'", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                  $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Menghapus', 'Satuan', '{textBox1.Text}','{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}'," +
+                  $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Menghapus', 'Satuan', '{textBox1.Text}','{satuanDGV.SelectedRows[0].Cells[0].Value.ToString()}'," +
                   $" '{textBox1.Text}') ", con);
                 try
                 {

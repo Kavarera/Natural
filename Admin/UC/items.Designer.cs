@@ -30,6 +30,8 @@ namespace Natural_1.Admin.UC
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.distributor_tb = new System.Windows.Forms.TextBox();
             this.satuanCBX = new System.Windows.Forms.ComboBox();
             this.simpanBTN = new System.Windows.Forms.Button();
             this.baruBTN = new System.Windows.Forms.Button();
@@ -66,6 +68,8 @@ namespace Natural_1.Admin.UC
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
+            this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.distributor_tb);
             this.panel1.Controls.Add(this.satuanCBX);
             this.panel1.Controls.Add(this.simpanBTN);
             this.panel1.Controls.Add(this.baruBTN);
@@ -84,18 +88,41 @@ namespace Natural_1.Admin.UC
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(674, 717);
+            this.panel1.Size = new System.Drawing.Size(449, 466);
             this.panel1.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label9.Location = new System.Drawing.Point(73, 71);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 20);
+            this.label9.TabIndex = 16;
+            this.label9.Text = "Distributor :";
+            // 
+            // distributor_tb
+            // 
+            this.distributor_tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.distributor_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.distributor_tb.Location = new System.Drawing.Point(183, 71);
+            this.distributor_tb.Margin = new System.Windows.Forms.Padding(2);
+            this.distributor_tb.Name = "distributor_tb";
+            this.distributor_tb.Size = new System.Drawing.Size(142, 19);
+            this.distributor_tb.TabIndex = 6;
             // 
             // satuanCBX
             // 
             this.satuanCBX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.satuanCBX.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.satuanCBX.FormattingEnabled = true;
-            this.satuanCBX.Location = new System.Drawing.Point(275, 182);
+            this.satuanCBX.Location = new System.Drawing.Point(183, 146);
+            this.satuanCBX.Margin = new System.Windows.Forms.Padding(2);
             this.satuanCBX.Name = "satuanCBX";
-            this.satuanCBX.Size = new System.Drawing.Size(213, 33);
+            this.satuanCBX.Size = new System.Drawing.Size(143, 24);
             this.satuanCBX.TabIndex = 14;
             // 
             // simpanBTN
@@ -106,9 +133,10 @@ namespace Natural_1.Admin.UC
             this.simpanBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(202)))), ((int)(((byte)(239)))));
             this.simpanBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.simpanBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.simpanBTN.Location = new System.Drawing.Point(507, 499);
+            this.simpanBTN.Location = new System.Drawing.Point(338, 352);
+            this.simpanBTN.Margin = new System.Windows.Forms.Padding(2);
             this.simpanBTN.Name = "simpanBTN";
-            this.simpanBTN.Size = new System.Drawing.Size(124, 56);
+            this.simpanBTN.Size = new System.Drawing.Size(83, 36);
             this.simpanBTN.TabIndex = 13;
             this.simpanBTN.Text = "Simpan";
             this.simpanBTN.UseVisualStyleBackColor = true;
@@ -122,9 +150,10 @@ namespace Natural_1.Admin.UC
             this.baruBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.baruBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.baruBTN.ForeColor = System.Drawing.Color.White;
-            this.baruBTN.Location = new System.Drawing.Point(364, 499);
+            this.baruBTN.Location = new System.Drawing.Point(243, 352);
+            this.baruBTN.Margin = new System.Windows.Forms.Padding(2);
             this.baruBTN.Name = "baruBTN";
-            this.baruBTN.Size = new System.Drawing.Size(124, 56);
+            this.baruBTN.Size = new System.Drawing.Size(83, 36);
             this.baruBTN.TabIndex = 12;
             this.baruBTN.Text = "Baru";
             this.baruBTN.UseVisualStyleBackColor = true;
@@ -134,10 +163,11 @@ namespace Natural_1.Admin.UC
             // 
             this.statusTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statusTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusTB.Location = new System.Drawing.Point(275, 430);
+            this.statusTB.Location = new System.Drawing.Point(183, 307);
+            this.statusTB.Margin = new System.Windows.Forms.Padding(2);
             this.statusTB.Name = "statusTB";
             this.statusTB.ReadOnly = true;
-            this.statusTB.Size = new System.Drawing.Size(213, 28);
+            this.statusTB.Size = new System.Drawing.Size(142, 19);
             this.statusTB.TabIndex = 11;
             this.statusTB.Text = "Active";
             // 
@@ -145,55 +175,61 @@ namespace Natural_1.Admin.UC
             // 
             this.bonusTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bonusTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bonusTB.Location = new System.Drawing.Point(275, 368);
+            this.bonusTB.Location = new System.Drawing.Point(183, 267);
+            this.bonusTB.Margin = new System.Windows.Forms.Padding(2);
             this.bonusTB.Name = "bonusTB";
-            this.bonusTB.Size = new System.Drawing.Size(213, 28);
+            this.bonusTB.Size = new System.Drawing.Size(142, 19);
             this.bonusTB.TabIndex = 10;
             // 
             // hargaTB
             // 
             this.hargaTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.hargaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hargaTB.Location = new System.Drawing.Point(275, 306);
+            this.hargaTB.Location = new System.Drawing.Point(183, 227);
+            this.hargaTB.Margin = new System.Windows.Forms.Padding(2);
             this.hargaTB.Name = "hargaTB";
-            this.hargaTB.Size = new System.Drawing.Size(213, 28);
+            this.hargaTB.Size = new System.Drawing.Size(142, 19);
             this.hargaTB.TabIndex = 9;
             // 
             // jumlahTB
             // 
             this.jumlahTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.jumlahTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jumlahTB.Location = new System.Drawing.Point(275, 244);
+            this.jumlahTB.Location = new System.Drawing.Point(183, 187);
+            this.jumlahTB.Margin = new System.Windows.Forms.Padding(2);
             this.jumlahTB.Name = "jumlahTB";
-            this.jumlahTB.Size = new System.Drawing.Size(213, 28);
+            this.jumlahTB.Size = new System.Drawing.Size(142, 19);
             this.jumlahTB.TabIndex = 8;
             // 
             // namabarangTB
             // 
             this.namabarangTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.namabarangTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.namabarangTB.Location = new System.Drawing.Point(275, 121);
+            this.namabarangTB.Location = new System.Drawing.Point(183, 107);
+            this.namabarangTB.Margin = new System.Windows.Forms.Padding(2);
             this.namabarangTB.Name = "namabarangTB";
-            this.namabarangTB.Size = new System.Drawing.Size(213, 28);
+            this.namabarangTB.Size = new System.Drawing.Size(142, 19);
             this.namabarangTB.TabIndex = 7;
             // 
             // idTB
             // 
             this.idTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.idTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idTB.Location = new System.Drawing.Point(275, 59);
+            this.idTB.Location = new System.Drawing.Point(183, 38);
+            this.idTB.Margin = new System.Windows.Forms.Padding(2);
             this.idTB.Name = "idTB";
             this.idTB.ReadOnly = true;
-            this.idTB.Size = new System.Drawing.Size(213, 28);
+            this.idTB.Size = new System.Drawing.Size(142, 19);
             this.idTB.TabIndex = 6;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label6.Location = new System.Drawing.Point(149, 429);
+            this.label6.Location = new System.Drawing.Point(99, 307);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 29);
+            this.label6.Size = new System.Drawing.Size(64, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Status :";
             // 
@@ -201,9 +237,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label5.Location = new System.Drawing.Point(105, 367);
+            this.label5.Location = new System.Drawing.Point(70, 267);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(135, 29);
+            this.label5.Size = new System.Drawing.Size(90, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Bonus per :";
             // 
@@ -211,9 +248,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label4.Location = new System.Drawing.Point(82, 305);
+            this.label4.Location = new System.Drawing.Point(55, 226);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 29);
+            this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Harga / PCS :";
             // 
@@ -221,9 +259,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label8.Location = new System.Drawing.Point(141, 178);
+            this.label8.Location = new System.Drawing.Point(94, 144);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 29);
+            this.label8.Size = new System.Drawing.Size(69, 20);
             this.label8.TabIndex = 1;
             this.label8.Text = "Satuan :";
             // 
@@ -231,9 +270,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label3.Location = new System.Drawing.Point(138, 243);
+            this.label3.Location = new System.Drawing.Point(92, 186);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 29);
+            this.label3.Size = new System.Drawing.Size(68, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Jumlah :";
             // 
@@ -241,9 +281,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label2.Location = new System.Drawing.Point(68, 120);
+            this.label2.Location = new System.Drawing.Point(45, 106);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 29);
+            this.label2.Size = new System.Drawing.Size(115, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Nama Barang :";
             // 
@@ -251,9 +292,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label1.Location = new System.Drawing.Point(149, 58);
+            this.label1.Location = new System.Drawing.Point(99, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 29);
+            this.label1.Size = new System.Drawing.Size(61, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "NO ID :";
             // 
@@ -265,25 +307,28 @@ namespace Natural_1.Admin.UC
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(674, 0);
+            this.panel2.Location = new System.Drawing.Point(449, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(817, 717);
+            this.panel2.Size = new System.Drawing.Size(545, 466);
             this.panel2.TabIndex = 1;
             // 
             // itemsDGV
             // 
             this.itemsDGV.AllowUserToAddRows = false;
             this.itemsDGV.AllowUserToDeleteRows = false;
+            this.itemsDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.itemsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.itemsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.itemsDGV.Location = new System.Drawing.Point(124, 94);
+            this.itemsDGV.Location = new System.Drawing.Point(83, 61);
+            this.itemsDGV.Margin = new System.Windows.Forms.Padding(2);
             this.itemsDGV.MultiSelect = false;
             this.itemsDGV.Name = "itemsDGV";
             this.itemsDGV.ReadOnly = true;
             this.itemsDGV.RowHeadersWidth = 62;
             this.itemsDGV.RowTemplate.Height = 28;
             this.itemsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.itemsDGV.Size = new System.Drawing.Size(581, 344);
+            this.itemsDGV.Size = new System.Drawing.Size(387, 224);
             this.itemsDGV.TabIndex = 5;
             this.itemsDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.itemsDGV_CellClick);
             this.itemsDGV.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.itemsDGV_RowHeaderMouseClick);
@@ -292,18 +337,20 @@ namespace Natural_1.Admin.UC
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
             this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel6.Location = new System.Drawing.Point(705, 94);
+            this.panel6.Location = new System.Drawing.Point(470, 61);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(112, 344);
+            this.panel6.Size = new System.Drawing.Size(75, 224);
             this.panel6.TabIndex = 4;
             // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
             this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 94);
+            this.panel5.Location = new System.Drawing.Point(0, 61);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(124, 344);
+            this.panel5.Size = new System.Drawing.Size(83, 224);
             this.panel5.TabIndex = 3;
             // 
             // panel4
@@ -315,9 +362,10 @@ namespace Natural_1.Admin.UC
             this.panel4.Controls.Add(this.ubahBTN);
             this.panel4.Controls.Add(this.label7);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 438);
+            this.panel4.Location = new System.Drawing.Point(0, 285);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(817, 279);
+            this.panel4.Size = new System.Drawing.Size(545, 181);
             this.panel4.TabIndex = 2;
             // 
             // aktifBTN
@@ -328,9 +376,10 @@ namespace Natural_1.Admin.UC
             this.aktifBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
             this.aktifBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.aktifBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.aktifBTN.Location = new System.Drawing.Point(681, 44);
+            this.aktifBTN.Location = new System.Drawing.Point(454, 29);
+            this.aktifBTN.Margin = new System.Windows.Forms.Padding(2);
             this.aktifBTN.Name = "aktifBTN";
-            this.aktifBTN.Size = new System.Drawing.Size(124, 43);
+            this.aktifBTN.Size = new System.Drawing.Size(83, 28);
             this.aktifBTN.TabIndex = 16;
             this.aktifBTN.Text = "Aktif";
             this.aktifBTN.UseVisualStyleBackColor = true;
@@ -344,9 +393,10 @@ namespace Natural_1.Admin.UC
             this.nonaktifBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(88)))), ((int)(((byte)(68)))));
             this.nonaktifBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nonaktifBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.nonaktifBTN.Location = new System.Drawing.Point(535, 44);
+            this.nonaktifBTN.Location = new System.Drawing.Point(357, 29);
+            this.nonaktifBTN.Margin = new System.Windows.Forms.Padding(2);
             this.nonaktifBTN.Name = "nonaktifBTN";
-            this.nonaktifBTN.Size = new System.Drawing.Size(124, 43);
+            this.nonaktifBTN.Size = new System.Drawing.Size(83, 28);
             this.nonaktifBTN.TabIndex = 15;
             this.nonaktifBTN.Text = "Non-Aktif";
             this.nonaktifBTN.UseVisualStyleBackColor = true;
@@ -356,9 +406,10 @@ namespace Natural_1.Admin.UC
             // 
             this.cariTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.cariTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cariTB.Location = new System.Drawing.Point(144, 51);
+            this.cariTB.Location = new System.Drawing.Point(96, 33);
+            this.cariTB.Margin = new System.Windows.Forms.Padding(2);
             this.cariTB.Name = "cariTB";
-            this.cariTB.Size = new System.Drawing.Size(213, 28);
+            this.cariTB.Size = new System.Drawing.Size(142, 19);
             this.cariTB.TabIndex = 14;
             this.cariTB.Enter += new System.EventHandler(this.cariTB_Enter);
             this.cariTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariTB_KeyUp);
@@ -371,9 +422,10 @@ namespace Natural_1.Admin.UC
             this.ubahBTN.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(207)))), ((int)(((byte)(239)))));
             this.ubahBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ubahBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.ubahBTN.Location = new System.Drawing.Point(389, 44);
+            this.ubahBTN.Location = new System.Drawing.Point(259, 29);
+            this.ubahBTN.Margin = new System.Windows.Forms.Padding(2);
             this.ubahBTN.Name = "ubahBTN";
-            this.ubahBTN.Size = new System.Drawing.Size(124, 43);
+            this.ubahBTN.Size = new System.Drawing.Size(83, 28);
             this.ubahBTN.TabIndex = 14;
             this.ubahBTN.Text = "Ubah";
             this.ubahBTN.UseVisualStyleBackColor = true;
@@ -383,9 +435,10 @@ namespace Natural_1.Admin.UC
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label7.Location = new System.Drawing.Point(41, 50);
+            this.label7.Location = new System.Drawing.Point(27, 32);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(57, 29);
+            this.label7.Size = new System.Drawing.Size(37, 20);
             this.label7.TabIndex = 6;
             this.label7.Text = "Cari";
             // 
@@ -394,18 +447,20 @@ namespace Natural_1.Admin.UC
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(192)))), ((int)(((byte)(140)))));
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(817, 94);
+            this.panel3.Size = new System.Drawing.Size(545, 61);
             this.panel3.TabIndex = 1;
             // 
             // items
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "items";
-            this.Size = new System.Drawing.Size(1491, 717);
+            this.Size = new System.Drawing.Size(994, 466);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -446,5 +501,7 @@ namespace Natural_1.Admin.UC
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox satuanCBX;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox distributor_tb;
     }
 }

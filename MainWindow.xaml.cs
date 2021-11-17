@@ -92,5 +92,13 @@ namespace Natural_1
         {
             password_PB.Password = "";
         }
+
+        private void password_PB_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key== Key.Enter)
+            {
+                login_BTN.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
+            }
+        }
     }
 }

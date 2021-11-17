@@ -112,7 +112,7 @@ namespace Natural_1.Kasir
                 {
                     //MessageBox.Show(i.ToString(), iRow.ToString());
                     cmd = new SqlCommand($"insert into BarangLog(TglWaktu, NamaBarang, Pengurangan, Pemasukan, Struk, totalHarga) " +
-                        $"values( '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' , '{belanja_DVG.Rows[i].Cells[0].Value.ToString()}', " +
+                        $"values( '{DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")}' , '{belanja_DVG.Rows[i].Cells[0].Value.ToString()}', " +
                         $"'{belanja_DVG.Rows[i].Cells[1].Value.ToString()}', 0, '{struk_TB.Text}' , " +
                         $" '{belanja_DVG.Rows[i].Cells[4].Value.ToString()}') ", con);
 

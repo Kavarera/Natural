@@ -15,16 +15,16 @@ namespace Natural_1.Admin.UC
 {
     public partial class Distributor : UserControl
     {
-        /*mulaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
-                selesaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
+        /*mulaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
+                selesaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
         */
         SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
         public Distributor()
         {
             InitializeComponent();
             adminHelper.loadData(con, "Distributor", Distributor_DGV);
-            mulaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
-            selesaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
+            mulaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
+            selesaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
             idTB.Text = adminHelper.genNoDis(con);
         }
 
@@ -70,7 +70,7 @@ namespace Natural_1.Admin.UC
 
 
             SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                    $" '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
 
 
@@ -98,7 +98,7 @@ namespace Natural_1.Admin.UC
 
 
             SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Distributor', 'Pelanggan','{Distributor_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                    $" '{Distributor_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
 
             try
@@ -128,7 +128,7 @@ namespace Natural_1.Admin.UC
                     $"where No_Distributor = '{idTB.Text}' ", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
                    $" '{idTB.Text}') ", con);
 
                 try
@@ -173,16 +173,19 @@ namespace Natural_1.Admin.UC
                 if (arrtext.Length > 1)
                 {
                     SqlCommand cmd = new SqlCommand($"insert into Distributor(No_Distributor, Nama_Toko, No_Telp, Alamat, Keterangan,Area) " +
-                    $"values('{idTB.Text}', '{namaTB.Text}', '{teleponTB.Text}', '{arrtext[0]}', '{keteranganTB.Text}', '{arrtext[1]}' )", con);
+                    $"values('{idTB.Text}', '{namaTB.Text}', '{teleponTB.Text}', '{alamatTB.Text}', '{keteranganTB.Text}', '{arrtext[1]}')", con);
 
 
                     SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
                    $" '{idTB.Text}') ", con);
                     try
                     {
                         con.Open();
                         cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        MessageBox.Show("Data berhasil ditambahkan");
+                        idTB.Text = adminHelper.genNoDis(con);
                     }
                     catch(Exception ex)
                     {
@@ -191,18 +194,24 @@ namespace Natural_1.Admin.UC
                     finally
                     {
                         con.Close();
-                        MessageBox.Show("Data berhasil ditambahkan");
                         adminHelper.loadData(con, "Distributor", Distributor_DGV);
+                        //Distributor_DGV.Refresh();
                     }
                 }
                 else
                 {
                     SqlCommand cmd = new SqlCommand($"insert into Distributor(No_Distributor, Nama_Toko, No_Telp, Alamat, Keterangan) " +
-                    $"values('{idTB.Text}', '{namaTB.Text}', '{teleponTB.Text}', '{alamatTB.Text}', '{keteranganTB.Text}' ", con);
+                    $"values('{idTB.Text}', '{namaTB.Text}', '{teleponTB.Text}', '{alamatTB.Text}', '{keteranganTB.Text}') ", con);
+                    SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Distributor', 'Pelanggan','{namaTB.Text}'," +
+                   $" '{idTB.Text}') ", con);
                     try
                     {
                         con.Open();
                         cmd.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        MessageBox.Show("Data berhasil ditambahkan");
+                        idTB.Text = adminHelper.genNoDis(con);
                     }
                     catch (Exception ex)
                     {
@@ -211,10 +220,17 @@ namespace Natural_1.Admin.UC
                     finally
                     {
                         con.Close();
-                        MessageBox.Show("Data berhasil ditambahkan");
+                        adminHelper.loadData(con, "Distributor", Distributor_DGV);
                     }
                 }
+
             }
+
+            else
+            {
+                MessageBox.Show("Ada Data yang Kosong!");
+            }
+
         }
 
         private void cariTB_KeyUp(object sender, KeyEventArgs e)
@@ -329,10 +345,10 @@ namespace Natural_1.Admin.UC
             if (distTran_DGV.SelectedRows.Count > 0)
             {
                 SqlCommand cmd = new SqlCommand($"update TransactionLog set status = 'Refunded' , " +
-                    $"TglUbah = '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' where Struk = '{distTran_DGV.SelectedRows[0].Cells[4].Value.ToString()}'", con);
+                    $"TglUbah = '{DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")}' where Struk = '{distTran_DGV.SelectedRows[0].Cells[4].Value.ToString()}'", con);
 
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Refund', 'Distributor', 'Pelanggan','{namaTransTB.Text}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Refund', 'Distributor', 'Pelanggan','{namaTransTB.Text}'," +
                    $" (select No_Distributor from Distributor where Nama_Toko = '{namaTransTB.Text}' and No_Telp='{telTransTB.Text}')) ", con);
 
                 try
@@ -468,8 +484,47 @@ namespace Natural_1.Admin.UC
 
         private void alamatTB_Enter(object sender, EventArgs e)
         {
-            ToolTip tt = new ToolTip();
-            tt.Show("Gunakan / untuk memasukan area.\n xxxxx /Jakarta", (TextBox)sender, 0, -60, 2000);
+            //ToolTip tt = new ToolTip();
+            //tt.Show("Gunakan / untuk memasukan area.\n xxxxx /Jakarta", (TextBox)sender, 0, -60, 2000);
+        }
+
+        private void namaTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                teleponTB.Focus();
+            }
+        }
+
+        private void teleponTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                alamatTB.Focus();
+            }
+        }
+
+        private void alamatTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                keteranganTB.Focus();
+            }
+        }
+
+        private void keteranganTB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                if (baruBTN.Enabled)
+                {
+                    baruBTN.Focus();
+                }
+                else
+                {
+                    simpanBTN.Focus();
+                }
+            }
         }
     }
 }

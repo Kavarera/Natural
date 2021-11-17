@@ -55,6 +55,7 @@ namespace Natural_1.Kasir
 
         public static void getBarangDetail(SqlConnection con, string Namabarang)
         {
+            con.Close();
             SqlCommand cmd = new SqlCommand($"SELECT Nama, Jumlah,Harga_pcs, Bonus_per, Status , Satuan FROM Barang WHERE ID = {getBarangID(con,Namabarang)}",con);
             try
             {
@@ -69,6 +70,9 @@ namespace Natural_1.Kasir
                     Barang.Status=sdr["Status"].ToString();
                     Barang.Satuan = sdr["Satuan"].ToString();
                 }
+                sdr.Close();
+                cmd = new SqlCommand($"select Nama from SatuanBarang where ID={Barang.Satuan}", con);
+                Barang.Satuan = cmd.ExecuteScalar().ToString();
             }
             catch(Exception ex)
             {
@@ -83,10 +87,10 @@ namespace Natural_1.Kasir
         public static string getNoStruk(string modul,string namaKaryawan, int totalTransaksi)
         {
             string struk ="";
-            struk += namaKaryawan.Substring(0, 1);
-            struk += DateTime.Now.ToString("dd");
+            //struk += namaKaryawan.Substring(0, 1);
+            struk += DateTime.Now.ToString("yyyy");
             struk += DateTime.Now.ToString("MM");
-            struk += DateTime.Now.ToString("yy");
+            struk += DateTime.Now.ToString("dd");
             struk += DateTime.Now.ToString("fff").Substring(1,2);
             if (modul == "Distributor")
             {
@@ -96,7 +100,7 @@ namespace Natural_1.Kasir
             }
             else
             {
-                struk += "P";
+                struk += "-";
                 struk += totalTransaksi.ToString();
                 return struk;
             }

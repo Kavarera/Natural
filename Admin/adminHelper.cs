@@ -38,7 +38,7 @@ namespace Natural_1.Admin
             con.Close();
             if (tipe == "User")
             {
-                SqlCommand cmd = new SqlCommand($"SELECT Id_Karyawan AS ID , Username , Nama , No_Telepon AS Telepon , Alamat , Role , Status FROM Karyawan", con);
+                SqlCommand cmd = new SqlCommand($"SELECT Username , Nama , No_Telepon AS Telepon , Alamat , Role , Status FROM Karyawan", con);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 try
                 {
@@ -204,7 +204,7 @@ namespace Natural_1.Admin
 
             if (tipe == "Items")
             {
-                SqlCommand cmd = new SqlCommand($"select ID, Nama, Jumlah, Harga_pcs, Bonus_per, Status from Barang",con);
+                SqlCommand cmd = new SqlCommand($"select ID, Nama, distributor, Jumlah, Harga_pcs, Bonus_per, Status from Barang",con);
                 DataTable dt = new DataTable();
                 try
                 {
@@ -216,12 +216,6 @@ namespace Natural_1.Admin
                     dgv.DataSource = dt.DefaultView;
                     sda.Dispose();
                     dt.Dispose();
-                    dgv.Columns[0].Width = 80; //id
-                    dgv.Columns[1].Width = 220; // nama
-                    dgv.Columns[2].Width = 100; // jumlah
-                    dgv.Columns[3].Width = 150; // harga
-                    dgv.Columns[4].Width = 150; // bonus
-                    dgv.Columns[5].Width = 150;//status
                 }
                 catch(Exception ex)
                 {
@@ -266,7 +260,7 @@ namespace Natural_1.Admin
 
         public static string genNoDis(SqlConnection connection,string text="D")
         {
-            SqlCommand cmd = new SqlCommand($"select Max(ID) from Distributor", connection);
+            SqlCommand cmd = new SqlCommand($"select Count(ID) from Distributor", connection);
             try
             {
                 connection.Close();

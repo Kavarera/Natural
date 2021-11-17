@@ -32,7 +32,6 @@ namespace Natural_1.Admin.UC
             this.panel1 = new System.Windows.Forms.Panel();
             this.tglSelesaiDTP = new System.Windows.Forms.DateTimePicker();
             this.tglMulaiDTP = new System.Windows.Forms.DateTimePicker();
-            this.operatorTB = new System.Windows.Forms.TextBox();
             this.modulTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@ namespace Natural_1.Admin.UC
             this.label5 = new System.Windows.Forms.Label();
             this.cetakBTN = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.operatorTB = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logDGV)).BeginInit();
             this.panel4.SuspendLayout();
@@ -55,9 +55,9 @@ namespace Natural_1.Admin.UC
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(55)))), ((int)(((byte)(63)))));
+            this.panel1.Controls.Add(this.operatorTB);
             this.panel1.Controls.Add(this.tglSelesaiDTP);
             this.panel1.Controls.Add(this.tglMulaiDTP);
-            this.panel1.Controls.Add(this.operatorTB);
             this.panel1.Controls.Add(this.modulTB);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
@@ -77,6 +77,7 @@ namespace Natural_1.Admin.UC
             this.tglSelesaiDTP.Name = "tglSelesaiDTP";
             this.tglSelesaiDTP.Size = new System.Drawing.Size(138, 26);
             this.tglSelesaiDTP.TabIndex = 8;
+            this.tglSelesaiDTP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tglSelesaiDTP_KeyUp);
             // 
             // tglMulaiDTP
             // 
@@ -85,15 +86,7 @@ namespace Natural_1.Admin.UC
             this.tglMulaiDTP.Name = "tglMulaiDTP";
             this.tglMulaiDTP.Size = new System.Drawing.Size(138, 26);
             this.tglMulaiDTP.TabIndex = 7;
-            // 
-            // operatorTB
-            // 
-            this.operatorTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.operatorTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.operatorTB.Location = new System.Drawing.Point(1042, 31);
-            this.operatorTB.Name = "operatorTB";
-            this.operatorTB.Size = new System.Drawing.Size(172, 25);
-            this.operatorTB.TabIndex = 6;
+            this.tglMulaiDTP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tglMulaiDTP_KeyUp);
             // 
             // modulTB
             // 
@@ -103,6 +96,7 @@ namespace Natural_1.Admin.UC
             this.modulTB.Name = "modulTB";
             this.modulTB.Size = new System.Drawing.Size(172, 25);
             this.modulTB.TabIndex = 5;
+            this.modulTB.KeyUp += new System.Windows.Forms.KeyEventHandler(this.modulTB_KeyUp);
             // 
             // label4
             // 
@@ -147,6 +141,7 @@ namespace Natural_1.Admin.UC
             // cariBTN
             // 
             this.cariBTN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(87)))), ((int)(((byte)(228)))));
+            this.cariBTN.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cariBTN.FlatAppearance.BorderSize = 3;
             this.cariBTN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cariBTN.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
@@ -158,6 +153,7 @@ namespace Natural_1.Admin.UC
             this.cariBTN.Text = "Cari";
             this.cariBTN.UseVisualStyleBackColor = false;
             this.cariBTN.Click += new System.EventHandler(this.cariBTN_Click);
+            this.cariBTN.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cariBTN_KeyUp);
             // 
             // panel2
             // 
@@ -261,6 +257,15 @@ namespace Natural_1.Admin.UC
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // operatorTB
+            // 
+            this.operatorTB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.operatorTB.FormattingEnabled = true;
+            this.operatorTB.Location = new System.Drawing.Point(1039, 28);
+            this.operatorTB.Name = "operatorTB";
+            this.operatorTB.Size = new System.Drawing.Size(172, 28);
+            this.operatorTB.TabIndex = 9;
+            // 
             // UC_Log
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -289,7 +294,6 @@ namespace Natural_1.Admin.UC
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DateTimePicker tglSelesaiDTP;
         private System.Windows.Forms.DateTimePicker tglMulaiDTP;
-        private System.Windows.Forms.TextBox operatorTB;
         private System.Windows.Forms.TextBox modulTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -302,5 +306,6 @@ namespace Natural_1.Admin.UC
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox katakunciTB;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox operatorTB;
     }
 }

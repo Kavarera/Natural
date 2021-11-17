@@ -80,7 +80,7 @@ namespace Natural_1.Admin.UC
         private void ubahBTN_Click(object sender, EventArgs e)
         {
             id_TB.ReadOnly = true;
-            bonus_TB.ReadOnly = true;
+            bonus_TB.ReadOnly = false;
             baruBTN.Enabled = false;
             simpanBTN.Enabled = true;
             nonaktifBTN.Enabled = false;
@@ -104,7 +104,7 @@ namespace Natural_1.Admin.UC
             {
                 SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Status ='Inactive' WHERE Id_Pelanggan = '{pelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString()}'", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Pelanggan', 'Pelanggan','{pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Non-Aktif', 'Pelanggan', 'Pelanggan','{pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                    $" '{pelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
                 try
                 {
@@ -133,7 +133,7 @@ namespace Natural_1.Admin.UC
             {
                 SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Status ='Active' WHERE Id_Pelanggan = '{pelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString()}'", con);
                 SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Pelanggan', 'Pelanggan','{pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Aktif', 'Pelanggan', 'Pelanggan','{pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString()}'," +
                    $" '{pelanggan_DGV.SelectedRows[0].Cells[0].Value.ToString()}') ", con);
                 try
                 {
@@ -158,9 +158,9 @@ namespace Natural_1.Admin.UC
 
         private void simpanBTN_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Nama = '{nama_TB.Text}' , No_Telp = '{telep_TB.Text}' , Alamat = '{alamat_TB.Text}' WHERE Id_Pelanggan = '{id_TB.Text}'", con);
+            SqlCommand cmd = new SqlCommand($"UPDATE Pelanggan SET Nama = '{nama_TB.Text}' , No_Telp = '{telep_TB.Text}' , Alamat = '{alamat_TB.Text}', Bonus = {bonus_TB.Text} WHERE Id_Pelanggan = '{id_TB.Text}'", con);
             SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Pelanggan', 'Pelanggan','{nama_TB.Text}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Ubah', 'Pelanggan', 'Pelanggan','{nama_TB.Text}'," +
                    $" '{id_TB.Text}') ", con);
             try
             {
@@ -195,34 +195,43 @@ namespace Natural_1.Admin.UC
 
         private void baruBTN_Click(object sender, EventArgs e)
         {
-            id_TB.Text = Kasir.kasirHelper.GenerateNoPelanggan(con, "PA");
-            SqlCommand cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat, Area, Bonus) " +
-                $"VALUES ('{id_TB.Text}', '{nama_TB.Text}' , '{telep_TB.Text}' , '{alamat_TB.Text}' ,'{alamat_TB.Text}', {bonus_TB.Text})", con);
-           
-            SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Pelanggan', 'Pelanggan','{nama_TB.Text}'," +
-                   $" '{id_TB.Text}') ", con);
-
-            try
+            if (namatTB.Text != "" && telep_TB.Text != "" && alamat_TB.Text != "" && bonus_TB.Text != "")
             {
-                con.Open();
-                cmd.ExecuteNonQuery();
-                cmd2.ExecuteNonQuery();
-            }
-            catch(Exception ex)
-            {
-                con.Close();
-                MessageBox.Show(ex.Message + "baruBTNClic error", "uc_pelanggan.cs - baruBTN_Click ERROR");
-            }
-            finally
-            {
-                con.Close();
-                id_TB.Clear();
-                nama_TB.Clear();
-                telep_TB.Clear();
-                alamat_TB.Clear();
-                bonus_TB.Clear();
                 id_TB.Text = Kasir.kasirHelper.GenerateNoPelanggan(con, "PA");
+                SqlCommand cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat, Area, Bonus, Status) " +
+                    $"VALUES ('{id_TB.Text}', '{nama_TB.Text}' , '{telep_TB.Text}' , '{alamat_TB.Text}' ,'{alamat_TB.Text}', {bonus_TB.Text},'Active')", con);
+
+                SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
+                       $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Simpan', 'Pelanggan', 'Pelanggan','{nama_TB.Text}'," +
+                       $" '{id_TB.Text}') ", con);
+
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    MessageBox.Show(ex.Message + "baruBTNClic error", "uc_pelanggan.cs - baruBTN_Click ERROR");
+                }
+                finally
+                {
+                    con.Close();
+                    id_TB.Clear();
+                    nama_TB.Clear();
+                    telep_TB.Clear();
+                    alamat_TB.Clear();
+                    bonus_TB.Clear();
+                    id_TB.Text = Kasir.kasirHelper.GenerateNoPelanggan(con, "PA");
+                    adminHelper.loadData(con, "Pelanggan", pelanggan_DGV);
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Ada data yang belum diisi");
             }
         }
 
@@ -231,8 +240,8 @@ namespace Natural_1.Admin.UC
             if (pelanggan_DGV.SelectedRows.Count > 0)
             {
                 adminHelper.loadData(con, "TP", transaksiPelanggan_DGV, pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString());
-                mulaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
-                selesaiDTP.CustomFormat = "MM/dd/yyyy hh:mm tt";
+                mulaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
+                selesaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
 
                 namatTB.Enabled = true;
                 telepontTB.Enabled = true;
@@ -272,7 +281,7 @@ namespace Natural_1.Admin.UC
         {
             transaksiPelanggan_DGV.Columns.Clear();
             SqlCommand cmd = new SqlCommand($"SELECT TanggalJam as 'Tgl & Jam' , Operator , Kegiatan as Kategori, Pemasukan as Jumlah  , Struk as 'No Struk' , Status , TglUbah as 'Tgl Ubah' " +
-                $"FROM TransactionLog WHERE TanggalJam BETWEEN '{mulaiDTP.Value.ToString("MM/dd/yyyy hh:mm tt")}' AND '{selesaiDTP.Value.ToString("MM/dd/yyyy hh:mm tt")}' AND " +
+                $"FROM TransactionLog WHERE TanggalJam BETWEEN '{mulaiDTP.Value.ToString("dd/MM/yyyy hh:mm tt")}' AND '{selesaiDTP.Value.ToString("dd/MM/yyyy hh:mm tt")}' AND " +
                 $"NamaPelanggan = '{namatTB.Text}' ", con);
             SqlDataAdapter sda = new SqlDataAdapter(cmd);
             try
@@ -310,10 +319,10 @@ namespace Natural_1.Admin.UC
                 if (transaksiPelanggan_DGV.SelectedRows[0].Cells[5].Value.ToString() != "Void")
                 {
                     SqlCommand cmd = new SqlCommand($"UPDATE TransactionLog SET Status = 'Void' , " +
-                    $"TglUbah = '{DateTime.Now.ToString("MM/dd/yyyy hh:mm tt")}' WHERE Struk = '{transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString()}' ", con);
+                    $"TglUbah = '{DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")}' WHERE Struk = '{transaksiPelanggan_DGV.SelectedRows[0].Cells[4].Value.ToString()}' ", con);
 
                     SqlCommand cmd2 = new SqlCommand($"insert into Log(Tanggal, Jam, Operator,Kegiatan, Modul, Target, Nama_Target,Id_Target) " +
-                   $"values('{DateTime.Now.ToString("MM/dd/yy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Void', 'Pelanggan-Transaksi', 'Pelanggan','{namatTB.Text}'," +
+                   $"values('{DateTime.Now.ToString("dd/MM/yyyy")}','{DateTime.Now.ToString("HH:mm tt")}', '{Karyawan.Nama}', 'Void', 'Pelanggan-Transaksi', 'Pelanggan','{namatTB.Text}'," +
                    $" (select Id_Pelanggan from Pelanggan Where Nama = '{namatTB.Text}' and No_Telp='{telepontTB.Text}' )) ", con);
 
                     try
@@ -348,7 +357,7 @@ namespace Natural_1.Admin.UC
                 if (cariPelangganTB.Text != "")
                 {
                     SqlCommand cmd = new SqlCommand($"SELECT Id_Pelanggan as 'ID', Nama, No_Telp as 'Telepon', Alamat, Bonus, Area, Status" +
-                        $" FROM Pelanggan WHERE Id_Pelanggan = '{cariPelangganTB.Text}'",con);
+                        $" FROM Pelanggan WHERE Id_Pelanggan LIKE '%{cariPelangganTB.Text}%'",con);
                     SqlDataAdapter sda = new SqlDataAdapter(cmd);
                     try
                     {
@@ -506,6 +515,45 @@ namespace Natural_1.Admin.UC
         {
             ToolTip tt = new ToolTip();
             tt.Show("Masukan Nomor Struk saja", (TextBox)sender, 0, -30, 3000);
+        }
+
+        private void nama_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                telep_TB.Focus();
+            }
+        }
+
+        private void telep_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                alamat_TB.Focus();
+            }
+        }
+
+        private void alamat_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                bonus_TB.Focus();
+            }
+        }
+
+        private void bonus_TB_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab)
+            {
+                if (baruBTN.Enabled)
+                {
+                    baruBTN.Focus();
+                }
+                else
+                {
+                    simpanBTN.Focus();
+                }
+            }
         }
     }
 }
