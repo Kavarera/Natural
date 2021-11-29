@@ -22,11 +22,11 @@ namespace Natural_1.Admin
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == textBox2.Text)
+            if (textBox1.Text == textBox2.Text && username_tb.Text!="" && textBox1.Text!="" && textBox2.Text!="")
             {
+                Uc.uc_user.username = username_tb.Text;
                 Uc.uc_user.encPwd = MySHA256ENC.SHA256Enc.Get_Enc(textBox1.Text);
                 this.Close();
-                
             }
         }
 

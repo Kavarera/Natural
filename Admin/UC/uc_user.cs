@@ -15,6 +15,7 @@ namespace Natural_1.Admin.Uc
     {
         SqlConnection con = new SqlConnection(Helper.getConnection("cn"));
         public static string encPwd = "";
+        public static string username = "";
         public uc_user()
         {
             InitializeComponent();
@@ -204,7 +205,7 @@ namespace Natural_1.Admin.Uc
 
         private void baru_btn_Click(object sender, EventArgs e)
         {
-            if (nama_TB.Text!="" && alamat_TB.Text!= "" && telepon_TB.Text!="")
+            if (nama_TB.Text!="" && alamat_TB.Text!= "" && telepon_TB.Text!="" && role_TB.Text!="")
             {
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(Id_Karyawan) FROM Karyawan WHERE Role ='{role_TB.Text}'", con);
                 
@@ -212,16 +213,17 @@ namespace Natural_1.Admin.Uc
                 try
                 {
                     con.Open();
-                    idkar = Int32.Parse(cmd.ExecuteScalar().ToString()) +1;
+                    idkar = Int32.Parse(cmd.ExecuteScalar().ToString());
+                    idkar += 1;
 
                     Form setpas = new SetPassword();
                     setpas.ShowDialog();
 
                     // belum set password
-                    if (encPwd != "")
+                    if (encPwd != "" && username!="")
                     {
                         cmd = new SqlCommand($"INSERT INTO Karyawan(Id_Karyawan, Username, Password, Nama, No_Telepon, Alamat, Role) " +
-                         $"VALUES ( '{role_TB.Text.Substring(0,1).ToUpper() + idkar.ToString()}', '{role_TB.Text.Substring(0, 2).ToUpper() + idkar.ToString()}', '{encPwd}', " +
+                         $"VALUES ( '{role_TB.Text.Substring(0,1).ToUpper() + idkar.ToString()}', '{username}', '{encPwd}', " +
                          $" '{nama_TB.Text}', '{telepon_TB.Text}', '{alamat_TB.Text}', '{role_TB.Text.Substring(0,1).ToUpper() + role_TB.Text.Substring(1,role_TB.Text.Length-1).ToLower()}' )", con);
                         cmd.ExecuteNonQuery();
                         id_TB.Text = role_TB.Text.Substring(0, 1).ToUpper() + idkar.ToString();

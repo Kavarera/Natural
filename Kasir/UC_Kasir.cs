@@ -25,6 +25,8 @@ namespace Natural_1.Kasir
             ongkir_TB.Text = "0";
         }
 
+        
+
         private void noPelanggan_TB_Enter(object sender, EventArgs e)
         {
             noPelanggan_TB.Text = "";
@@ -324,6 +326,9 @@ namespace Natural_1.Kasir
             kasirHelper.getBarangDetail(con, barang_CB.SelectedItem.ToString());
             hargaSatuan_TB.Text = Barang.Harga_PCS.ToString();
             bonuspertb.Text = Barang.Bonus_PER.ToString();
+            stok_tb.Text = Barang.Jumlah.ToString();
+            satuan_tb.Text = Barang.Satuan.ToString();
+            disTB.Text = Barang.Distributor.ToString();
             if(bonuspertb.Text=="0")
             {
                 ambilBonus_BTN.Enabled = false;
@@ -362,36 +367,76 @@ namespace Natural_1.Kasir
 
         private void tambah_BTN_Click(object sender, EventArgs e)
         {
-            if (jumlah_TB.Text != "" )
+            if (jumlah_TB.Text != "")
             {
-                beliLangsung_BTN.Enabled = false;
-                beli_BTN.Enabled = true;
-                ongkir_TB.Enabled = true;
-                hapusbarang_BTN.Enabled = true;
-                if (bonusPelanggan_TB.Text != null)
-                {
-                    ambilBonus_BTN.Enabled = true;
+                if (Int32.Parse(jumlah_TB.Text) > 0) {
+
+
+                    SqlCommand cmd = new SqlCommand($"select jumlah from Barang where Nama = '{barang_CB.SelectedItem.ToString()}'", con);
+                    try
+                    {
+                        con.Close();
+                        con.Open();
+
+                        int jmlh = Int32.Parse(cmd.ExecuteScalar().ToString());
+                        if (jmlh > Int32.Parse(jumlah_TB.Text))
+                        {
+                            beliLangsung_BTN.Enabled = false;
+                            beli_BTN.Enabled = true;
+                            ongkir_TB.Enabled = true;
+                            hapusbarang_BTN.Enabled = true;
+                            if (bonusPelanggan_TB.Text != null)
+                            {
+                                ambilBonus_BTN.Enabled = true;
+                            }
+
+                            kasir_DGV.Rows.Add();
+                            try
+                            {
+
+                                //kasir_DGV.Rows[indexRow].Cells
+                                int indexRow = kasir_DGV.Rows.Count - 1;
+                                kasir_DGV.Rows[indexRow].Cells[0].Value = barang_CB.SelectedItem.ToString();
+                                kasir_DGV.Rows[indexRow].Cells[1].Value = "-";
+                                kasir_DGV.Rows[indexRow].Cells[2].Value = jumlah_TB.Text.ToString();
+                                kasir_DGV.Rows[indexRow].Cells[3].Value = Barang.Satuan;
+                                kasir_DGV.Rows[indexRow].Cells[4].Value = hargaSatuan_TB.Text.ToString();
+                                kasir_DGV.Rows[indexRow].Cells[5].Value = Int32.Parse(hargaSatuan_TB.Text.ToString()) * Int32.Parse(jumlah_TB.Text.ToString());
+
+
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message + "tambah_BTN_Click when input data to datagrid", "UC_Kasir.cs - tambah_BTN_Click ERROR");
+                            }
+                        }
+
+                        else
+                        {
+                            ToolTip tp = new ToolTip();
+                            tp.Show("Stok barang kurang!", (Button)sender, 0, -30, 10000);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        con.Close();
+                    }
+
+
+                    
                 }
 
-                kasir_DGV.Rows.Add();
-                try
+                else
                 {
-
-                    //kasir_DGV.Rows[indexRow].Cells
-                    int indexRow = kasir_DGV.Rows.Count - 1;
-                    kasir_DGV.Rows[indexRow].Cells[0].Value = barang_CB.SelectedItem.ToString();
-                    kasir_DGV.Rows[indexRow].Cells[1].Value = "-";
-                    kasir_DGV.Rows[indexRow].Cells[2].Value = jumlah_TB.Text.ToString();
-                    kasir_DGV.Rows[indexRow].Cells[3].Value = Barang.Satuan;
-                    kasir_DGV.Rows[indexRow].Cells[4].Value = hargaSatuan_TB.Text.ToString();
-                    kasir_DGV.Rows[indexRow].Cells[5].Value = Int32.Parse(hargaSatuan_TB.Text.ToString()) * Int32.Parse(jumlah_TB.Text.ToString());
-
-
+                    ToolTip tp = new ToolTip();
+                    tp.Show("Nilai tidak boleh negatif!", (Button)sender, 0, -30, 10000);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + "tambah_BTN_Click when input data to datagrid", "UC_Kasir.cs - tambah_BTN_Click ERROR");
-                }
+
+                
             }
             else
             {
@@ -708,6 +753,11 @@ namespace Natural_1.Kasir
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Transaksi Berhasil");
                 }
+
+                else if (nonMember_CB.Checked)
+                {
+                    //todo
+                }
                 // adding to barangLog
 
                 int iRow = kasir_DGV.Rows.Count;
@@ -718,6 +768,7 @@ namespace Natural_1.Kasir
                         $"values( '{DateTime.Now.ToString("dd/MM/yyyy hh:mm tt")}' , '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}', " +
                         $"'{kasir_DGV.Rows[i].Cells[2].Value.ToString()}', 0, '{noStruk_TB.Text}' , " +
                         $" '{kasir_DGV.Rows[i].Cells[5].Value.ToString()}') ", con);
+
                     SqlCommand cmd2 = new SqlCommand($"update Barang set Jumlah = (select Jumlah from barang where nama = '{kasir_DGV.Rows[i].Cells[0].Value.ToString()}')" +
                             $" -{kasir_DGV.Rows[i].Cells[2].Value.ToString()} where Nama='{kasir_DGV.Rows[i].Cells[0].Value.ToString()}' ", con);
 
@@ -975,8 +1026,6 @@ namespace Natural_1.Kasir
                 kasir_DGV.Rows[iRow].Cells[5].Value = "";
                 hapusbarang_BTN.Enabled = true;
                 clickedBonus += 1;
-                MessageBox.Show(kasir_DGV.SelectedRows[0].Cells[0].Value.ToString().Substring(0, kasir_DGV.SelectedRows[0].Cells[0].Value.ToString().Length - 6));
-                MessageBox.Show(kasir_DGV.SelectedRows[0].Cells[0].Value.ToString().Substring(kasir_DGV.SelectedRows[0].Cells[0].Value.ToString().Length - 6, 5));
             }
         }
 
@@ -1185,6 +1234,14 @@ namespace Natural_1.Kasir
             {
                 con.Close();
             }
+        }
+
+        private void jumlah_TB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).SelectionStart >=0 )
+                e.Handled = (e.KeyChar == (char)Keys.Space);
+            else
+                e.Handled = false;
         }
     }
 }

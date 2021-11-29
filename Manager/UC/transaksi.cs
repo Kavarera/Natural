@@ -22,11 +22,19 @@ namespace Natural_1.Manager.UC
 
         private void penjualanBTN_Click(object sender, EventArgs e)
         {
-            if (operatorTB.Text != "")
-            {
+            //if (operatorTB.Text != "")
+            //{
                 SqlCommand cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
-                $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Bonus, Operator from TransactionLog where Modul = 'Kasir' and Operator = " +
-                $"'{operatorTB.Text}'", con);
+                $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Bonus, Operator from TransactionLog where Modul = 'Kasir' and Operator LIKE " +
+                $"'%{operatorTB.Text}%' and TanggalJam between '{dateTimePicker1.Value.ToString("dd/MM/yyyy 00:00:00")}' and '{dateTimePicker2.Value.ToString("dd/MM/yyyy 23:59:59")}'", con);
+
+                if (checkBox1.Checked)
+                {
+                    cmd= new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
+                $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Bonus, Operator from TransactionLog where Modul = 'Kasir' and Operator LIKE " +
+                $"'%{operatorTB.Text}%'", con);
+                }
+
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 try
                 {
@@ -59,47 +67,56 @@ namespace Natural_1.Manager.UC
                     totalrpTB.Text = totalHarga.ToString();
                     totalrpTB.ForeColor = Color.Red;
                 }
-            }
+            //}
 
-            else
-            {
-                SqlCommand cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
-                $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah',Bonus, Operator from TransactionLog where Modul = 'Kasir' ", con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                try
-                {
-                    con.Close();
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    transaksiDGV.DataSource = dt.DefaultView;
-                    dt.Dispose();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "managerHelper-loadData-Pembelian Error");
-                }
-                finally
-                {
-                    con.Close();
-                }
+            //else
+            //{
+            //    SqlCommand cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
+            //    $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah',Bonus, Operator from TransactionLog where Modul = 'Kasir' " +
+            //    $"and TanggalJam between '{dateTimePicker1.Value.ToString("dd/MM/yyyy")}' and '{dateTimePicker2.Value.ToString("dd/MM/yyyy")}' ", con);
+
+            //    if (checkBox1.Checked)
+            //    {
+            //        cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
+            //     $"Modul, Pemasukan as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah',Bonus, Operator from TransactionLog where Modul = 'Kasir' " +
+            //     $"", con);
+
+            //    }
+            //    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //    try
+            //    {
+            //        con.Close();
+            //        con.Open();
+            //        cmd.ExecuteNonQuery();
+            //        DataTable dt = new DataTable();
+            //        sda.Fill(dt);
+            //        transaksiDGV.DataSource = dt.DefaultView;
+            //        dt.Dispose();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "managerHelper-loadData-Pembelian Error");
+            //    }
+            //    finally
+            //    {
+            //        con.Close();
+            //    }
 
 
-                exportBTN.Enabled = true;
-                int totalHarga = 0;
-                int totalBonus = 0;
-                int iROw = transaksiDGV.Rows.Count;
-                totalrpTB.Text = "-" + totalHarga.ToString();
+            //    exportBTN.Enabled = true;
+            //    int totalHarga = 0;
+            //    int totalBonus = 0;
+            //    int iROw = transaksiDGV.Rows.Count;
+            //    totalrpTB.Text = "-" + totalHarga.ToString();
 
-                for (int i = 0; i < iROw; i++)
-                {
-                    totalHarga = totalHarga + Int32.Parse(transaksiDGV.Rows[i].Cells[4].Value.ToString());
-                    totalBonus = totalBonus + Int32.Parse(transaksiDGV.Rows[i].Cells[7].Value.ToString());
-                    totalrpTB.Text = totalHarga.ToString();
-                    totalbonusTB.Text = totalBonus.ToString();
-                }
-            }
+            //    for (int i = 0; i < iROw; i++)
+            //    {
+            //        totalHarga = totalHarga + Int32.Parse(transaksiDGV.Rows[i].Cells[4].Value.ToString());
+            //        totalBonus = totalBonus + Int32.Parse(transaksiDGV.Rows[i].Cells[7].Value.ToString());
+            //        totalrpTB.Text = totalHarga.ToString();
+            //        totalbonusTB.Text = totalBonus.ToString();
+            //    }
+            //}
         }
 
         private void pembelianBTN_Click(object sender, EventArgs e)
@@ -108,8 +125,16 @@ namespace Natural_1.Manager.UC
             if (operatorTB.Text != "")
             {
                 SqlCommand cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
-                $"Modul, Pengeluaran as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Operator from TransactionLog where Modul = 'Belanja' and Operator = " +
-                $"'{operatorTB.Text}'", con);
+                $"Modul, Pengeluaran as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Operator from TransactionLog where Modul = 'Belanja' and Operator LIKE " +
+                $"'%{operatorTB.Text}%' and TanggalJam between '{dateTimePicker1.Value.ToString("dd/MM/yyyy 00:00:00")}' and '{dateTimePicker2.Value.ToString("dd/MM/yyyy 23:59:59")}'", con);
+
+                if (checkBox1.Checked)
+                {
+                    cmd = new SqlCommand($"select Struk as 'No Struk' , TanggalJam as 'Tanggal & Jam' , NamaPelanggan as 'Customer/Distributor', " +
+                $"Modul, Pengeluaran as 'Jumlah' , Keterangan, TglUbah as 'Tanggal Ubah', Operator from TransactionLog where Modul = 'Belanja' and Operator LIKE " +
+                $"'%{operatorTB.Text}%'", con);
+                }
+
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 try
                 {
@@ -212,6 +237,20 @@ namespace Natural_1.Manager.UC
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "cetak Log error");
+            }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                dateTimePicker1.Enabled = false;
+                dateTimePicker2.Enabled = false;
+            }
+            else
+            {
+                dateTimePicker1.Enabled = true;
+                dateTimePicker2.Enabled = true;
             }
         }
     }

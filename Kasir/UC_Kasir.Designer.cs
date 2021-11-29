@@ -73,6 +73,10 @@ namespace Natural_1.Kasir
             this.label12 = new System.Windows.Forms.Label();
             this.barang_CB = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.satuan_tb = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.stok_tb = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.bonuspertb = new System.Windows.Forms.TextBox();
             this.kasir_DGV = new System.Windows.Forms.DataGridView();
@@ -90,6 +94,8 @@ namespace Natural_1.Kasir
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
+            this.label21 = new System.Windows.Forms.Label();
+            this.disTB = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -604,6 +610,12 @@ namespace Natural_1.Kasir
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(85)))), ((int)(((byte)(147)))), ((int)(((byte)(205)))));
+            this.panel2.Controls.Add(this.disTB);
+            this.panel2.Controls.Add(this.label21);
+            this.panel2.Controls.Add(this.satuan_tb);
+            this.panel2.Controls.Add(this.label20);
+            this.panel2.Controls.Add(this.stok_tb);
+            this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.bonuspertb);
             this.panel2.Controls.Add(this.kasir_DGV);
@@ -620,6 +632,42 @@ namespace Natural_1.Kasir
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1203, 691);
             this.panel2.TabIndex = 9;
+            // 
+            // satuan_tb
+            // 
+            this.satuan_tb.Enabled = false;
+            this.satuan_tb.Location = new System.Drawing.Point(520, 115);
+            this.satuan_tb.Name = "satuan_tb";
+            this.satuan_tb.ReadOnly = true;
+            this.satuan_tb.Size = new System.Drawing.Size(165, 23);
+            this.satuan_tb.TabIndex = 14;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(432, 121);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 17);
+            this.label20.TabIndex = 13;
+            this.label20.Text = "Satuan :";
+            // 
+            // stok_tb
+            // 
+            this.stok_tb.Enabled = false;
+            this.stok_tb.Location = new System.Drawing.Point(520, 70);
+            this.stok_tb.Name = "stok_tb";
+            this.stok_tb.ReadOnly = true;
+            this.stok_tb.Size = new System.Drawing.Size(45, 23);
+            this.stok_tb.TabIndex = 12;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(441, 73);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 17);
+            this.label19.TabIndex = 11;
+            this.label19.Text = "Stok :";
             // 
             // label18
             // 
@@ -717,6 +765,7 @@ namespace Natural_1.Kasir
             this.jumlah_TB.Name = "jumlah_TB";
             this.jumlah_TB.Size = new System.Drawing.Size(209, 23);
             this.jumlah_TB.TabIndex = 7;
+            this.jumlah_TB.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.jumlah_TB_KeyPress);
             // 
             // tambah_BTN
             // 
@@ -783,6 +832,24 @@ namespace Natural_1.Kasir
             // printDocument2
             // 
             this.printDocument2.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument2_PrintPage);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(571, 73);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(81, 17);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Distributor :";
+            // 
+            // disTB
+            // 
+            this.disTB.Enabled = false;
+            this.disTB.Location = new System.Drawing.Point(649, 70);
+            this.disTB.Name = "disTB";
+            this.disTB.ReadOnly = true;
+            this.disTB.Size = new System.Drawing.Size(117, 23);
+            this.disTB.TabIndex = 16;
             // 
             // UC_Kasir
             // 
@@ -868,5 +935,11 @@ namespace Natural_1.Kasir
         private System.Drawing.Printing.PrintDocument printDocument2;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox bonuspertb;
+        private System.Windows.Forms.TextBox stok_tb;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox satuan_tb;
+        private System.Windows.Forms.TextBox disTB;
+        private System.Windows.Forms.Label label21;
     }
 }

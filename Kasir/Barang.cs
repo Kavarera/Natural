@@ -15,5 +15,6 @@ namespace Natural_1.Kasir
         public static int Bonus_PER { get; set; }
         public static string Status { get; set; }
         public static string Satuan { get; set; }
+        public static string Distributor { get; set; }
     }
 }

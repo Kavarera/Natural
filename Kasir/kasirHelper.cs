@@ -21,7 +21,9 @@ namespace Natural_1.Kasir
             {
                 SqlCommand cmd = new SqlCommand($"SELECT MAX(ID) AS ID FROM Pelanggan", connection);
                 connection.Open();
-                noPelanggan += cmd.ExecuteScalar()+2.ToString();
+                int a = Int32.Parse(cmd.ExecuteScalar().ToString());
+                a += 1;
+                noPelanggan += a.ToString();
             }
             catch(Exception ex)
             {
@@ -56,7 +58,7 @@ namespace Natural_1.Kasir
         public static void getBarangDetail(SqlConnection con, string Namabarang)
         {
             con.Close();
-            SqlCommand cmd = new SqlCommand($"SELECT Nama, Jumlah,Harga_pcs, Bonus_per, Status , Satuan FROM Barang WHERE ID = {getBarangID(con,Namabarang)}",con);
+            SqlCommand cmd = new SqlCommand($"SELECT Nama, Jumlah,Harga_pcs, Bonus_per, Status , Satuan, distributor FROM Barang WHERE ID = {getBarangID(con,Namabarang)}",con);
             try
             {
                 con.Open();
@@ -69,6 +71,7 @@ namespace Natural_1.Kasir
                     Barang.Bonus_PER=Int32.Parse(sdr["Bonus_per"].ToString());
                     Barang.Status=sdr["Status"].ToString();
                     Barang.Satuan = sdr["Satuan"].ToString();
+                    Barang.Distributor = sdr["distributor"].ToString();
                 }
                 sdr.Close();
                 cmd = new SqlCommand($"select Nama from SatuanBarang where ID={Barang.Satuan}", con);
@@ -138,7 +141,12 @@ namespace Natural_1.Kasir
 
         public static ComboBox loadCBX(ComboBox combobox,string table, string item, SqlConnection con)
         {
-            SqlCommand cmd = new SqlCommand($"SELECT {item} FROM {table}", con);
+            string command = $"SELECT {item} FROM {table}";
+            if (table == "Barang")
+            {
+                command += " where Status = 'Active'";
+            }
+            SqlCommand cmd = new SqlCommand(command, con);
             try
             {
                 con.Open();

@@ -32,7 +32,6 @@ namespace Natural_1.Manager.UC
                 pllDGV.DataSource = null;
                 pllDGV.DataSource = sdt.DefaultView;
                 sda.Dispose();
-                simpanBTN.Enabled = false;
                 button5.Enabled = false;
                 beliBTN.Enabled = false;
                 hapusbarangBTN.Enabled = false;
@@ -73,6 +72,7 @@ namespace Natural_1.Manager.UC
             pllDGV.Enabled = true;
             sdt.Rows.Clear();
             sdt.AcceptChanges();
+            Kasir.kasirHelper.loadCBX(comboBox1, "SatuanBarang", "Nama", con);
         }
 
         private void button5_Click(object sender, EventArgs e)  //Button Ubah

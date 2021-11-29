@@ -24,13 +24,47 @@ namespace Natural_1.Admin.UC
 
         private void cariBTN_Click(object sender, EventArgs e)
         {
+           SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
+                    $"Id_Target as 'ID Target', Keterangan from Log where Operator LIKE '%{operatorTB.Text}%' " +
+                    $"and Modul LIKE '%{modulTB.Text}%' and Tanggal between '{tglMulaiDTP.Value.ToString("dd/MM/yyyy")}' and '{tglSelesaiDTP.Value.ToString("dd/MM/yyyy")}' " +
+                    $" order by ID Desc", con);
+            if (norang_cb.Checked)
+            {
+                cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
+                    $"Id_Target as 'ID Target', Keterangan from Log where Operator LIKE '%{operatorTB.Text}%' " +
+                    $"and Modul LIKE '%{modulTB.Text}%'" +
+                    $" order by ID Desc", con);
+            }
+            if (tglMulaiDTP.Value.ToString() == "")
+            {
+
+            }
             if (operatorTB.Text != "" || modulTB.Text != "")
             {
                 //MessageBox.Show(tglMulaiDTP.Value.ToString("MM/dd/yy"));
-                SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target', " +
-                    $"Id_Target as 'ID Target', Keterangan from Log where Operator = '{operatorTB.SelectedItem.ToString()}' and Tanggal between '{tglMulaiDTP.Value.ToString("dd/MM/yyyy")}' and " +
-                    $"'{tglSelesaiDTP.Value.ToString("dd/MM/yyyy")}' and Modul = '{modulTB.Text}' " +
-                    $" order by ID Desc", con);
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    sda.Fill(dt);
+                    logDGV.DataSource = dt.DefaultView;
+                    sda.Dispose();
+                    dt.Dispose();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Log-CariBTN");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+            else
+            {
+                //MessageBox.Show(tglMulaiDTP.Value.ToString("MM/dd/yy"));
                 DataTable dt = new DataTable();
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 try
@@ -91,52 +125,7 @@ namespace Natural_1.Admin.UC
             }
         }
 
-        private void katakunciTB_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (katakunciTB.Text != "")
-                {
-                    SqlCommand cmd = new SqlCommand($"select Tanggal, Jam, Operator, Kegiatan, Modul, Target, Nama_Target as 'Nama Target' , ID_Target as 'ID Target'," +
-                        $" Keterangan from Log where Tanggal LIKE '%{katakunciTB.Text}%'", con);
-
-                    try
-                    {
-                        con.Open();
-                        SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        cmd.ExecuteNonQuery();
-                        sda.Fill(dt);
-                        logDGV.DataSource = dt.DefaultView;
-                        dt.Dispose();
-                        sda.Dispose();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message, "Log-search error");
-                    }
-                    finally
-                    {
-                        con.Close();
-                    }
-                }
-                if (katakunciTB.Text == "")
-                {
-                    adminHelper.loadData(con, "Log", logDGV);
-                }
-            }
-
-            if (e.KeyCode == Keys.Tab)
-            {
-                button2.Focus();
-            }
-        }
-
-        private void katakunciTB_Enter(object sender, EventArgs e)
-        {
-            ToolTip tt = new ToolTip();
-            tt.Show("Masukan Tanggal", (TextBox)sender, 0, -30, 3000);
-        }
+        
 
         private void tglMulaiDTP_KeyUp(object sender, KeyEventArgs e)
         {
@@ -166,7 +155,7 @@ namespace Natural_1.Admin.UC
         {
             if (e.KeyCode == Keys.Tab)
             {
-                katakunciTB.Focus() ;
+                button2.Focus();
             }
         }
 
@@ -176,6 +165,69 @@ namespace Natural_1.Admin.UC
             {
                 operatorTB.Focus();
             }
+        }
+
+        private void norang_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (norang_cb.Checked)
+            {
+                tglMulaiDTP.Enabled = false;
+                tglSelesaiDTP.Enabled = false;
+            }
+            else
+            {
+                tglMulaiDTP.Enabled = true;
+                tglSelesaiDTP.Enabled = true;
+            }
+        }
+
+        private void cari_tb_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SqlCommand cmd = new SqlCommand($"select * from Log where (" +
+                    $" case Operator when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Modul when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Tanggal when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Kegiatan when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Target when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Nama_Target when '{cari_tb.Text}' then 1 else 0 end" +
+                    $" + case Id_Target when '{cari_tb.Text}' then 1 else 0 end ) >= 1", con);
+
+                if (cari_tb.Text =="")
+                {
+                    cmd = new SqlCommand("select * from Log",con);
+                }
+
+                try
+                {
+                    con.Close();
+                    con.Open();
+                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    cmd.ExecuteNonQuery();
+                    sda.Fill(dt);
+
+                    logDGV.DataSource = dt.DefaultView;
+                    sda.Dispose();
+                    dt.Dispose();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Can't use search feature!");
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        private void cari_tb_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((sender as TextBox).SelectionStart == 0) e.Handled = (e.KeyChar == (char)Keys.Space);
+            else
+                e.Handled = false;
         }
     }
 }

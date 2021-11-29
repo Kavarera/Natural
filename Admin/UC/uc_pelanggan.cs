@@ -20,7 +20,7 @@ namespace Natural_1.Admin.UC
         {
             InitializeComponent();
             adminHelper.loadData(con, "Pelanggan", pelanggan_DGV);
-            id_TB.Text = adminHelper.GenerateNoPelanggan(con, "P", "Pelanggan");
+            id_TB.Text = Kasir.kasirHelper.GenerateNoPelanggan(con, "PA");
         }
 
         private void pelanggan_DGV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -195,7 +195,12 @@ namespace Natural_1.Admin.UC
 
         private void baruBTN_Click(object sender, EventArgs e)
         {
-            if (namatTB.Text != "" && telep_TB.Text != "" && alamat_TB.Text != "" && bonus_TB.Text != "")
+            if (nama_TB.Text == "" || telep_TB.Text == "" || alamat_TB.Text == "" || bonus_TB.Text == "")
+            {
+                MessageBox.Show("Ada data yang belum diisi");
+            }
+
+            else
             {
                 id_TB.Text = Kasir.kasirHelper.GenerateNoPelanggan(con, "PA");
                 SqlCommand cmd = new SqlCommand($"INSERT INTO Pelanggan(Id_Pelanggan, Nama, No_Telp, Alamat, Area, Bonus, Status) " +
@@ -228,11 +233,6 @@ namespace Natural_1.Admin.UC
                     adminHelper.loadData(con, "Pelanggan", pelanggan_DGV);
                 }
             }
-
-            else
-            {
-                MessageBox.Show("Ada data yang belum diisi");
-            }
         }
 
         private void transaksiBTN_Click(object sender, EventArgs e)
@@ -240,8 +240,8 @@ namespace Natural_1.Admin.UC
             if (pelanggan_DGV.SelectedRows.Count > 0)
             {
                 adminHelper.loadData(con, "TP", transaksiPelanggan_DGV, pelanggan_DGV.SelectedRows[0].Cells[1].Value.ToString());
-                mulaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
-                selesaiDTP.CustomFormat = "dd/MM/yyyy hh:mm tt";
+                mulaiDTP.CustomFormat = "dd/MM/yyyy";
+                selesaiDTP.CustomFormat = "dd/MM/yyyy";
 
                 namatTB.Enabled = true;
                 telepontTB.Enabled = true;

@@ -98,6 +98,9 @@ namespace Natural_1
             if (e.Key== Key.Enter)
             {
                 login_BTN.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Button.ClickEvent));
+                string temp = username_TB.Text;
+                username_TB.Focus();
+                username_TB.Text = temp;
             }
         }
     }

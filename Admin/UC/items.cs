@@ -19,7 +19,9 @@ namespace Natural_1.Admin.UC
         {
             InitializeComponent();
             adminHelper.loadData(con, "Items", itemsDGV);
-            idTB.Text = itemsDGV.Rows.Count.ToString();
+            idTB.Text = (Int32.Parse(itemsDGV.Rows[itemsDGV.Rows.Count - 1].Cells[0].Value.ToString())+1).ToString();
+
+            //(itemsDGV.Rows.Count + 1).ToString();
             Kasir.kasirHelper.loadCBX(satuanCBX, "SatuanBarang", "Nama", con);
         }
 
